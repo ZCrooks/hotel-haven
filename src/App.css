@@ -12489,4 +12489,25 @@ template {
           clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+h1, h2, h3 {
+  font-family: "Inter", sans-serif;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  font-weight: 800;
+  color: white;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+p {
+  color: #5d626f;
 }/*# sourceMappingURL=App.css.map */
