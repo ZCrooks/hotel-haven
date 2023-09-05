@@ -1,0 +1,75 @@
+// HEADER
+
+header {
+    display: flex;
+    position: relative;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
+    & .header-div {
+        width: 50%;
+        height: 300px;
+        background-color: $primary;
+        padding: 30px;
+        margin-right: -100px;
+        z-index: 1;
+      
+    }
+    & .header-img-div {
+        width: 75%;
+    }
+    & h1 {
+        position: absolute;
+        bottom: 40%;
+        z-index: 1;
+        margin-left: 5%;
+    }
+    & span {
+        display: block;
+    }
+}
+.g-2 {
+    border-radius: 50px;
+    min-height: 40px;
+    box-shadow: -5px 11px 14px 3px $primary;
+    height: 100px;
+    width: 95%;
+}
+
+.rs-picker {
+    width: 100%;
+    height: 100px;
+}
+
+.rs-picker-toggle {
+    height: 60px;
+}
+
+.vl {
+    border-left: 6px solid green;
+    height: 5px;
+}
+
+.search-form {
+   
+
+    & input, .rs-picker-toggle  {
+        border-right: 1px solid #E1E8F1;
+        border-radius: 50px;
+        min-height: 90%;
+    }
+    & input:hover, .rs-picker input:hover {
+        cursor: pointer;
+        background-color: gray;
+    }
+    & input:hover, .rs-picker input:focus {
+        cursor: pointer;
+        background-color: gray;
+    }
+    & .submit-button {
+        background-color: $primary;
+        border-radius: 50%;
+        width: 5%;
+    }
+
+}

@@ -1,0 +1,14 @@
+// HOME
+.description-title, .description-container h3 {
+    text-align: center;
+}
+
+.description-container {
+    margin-top: 10%;
+    & .description-box {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
