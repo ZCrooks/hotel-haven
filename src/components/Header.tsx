@@ -1,5 +1,6 @@
 import headerImage from "../assets/header-img.jpeg"
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -13,8 +14,6 @@ const Header = () => {
     // Set Updated Form Data (User choices)
     const [updateForm, setUpdateForm] = useState("")
 
-   
-    console.log(updateForm)
     return (
         <>
         <header>
