@@ -33,10 +33,31 @@ function App() : JSX.Element {
       });
     }
 
+    // FETCH 'HOTEL DETAILS' ENDPOINT
+    const fetchDetails = () => {
+      axios.get('https://proxy.junocollege.com/https://api.content.tripadvisor.com/api/v1/location/126260/details', {
+        params: {
+          key: '5D870B1826CC4460BFB3D056ADB08E60', 
+          language: 'en', 
+          currency: 'USD'
+        },
+          headers: {
+            accept: 'application/json'
+          }
+      })
+        .then(response => {
+          console.log(response.data); // Update state with API data // Set loading to false
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        // Set loading to false in case of an error
+        });
+      }
 
-    useEffect(() => {
-      fetchSearch();
-    }, [])
+
+    // useEffect(() => {
+    //   // fetchSearch();
+    // }, [])
   
   return (
     <>
