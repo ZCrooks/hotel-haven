@@ -51,8 +51,6 @@ header {
 }
 
 .search-form {
-   
-
     & input, .rs-picker-toggle  {
         border-right: 1px solid #E1E8F1;
         border-radius: 50px;
@@ -69,7 +67,6 @@ header {
     & .submit-button {
         background-color: $primary;
         border-radius: 50%;
-        width: 5%;
+        width: 8%;
     }
-
 }

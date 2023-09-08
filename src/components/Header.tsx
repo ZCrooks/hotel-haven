@@ -1,6 +1,6 @@
-import headerImage from "../assets/header-img.jpeg"
+import headerImage from "../assets/header-img.jpeg";
+import Container from 'react-bootstrap/Container';
 import { useState, useEffect } from "react";
-import axios from 'axios';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -25,20 +25,23 @@ const Header = () => {
             </div>
 
         </header>
-        <Form className="search-form">
-            <Row className="g-2 ms-4">
-                <Col md>
-                    <Form.Control className="location-input" type="text" placeholder="Where are you going?" />
-                </Col>
-                <Col md>
-                    <DateRangePicker />
-                </Col>
-                <Col md>
-                    <Form.Control size="lg" type="number" placeholder="Number of Guests" />
-                </Col>  
-                <Button type="submit" className="submit-button"><FontAwesomeIcon icon={faMagnifyingGlass} /></Button> 
-            </Row>
-        </Form>
+        <Container>
+            <Form className="search-form">
+                <Row className="g-2 ms-4">
+                    <Col md>
+                        <Form.Control className="location-input" type="text" placeholder="Where are you going?" />
+                    </Col>
+                    <Col md>
+                        <DateRangePicker />
+                    </Col>
+                    <Col md>
+                        <Form.Control size="lg" type="number" placeholder="Number of Guests" />
+                    </Col>  
+                    <Button type="submit" className="submit-button"><FontAwesomeIcon icon={faMagnifyingGlass} /></Button> 
+                </Row>
+            </Form>
+        </Container>
+
         </>
     )
 }
