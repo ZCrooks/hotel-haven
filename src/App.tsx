@@ -5,6 +5,7 @@ import axios from 'axios';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
 import Description from './components/Description';
+import FeaturedAuthors from './components/FeaturedAuthors';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import './App.css';
@@ -64,6 +65,7 @@ function App() : JSX.Element {
       <Navigation />
       <Header />
       <Description />
+      <FeaturedAuthors />
       <Newsletter />
       <Footer />
     </>

@@ -26,61 +26,71 @@ const authorCard: Author[] = [
         backgroundImage: authorEleven,
         profileImage: authorOne,
         name: "Nayden Lowe",
-        socials: "@Author Job"
+        socials: "@Author Job",
+        id: 1
     },
     {
         backgroundImage: authorTwelve,
         profileImage: authorTwo,
         name: "Jorga Beverly",
-        socials: "@Author Job"
+        socials: "@Author Job",
+        id: 2
     },
     {
         backgroundImage: authorThirteen,
         profileImage: authorThree,
         name: "Mackenzie Goodman",
-        socials: "@Author Job"
+        socials: "@Author Job",
+        id: 3
     },
     {
         backgroundImage: authorFourteen,
         profileImage: authorFour,
         name: "Evelyn Prinz",
-        socials: "@Author Job"
+        socials: "@Author Job", 
+        id: 4
     },
     {
         backgroundImage: authorFifteen,
         profileImage: authorFive,
         name: "David Elliot",
-        socials: "@Author Job"
+        socials: "@Author Job",
+        id: 5
     },
     {
         backgroundImage: authorSixteen,
         profileImage: authorSix,
         name: "Wilma Nogeura",
-        socials: "@Author Job"
+        socials: "@Author Job",
+        id: 6
     },
     {
         backgroundImage: authorSeventeen,
         profileImage: authorSeven,
         name: "Eleanora Sasaki",
-        socials: "@Author Job"
+        socials: "@Author Job", 
+        id: 7
     },
     {
         backgroundImage: authorEighteen,
         profileImage: authorEight,
         name: "Nayden Lowe",
-        socials: "@Author Job"
+        socials: "@Author Job",
+        id: 8
     },
     {
         backgroundImage: authorNineteen,
         profileImage: authorNine,
         name: "Jami Hofmeister",
-        socials: "@Author Job"
+        socials: "@Author Job",
+        id: 9
     },
     {
         backgroundImage: authorTwenty,
         profileImage: authorTen,
         name: "Zan Montagne",
-        socials: "@Author Job"
+        socials: "@Author Job",
+        id: 10
     },                                    
 ]
 
