@@ -12292,11 +12292,43 @@ header span {
 }
 
 .description-container {
-  margin-top: 10%;
+  margin-top: 5%;
 }
 .description-container .description-box {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.authors-section {
+  background-color: #F1F5FA;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+}
+.authors-section .cards-box {
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.authors-section .authors-title {
+  text-align: center;
+}
+.authors-section .author-card {
+  margin: 20px;
+  border-radius: 10px;
+}
+.authors-section .author-card .prof-image {
+  border-radius: 50px;
+  margin-bottom: 5px;
+}
+.authors-section .author-card .prof-image .card-img {
+  border-radius: 90px;
+}
+.authors-section .author-card:hover {
+  cursor: pointer;
+  position: relative;
+  bottom: 10%;
 }/*# sourceMappingURL=App.css.map */

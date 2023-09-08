@@ -18,7 +18,7 @@ import authorSixteen from "../assets/author-image-16.png"
 import authorSeventeen from "../assets/author-image-17.png"
 import authorEighteen from "../assets/author-image-18.png"
 import authorNineteen from "../assets/author-image-19.png"
-import authorTwenty from "../assets/author-image-10.png"
+import authorTwenty from "../assets/author-image-20.png"
 
 // ARRAY OF TOP 10 AUTHOR CARD CONTENT
 const authorCard: Author[] = [
@@ -91,7 +91,7 @@ const authorCard: Author[] = [
         name: "Zan Montagne",
         socials: "@Author Job",
         id: 10
-    },                                    
+    }                                    
 ]
 
 export default authorCard;
