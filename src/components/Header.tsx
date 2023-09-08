@@ -1,6 +1,5 @@
 import headerImage from "../assets/header-img.jpeg"
 import { useState, useEffect } from "react";
-import axios from 'axios';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
