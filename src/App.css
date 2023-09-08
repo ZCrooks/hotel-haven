@@ -12334,4 +12334,36 @@ header span {
   border-radius: 20px;
   width: 100px;
   background-color: red;
+}
+
+.newsletter-section {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+.newsletter-section .link-box {
+  display: flex;
+  margin-top: 5px;
+  align-items: center;
+}
+.newsletter-section .link-box-2 {
+  background-color: #FFE1E1;
+}
+.newsletter-section .newsletter-form {
+  margin-top: 40px;
+}
+.newsletter-section .newsletter-form input,
+.newsletter-section .newsletter-form .rs-picker-toggle {
+  border-right: 1px solid #E1E8F1;
+  border-radius: 50px;
+  min-height: 90%;
+}
+.newsletter-section .newsletter-form input:hover,
+.newsletter-section .newsletter-form .rs-picker input:hover {
+  cursor: pointer;
+  background-color: gray;
+}
+.newsletter-section .newsletter-form .newsletter-submit-button {
+  background-color: #04b9d8;
+  border-radius: 50%;
+  width: 15%;
 }/*# sourceMappingURL=App.css.map */

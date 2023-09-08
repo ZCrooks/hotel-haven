@@ -1,0 +1,33 @@
+// NEWSLETTER
+
+.newsletter-section {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    & .link-box {
+        display: flex;
+        margin-top: 5px;
+        align-items: center;
+    }
+    & .link-box-2 {
+        background-color: #FFE1E1;
+    }
+    & .newsletter-form {
+        margin-top: 40px;
+        & input,
+        .rs-picker-toggle {
+            border-right: 1px solid #E1E8F1;
+            border-radius: 50px;
+            min-height: 90%;
+        }
+        & input:hover,
+        .rs-picker input:hover {
+            cursor: pointer;
+            background-color: gray;
+        }
+        & .newsletter-submit-button {
+            background-color: $primary;
+            border-radius: 50%;
+            width: 15%;
+        }
+    }
+}
