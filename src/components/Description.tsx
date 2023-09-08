@@ -12,34 +12,34 @@ const Description = () => {
 
     return (
         <section className="description-container">
-            <div className='description-title'>
-                <h2>How it works</h2>
-                <p>Keep calm & travel on</p>
-            </div>
-             <Container >
-                <Row>
-                    <Col className='description-box'>
-                        <div>
-                            <img src={smartSearch} alt="" />
-                        </div>
-                        <h3>Smart search</h3>
-                        <p>Name the destination and hotel price range in the searchbar. Our app will find you the perfect match.</p>
-                    </Col>
-                    <Col className='description-box'>
-                        <div>
-                            <img src={chooseProperty} alt="" />
-                        </div>
-                        <h3>Choose property</h3>
-                        <p>Survey a diverse array of options curated by our application, allowing you to handpick the property that aligns with your preferences for exploration.</p>
-                    </Col>
-                    <Col className="description-box">
-                        <div>
-                            <img src={bookProperty} alt="" />
-                        </div>
-                        <h3>Book your property</h3>
-                        <p>Find a luxurious getaway or space from your search bar. Enter your specific  location, property type, and price range.</p>
-                    </Col>
-                </Row>
+            <Container >
+                <div className='description-title'>
+                    <h2>How it works</h2>
+                    <p>Keep calm & travel on</p>
+                </div>
+                    <Row>
+                        <Col className='description-box'>
+                            <div>
+                                <img src={smartSearch} alt="" />
+                            </div>
+                            <h3>Smart search</h3>
+                            <p>Name the destination and hotel price range in the searchbar. Our app will find you the perfect match.</p>
+                        </Col>
+                        <Col className='description-box'>
+                            <div>
+                                <img src={chooseProperty} alt="" />
+                            </div>
+                            <h3>Choose property</h3>
+                            <p>Survey a diverse array of options curated by our application, allowing you to handpick the property that aligns with your preferences for exploration.</p>
+                        </Col>
+                        <Col className="description-box">
+                            <div>
+                                <img src={bookProperty} alt="" />
+                            </div>
+                            <h3>Book your property</h3>
+                            <p>Find a luxurious getaway or space from your search bar. Enter your specific  location, property type, and price range.</p>
+                        </Col>
+                    </Row>
             </Container>
         </section>
     )

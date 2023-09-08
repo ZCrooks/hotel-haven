@@ -7,7 +7,8 @@
         margin-top: 15px;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: center;
+        align-items: center;
         // display: grid;
         // grid-template-columns: repeat(5, 1fr);
         // grid-gap: 20px;
@@ -26,11 +27,11 @@
             }
         }
     }
-    & .author-card:hover {
-        cursor: pointer;
-        position: relative;
-        
-        bottom: 10%;
+    & .icon-box {
+        display: flex;
+        align-items: center;
+        border-radius: 20px;
+        width: 100px;
+        background-color: red;
     }
-    
 }

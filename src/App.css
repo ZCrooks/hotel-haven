@@ -12284,7 +12284,7 @@ header span {
 .search-form .submit-button {
   background-color: #04b9d8;
   border-radius: 50%;
-  width: 5%;
+  width: 8%;
 }
 
 .description-title, .description-container h3, .description-container .h3 {
@@ -12311,7 +12311,8 @@ header span {
   margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 }
 .authors-section .authors-title {
   text-align: center;
@@ -12327,8 +12328,10 @@ header span {
 .authors-section .author-card .prof-image .card-img {
   border-radius: 90px;
 }
-.authors-section .author-card:hover {
-  cursor: pointer;
-  position: relative;
-  bottom: 10%;
+.authors-section .icon-box {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  width: 100px;
+  background-color: red;
 }/*# sourceMappingURL=App.css.map */
