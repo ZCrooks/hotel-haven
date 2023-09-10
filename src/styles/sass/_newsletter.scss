@@ -3,10 +3,13 @@
 .newsletter-section {
     margin-top: 10%;
     margin-bottom: 10%;
+    & .newsletter-image {
+        margin-left: 10px;
+    }
     & .link-box {
         display: flex;
         margin-top: 5px;
-        align-items: center;
+        align-items: first baseline;
     }
     & .link-box-2 {
         background-color: #FFE1E1;
