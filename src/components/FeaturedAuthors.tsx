@@ -22,8 +22,8 @@ const FeaturedAuthors = () => {
                     {/* Map over Imported Array of Top 10 Author Card Info  */}
                     {authorCard.map((card) => {
                         return  (
-                            <div className="author-card" key={card.id}>
-                                <Card className="author-card" style={{ width: '18rem', display: 'flex', flexDirection: 'row-reverse' }}>
+                            <div className="author-cards" key={card.id}>
+                               <Card className="author-card d-flex flex-column justify-content-center align-items-center" style={{ width: '10rem' }}>
                                     <Card.Img variant="top" src={card.backgroundImage} />
                                     <Card.Body>
                                         <div className="prof-image">

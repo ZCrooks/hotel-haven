@@ -1,0 +1,30 @@
+// FOOTER MENU
+
+footer {
+    margin-top: 10%;
+    & .brand-links {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        bottom: 12px;
+        & .url {
+            display: flex;
+            align-items: center;
+        }
+        & .brand-logo {
+            width: 15%;
+            margin-right: 5px;
+        }
+        & .logo-image {
+            width: 50%;
+            background-color: $tertiary;
+        }
+    }
+    & .footer-menu, .brand-links {
+        & a {
+            text-decoration: none;
+        }
+    }
+}
+
+

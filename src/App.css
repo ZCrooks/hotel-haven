@@ -12218,6 +12218,10 @@ p {
   color: #5d626f;
 }
 
+ul {
+  list-style: none;
+}
+
 header {
   display: flex;
   position: relative;
@@ -12309,23 +12313,25 @@ header span {
 }
 .authors-section .cards-box {
   margin-top: 15px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* Adjust the minmax value as needed */
+  grid-gap: 20px;
+  max-width: 100%;
   justify-content: center;
-  align-items: center;
 }
 .authors-section .authors-title {
   text-align: center;
 }
-.authors-section .author-card {
-  margin: 20px;
+.authors-section .author-cards {
+  margin: 10px;
   border-radius: 10px;
 }
-.authors-section .author-card .prof-image {
+.authors-section .author-cards .prof-image {
   border-radius: 50px;
   margin-bottom: 5px;
 }
-.authors-section .author-card .prof-image .card-img {
+.authors-section .author-cards .prof-image .card-img {
   border-radius: 90px;
 }
 .authors-section .icon-box {
@@ -12369,4 +12375,29 @@ header span {
   background-color: #04b9d8;
   border-radius: 50%;
   width: 15%;
+}
+
+footer {
+  margin-top: 10%;
+}
+footer .brand-links {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  bottom: 12px;
+}
+footer .brand-links .url {
+  display: flex;
+  align-items: center;
+}
+footer .brand-links .brand-logo {
+  width: 15%;
+  margin-right: 5px;
+}
+footer .brand-links .logo-image {
+  width: 50%;
+  background-color: #5d626f;
+}
+footer .footer-menu a, footer .brand-links a {
+  text-decoration: none;
 }/*# sourceMappingURL=App.css.map */
