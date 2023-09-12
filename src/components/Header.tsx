@@ -18,12 +18,11 @@ const Header = () => {
         <>
         <header>
             <div className="header-div">
-                <h1>Find Your Next <span>Relaxing Getaway</span></h1>
+                <h1>Find Your Next <span>Vacation Property!</span></h1>
             </div>
             <div className="header-img-div">
                 <img className="header-img" src={headerImage} alt="Header Image" />                
             </div>
-
         </header>
         <Container>
             <Form className="search-form">

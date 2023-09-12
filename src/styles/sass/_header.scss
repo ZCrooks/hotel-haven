@@ -19,7 +19,7 @@ header {
     }
     & h1 {
         position: absolute;
-        bottom: 40%;
+        bottom: 35%;
         z-index: 1;
         margin-left: 5%;
     }
@@ -58,11 +58,11 @@ header {
     }
     & input:hover, .rs-picker input:hover {
         cursor: pointer;
-        background-color: rgba(0, 0, 123, 0.1);
+        background-color: rgba(0, 13, 132, 0.4);
     }
     & input:hover, .rs-picker input:focus {
         cursor: pointer;
-        background-color: rgba(0, 0, 123, 0.1);
+        background-color: rgba(0, 13, 132, 0.4);
     }
     & .submit-button {
         background-color: $primary;
@@ -75,3 +75,4 @@ header {
         text-align: center;
     }
 }
+

@@ -25,6 +25,15 @@ footer {
             text-decoration: none;
         }
     }
+    & .footer-bar {
+        background-color: wheat;
+        text-align: center;
+        padding: 10px;
+        & span {
+            display: block;
+            font-weight: 700;
+        }
+    }
 }
 
 

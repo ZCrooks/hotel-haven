@@ -5,7 +5,7 @@ import { faBell, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 
 const Navigation = () => {
     return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-primary">
       <Container>
         <Navbar.Brand href="#">
           <img src={logo} alt="Home Haven Logo" width="250" height="90"/>

@@ -12242,7 +12242,7 @@ header .header-img-div {
 }
 header h1, header .h1 {
   position: absolute;
-  bottom: 40%;
+  bottom: 35%;
   z-index: 1;
   margin-left: 5%;
 }
@@ -12280,11 +12280,11 @@ header span {
 }
 .search-form input:hover, .search-form .rs-picker input:hover {
   cursor: pointer;
-  background-color: rgba(0, 0, 123, 0.1);
+  background-color: rgba(0, 13, 132, 0.4);
 }
 .search-form input:hover, .search-form .rs-picker input:focus {
   cursor: pointer;
-  background-color: rgba(0, 0, 123, 0.1);
+  background-color: rgba(0, 13, 132, 0.4);
 }
 .search-form .submit-button {
   background-color: #04b9d8;
@@ -12326,7 +12326,6 @@ header span {
   margin-top: 15px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  /* Adjust the minmax value as needed */
   grid-gap: 20px;
   max-width: 100%;
   justify-content: center;
@@ -12411,4 +12410,13 @@ footer .brand-links .logo-image {
 }
 footer .footer-menu a, footer .brand-links a {
   text-decoration: none;
+}
+footer .footer-bar {
+  background-color: wheat;
+  text-align: center;
+  padding: 10px;
+}
+footer .footer-bar span {
+  display: block;
+  font-weight: 700;
 }/*# sourceMappingURL=App.css.map */
