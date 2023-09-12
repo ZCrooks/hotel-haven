@@ -1,4 +1,4 @@
-.authors-section {
+.renters-section {
     background-color: $secondary;
     margin-top: 5%;
     display: flex;
@@ -13,10 +13,10 @@
         max-width: 100%;
         justify-content: center;
     }
-    & .authors-title {
+    & .renters-title {
         text-align: center;
     }
-    & .author-cards {
+    & .renter-cards {
         margin: 10px;
         border-radius: 10px;
         & .prof-image {

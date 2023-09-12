@@ -12280,19 +12280,26 @@ header span {
 }
 .search-form input:hover, .search-form .rs-picker input:hover {
   cursor: pointer;
-  background-color: gray;
+  background-color: rgba(0, 0, 123, 0.1);
 }
 .search-form input:hover, .search-form .rs-picker input:focus {
   cursor: pointer;
-  background-color: gray;
+  background-color: rgba(0, 0, 123, 0.1);
 }
 .search-form .submit-button {
   background-color: #04b9d8;
   border-radius: 50%;
   width: 8%;
 }
-.search-form .form-control {
-  font-size: 0.9rem;
+.search-form .form-control::-moz-placeholder {
+  font-size: 1.3rem;
+  color: black;
+  text-align: center;
+}
+.search-form .form-control::placeholder, .search-form .rs-picker-toggle-placeholder {
+  font-size: 1.3rem;
+  color: black;
+  text-align: center;
 }
 
 .description-title, .description-container h3, .description-container .h3 {
@@ -12309,13 +12316,13 @@ header span {
   align-items: center;
 }
 
-.authors-section {
+.renters-section {
   background-color: #F1F5FA;
   margin-top: 5%;
   display: flex;
   flex-direction: column;
 }
-.authors-section .cards-box {
+.renters-section .cards-box {
   margin-top: 15px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -12324,21 +12331,21 @@ header span {
   max-width: 100%;
   justify-content: center;
 }
-.authors-section .authors-title {
+.renters-section .renters-title {
   text-align: center;
 }
-.authors-section .author-cards {
+.renters-section .renter-cards {
   margin: 10px;
   border-radius: 10px;
 }
-.authors-section .author-cards .prof-image {
+.renters-section .renter-cards .prof-image {
   border-radius: 50px;
   margin-bottom: 5px;
 }
-.authors-section .author-cards .prof-image .card-img {
+.renters-section .renter-cards .prof-image .card-img {
   border-radius: 90px;
 }
-.authors-section .icon-box {
+.renters-section .icon-box {
   display: flex;
   align-items: center;
   border-radius: 20px;

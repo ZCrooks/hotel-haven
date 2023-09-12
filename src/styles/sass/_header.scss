@@ -58,18 +58,20 @@ header {
     }
     & input:hover, .rs-picker input:hover {
         cursor: pointer;
-        background-color: gray;
+        background-color: rgba(0, 0, 123, 0.1);
     }
     & input:hover, .rs-picker input:focus {
         cursor: pointer;
-        background-color: gray;
+        background-color: rgba(0, 0, 123, 0.1);
     }
     & .submit-button {
         background-color: $primary;
         border-radius: 50%;
         width: 8%;
     }
-    & .form-control {
-        font-size: 0.9rem;
+    & .form-control::placeholder, .rs-picker-toggle-placeholder {
+        font-size: 1.3rem;
+        color: black;
+        text-align: center;
     }
 }

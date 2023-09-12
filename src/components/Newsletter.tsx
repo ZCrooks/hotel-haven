@@ -45,7 +45,7 @@ const Newsletter = () => {
                         <p>Read to gain new perspectives on the hottest locations, experiences, and hotel deals!</p>
                             <div className="link-box">
                                 <Button variant="info">01</Button> 
-                                <p>Get exclusive Hotel Offers!</p>                               
+                                <p>Get exclusive Rental Offers!</p>                               
                             </div>
                             <div className="link-box">
                                 <Button variant="info" className="link-box-2">02</Button> 
