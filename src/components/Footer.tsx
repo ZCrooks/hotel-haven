@@ -49,19 +49,19 @@ const Footer = () => {
                                 <h3>Getting Started</h3>
                             </li>
                             <li>
-                                <a href="#">Installation</a>
+                                <a href="#">Why Hotel Haven?</a>
                             </li>
                             <li>
-                                <a href="#">Release Notes</a>
+                                <a href="#">Account Registration</a>
                             </li>
                             <li>
-                                <a href="#">Upgrade Guide</a>
+                                <a href="#">Cancellation Policy</a>
                             </li>
                             <li>
-                                <a href="#">Browser Support</a>
+                                <a href="#">FAQs</a>
                             </li>
                             <li>
-                                <a href="#">Editor Support</a>
+                                <a href="#">Careers</a>
                             </li>
                         </ul>
                     </Col>
@@ -72,19 +72,19 @@ const Footer = () => {
                                 <h3>Explore</h3>
                             </li>
                             <li>
-                                <a href="#">Design Features</a>
+                                <a href="#">Hotels</a>
                             </li>
                             <li>
-                                <a href="#">Prototyping</a>
+                                <a href="#">Destinations</a>
                             </li>
                             <li>
-                                <a href="#">Design Systems</a>
+                                <a href="#">Packages</a>
                             </li>
                             <li>
-                                <a href="#">Pricing</a>
+                                <a href="#">Safety</a>
                             </li>
                             <li>
-                                <a href="#">Security</a>
+                                <a href="#">Affiliates</a>
                             </li>
                         </ul>
                     </Col>
@@ -94,16 +94,13 @@ const Footer = () => {
                                 <h3>Resources</h3>
                             </li>
                             <li>
-                                <a href="#">Best Practices</a>
+                                <a href="#">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="#">Terms & Conditions</a>
                             </li>
                             <li>
                                 <a href="#">Support</a>
-                            </li>
-                            <li>
-                                <a href="#">Developers</a>
-                            </li>
-                            <li>
-                                <a href="#">Learn Design</a>
                             </li>
                             <li>
                                 <a href="#">Releases</a>
