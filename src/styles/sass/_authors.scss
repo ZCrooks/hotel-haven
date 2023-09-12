@@ -5,19 +5,19 @@
     flex-direction: column;
     & .cards-box {
         margin-top: 15px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        // display: grid;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                    /* Adjust the minmax value as needed */
         // grid-template-columns: repeat(5, 1fr);
-        // grid-gap: 20px;
+        grid-gap: 20px;
+        max-width: 100%;
+        justify-content: center;
     }
     & .authors-title {
         text-align: center;
     }
-    & .author-card {
-        margin: 20px;
+    & .author-cards {
+        margin: 10px;
         border-radius: 10px;
         & .prof-image {
             border-radius: 50px;
