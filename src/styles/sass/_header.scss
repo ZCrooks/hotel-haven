@@ -54,6 +54,7 @@ header {
         border-right: 1px solid #E1E8F1;
         border-radius: 50px;
         min-height: 90%;
+        display: flex;
     }
     & input:hover, .rs-picker input:hover {
         cursor: pointer;
@@ -67,5 +68,8 @@ header {
         background-color: $primary;
         border-radius: 50%;
         width: 8%;
+    }
+    & .form-control {
+        font-size: 0.9rem;
     }
 }

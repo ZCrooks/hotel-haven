@@ -12276,6 +12276,7 @@ header span {
   border-right: 1px solid #E1E8F1;
   border-radius: 50px;
   min-height: 90%;
+  display: flex;
 }
 .search-form input:hover, .search-form .rs-picker input:hover {
   cursor: pointer;
@@ -12289,6 +12290,9 @@ header span {
   background-color: #04b9d8;
   border-radius: 50%;
   width: 8%;
+}
+.search-form .form-control {
+  font-size: 0.9rem;
 }
 
 .description-title, .description-container h3, .description-container .h3 {
