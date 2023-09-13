@@ -12412,6 +12412,7 @@ footer .footer-menu a, footer .brand-links a {
   text-decoration: none;
 }
 footer .footer-bar {
+  margin-top: 5%;
   background-color: wheat;
   text-align: center;
   padding: 10px;

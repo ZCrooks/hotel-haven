@@ -1,15 +1,11 @@
 import smartSearch from '../assets/smart-search.png';
 import chooseProperty from '../assets/choose-property.png';
 import bookProperty from '../assets/book-property.png';
-
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const Description = () => {
-
-
-
     return (
         <section className="description-container">
             <Container >
