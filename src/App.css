@@ -12226,6 +12226,13 @@ ul {
   list-style: none;
 }
 
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
 header {
   display: flex;
   position: relative;

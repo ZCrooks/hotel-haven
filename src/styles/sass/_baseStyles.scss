@@ -42,5 +42,10 @@ ul {
     list-style: none;
 }
 
-
-
+// LOADING SPINNER
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}

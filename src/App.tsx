@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Spinner } from 'react-bootstrap';
 import axios from 'axios';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
@@ -25,14 +26,13 @@ function App() : JSX.Element {
   // SET SEARCH RESULTS
   const [results, setResults] = useState([]);
 
+  // SET LOADING STATE
+  const [loading, setLoading] = useState(false);
+
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
   const fetchSearch = () => {
     axios.get('https://airbnb13.p.rapidapi.com/search-location', {
     params: {
-      // location: "New York",
-      // checkin: "2023-10-17",
-      // checkout: "2023-10-31",
-      // adults: "2",
       location: selectedCity.location.toString(),
       checkin: selectedCity.checkin.toString(),
       checkout: selectedCity.checkout.toString(),
@@ -46,10 +46,10 @@ function App() : JSX.Element {
       .then(response => {
         // Update state with API data // Set loading to false
         setResults(response.data.results)
+        setLoading(false);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-      // Set loading to false in case of an error
       });
     }
 
@@ -76,15 +76,21 @@ function App() : JSX.Element {
     // HANDLE PROPERTY SEARCH USER SUBMISSION
     const handleSubmit = (e) => {
       e.preventDefault();
+      setLoading(true)
       fetchSearch();
     }
 
     // HANDLE RESET OF RESULTS AND USER INPUT
     const handleReset = () => {
       setResults([])
-      setSelectedCity({})
+      setSelectedCity({
+        location:"",
+        checkin: "",
+        checkout:"",
+        adults: ""
+      })
     }
-    
+
   return (
     <>
       <Navigation
@@ -96,24 +102,29 @@ function App() : JSX.Element {
         handleDateRangeChange={handleDateRangeChange}
         results={results}
       />
-
-      {results.length > 0 ? (
-        <>
-        <Results 
-          handleReset={handleReset}
-          results={results}
-        />
-        <Newsletter />
-        <Footer />
-        </>
-        ) : ( 
-      <>
-        <Description />
-        <FeaturedRenters />
-        <Newsletter />
-        <Footer />
-      </>
-      )}
+      {loading ?
+        <div className="spinner-container">
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span> 
+          </Spinner> 
+        </div> : 
+          results.length > 0 ? (
+            <>
+              <Results 
+                handleReset={handleReset}
+                results={results}
+              />
+              <Newsletter />
+              <Footer />
+            </>
+            ) : ( 
+            <>
+              <Description />
+              <FeaturedRenters />
+              <Newsletter />
+              <Footer />
+            </>
+          )} 
     </>
   )
 }
