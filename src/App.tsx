@@ -25,25 +25,18 @@ function App() : JSX.Element {
   // SET SEARCH RESULTS
   const [results, setResults] = useState([]);
 
-
-  // USEEFFECT TO HANDLE FETCHSEARCH FUNCTION UPON STATE CHANGE
-  useEffect(() => {
-      fetchSearch();
-    }, [])
-
-
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
   const fetchSearch = () => {
     axios.get('https://airbnb13.p.rapidapi.com/search-location', {
     params: {
-      location: "New York",
-      checkin: "2023-10-17",
-      checkout: "2023-10-31",
-      adults: "2",
-      // location: selectedCity.location,
-      // checkin: selectedCity.checkin,
-      // checkout: selectedCity.checkout,
-      // adults: selectedCity.adults,
+      // location: "New York",
+      // checkin: "2023-10-17",
+      // checkout: "2023-10-31",
+      // adults: "2",
+      location: selectedCity.location.toString(),
+      checkin: selectedCity.checkin.toString(),
+      checkout: selectedCity.checkout.toString(),
+      adults: selectedCity.adults.toString(),
     },
     headers: {
       'X-RapidAPI-Key': 'b384381131mshccb5ef49cf63d0cp1af8a5jsn8468569435f3',
@@ -58,11 +51,6 @@ function App() : JSX.Element {
         console.error('Error fetching data:', error);
       // Set loading to false in case of an error
       });
-    }
-
-    // HANDLE PROPERTY SEARCH USER SUBMISSION
-    const handleSubmit = (e) => {
-      e.preventDefault();
     }
 
     // HANDLE PROPERTY SEARCH FORM INPUT CHANGES
@@ -85,15 +73,23 @@ function App() : JSX.Element {
         })
       }
     }
+    // HANDLE PROPERTY SEARCH USER SUBMISSION
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      fetchSearch();
+    }
 
-    // console.log(selectedCity)
-  
+    // HANDLE RESET OF RESULTS AND USER INPUT
     const handleReset = () => {
       setResults([])
+      setSelectedCity({})
     }
+    
   return (
     <>
-      <Navigation />
+      <Navigation
+        handleReset={handleReset} 
+      />
       <Header 
         handleSubmit={handleSubmit} 
         handleChange={handleChange}

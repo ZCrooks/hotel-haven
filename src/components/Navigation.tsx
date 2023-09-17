@@ -3,11 +3,11 @@ import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 
-const Navigation = () => {
+const Navigation = ({ handleReset }) => {
     return (
     <Navbar expand="lg" className="bg-body-primary">
       <Container>
-        <Navbar.Brand href="#">
+        <Navbar.Brand href="#" onClick={handleReset}>
           <img src={logo} alt="Home Haven Logo" width="250" height="90"/>
         </Navbar.Brand>
         <NavDropdown title="Travellers" id="basic-nav-dropdown">
