@@ -73,6 +73,7 @@ function App() : JSX.Element {
         })
       }
     }
+    
     // HANDLE PROPERTY SEARCH USER SUBMISSION
     const handleSubmit = (e) => {
       e.preventDefault();

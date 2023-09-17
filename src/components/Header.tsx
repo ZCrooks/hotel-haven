@@ -19,7 +19,7 @@ const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results })
             <div className="header-div">
                  {results.length > 0 ? (
                     <>
-                    <h1>{results[13].address}</h1>
+                    <h1>{results[1].address}</h1>
                     <p>{results.length} Properties Available</p>                   
                     </>
                  ) : ( 

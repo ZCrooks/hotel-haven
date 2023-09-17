@@ -7,7 +7,7 @@ const Navigation = ({ handleReset }) => {
     return (
     <Navbar expand="lg" className="bg-body-primary">
       <Container>
-        <Navbar.Brand href="#" onClick={handleReset}>
+        <Navbar.Brand href="/" onClick={handleReset}>
           <img src={logo} alt="Home Haven Logo" width="250" height="90"/>
         </Navbar.Brand>
         <NavDropdown title="Travellers" id="basic-nav-dropdown">
