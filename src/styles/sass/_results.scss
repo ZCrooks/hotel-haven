@@ -1,0 +1,44 @@
+.results-box {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 30px;
+    & .results-card {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        border: 2px solid rgba(93, 98, 111, 0.5);
+        border-radius: 20px;
+        & .feature-box {
+            text-align: center;
+        }
+        & img {
+            border-radius: 20px;
+        }
+        & .result-features {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            & svg {
+                margin-right: 5px;
+            }
+        }
+        & .result-total-box {
+            border: 2px solid #1A7066 ;
+            border-radius: 10px;
+            text-align: center;
+            padding: 2px;
+        }
+        & .reviews {
+            display: flex;
+            align-items: baseline;
+        }
+        & .results-info {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            & p {
+                font-size: 0.7rem;
+            }
+        }
+    }
+}

@@ -11,16 +11,28 @@ import "rsuite/dist/rsuite.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign, faHouse, faLocationPin, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const Header = ( { handleSubmit, handleChange, handleDateRangeChange }) => {
+const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results }) => {
 
     return (
         <>
         <header>
             <div className="header-div">
+                 {results.length > 0 ? (
+                    <>
+                    <h1>{results[13].address}</h1>
+                    <p>{results.length} Properties Available</p>                   
+                    </>
+                 ) : ( 
                 <h1>Find Your Next <span>Vacation Property!</span></h1>
+                )}
             </div>
-            <div className="header-img-div">
-                <img className="header-img" src={headerImage} alt="Header Image" />                
+            <div className="header-img-div">   
+                <img 
+                    className="header-img" 
+                    src={results.length > 0 && results[0].images[1] ? results[1].images[4] : headerImage} 
+                    alt="Header Image" 
+                />    
+         
             </div>
         </header>
         <Container>
