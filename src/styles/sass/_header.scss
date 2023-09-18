@@ -7,21 +7,17 @@ header {
     margin: 0 auto;
     justify-content: center;
     & .header-div {
-        width: 50%;
+        width: 60%;
         height: 300px;
         background-color: $primary;
         padding: 30px;
         margin-right: -100px;
         z-index: 1;
+        display: flex;
+        flex-direction: column;
     }
     & .header-img-div {
         width: 75%;
-    }
-    & h1 {
-        position: absolute;
-        bottom: 35%;
-        z-index: 1;
-        margin-left: 5%;
     }
     & span {
         display: block;
@@ -68,6 +64,7 @@ header {
         background-color: $primary;
         border-radius: 50%;
         width: 8%;
+        margin: 15px;
     }
     & .form-control::placeholder, .rs-picker-toggle-placeholder {
         font-size: 1.3rem;

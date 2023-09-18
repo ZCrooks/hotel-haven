@@ -12241,21 +12241,17 @@ header {
   justify-content: center;
 }
 header .header-div {
-  width: 50%;
+  width: 60%;
   height: 300px;
   background-color: #04b9d8;
   padding: 30px;
   margin-right: -100px;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
 }
 header .header-img-div {
   width: 75%;
-}
-header h1, header .h1 {
-  position: absolute;
-  bottom: 35%;
-  z-index: 1;
-  margin-left: 5%;
 }
 header span {
   display: block;
@@ -12301,6 +12297,7 @@ header span {
   background-color: #04b9d8;
   border-radius: 50%;
   width: 8%;
+  margin: 15px;
 }
 .search-form .form-control::-moz-placeholder {
   font-size: 1.3rem;
@@ -12343,6 +12340,7 @@ header span {
 }
 .renters-section .renters-title {
   text-align: center;
+  margin-top: 5%;
 }
 .renters-section .renter-cards {
   margin: 10px;
