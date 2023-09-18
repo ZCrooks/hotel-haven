@@ -1,3 +1,4 @@
+// RESULTS SCSS
 .results-box {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -11,8 +12,15 @@
         & .feature-box {
             text-align: center;
         }
-        & img {
-            border-radius: 20px;
+        & .results-image  {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 30px;
+            & img {
+                height: auto;
+                max-width: 100%;
+            }
         }
         & .result-features {
             display: flex;
@@ -41,4 +49,16 @@
             }
         }
     }
+}
+
+// RESULTS HOVER
+
+.results-card:hover {
+    cursor: pointer;
+    box-shadow: 0 0 50px 15px #48abe0;
+}
+
+.results-card:active {
+    transform: scale(0.9);
+    box-shadow: 3px 2px 25px 1px rgba(0, 0, 0, 0.25);
 }

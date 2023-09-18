@@ -12376,8 +12376,16 @@ header span {
 .results-box .results-card .feature-box {
   text-align: center;
 }
-.results-box .results-card img {
-  border-radius: 20px;
+.results-box .results-card .results-image {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 30px;
+}
+.results-box .results-card .results-image img {
+  height: auto;
+  max-width: 100%;
 }
 .results-box .results-card .result-features {
   display: flex;
@@ -12404,6 +12412,16 @@ header span {
 }
 .results-box .results-card .results-info p {
   font-size: 0.7rem;
+}
+
+.results-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 50px 15px #48abe0;
+}
+
+.results-card:active {
+  transform: scale(0.9);
+  box-shadow: 3px 2px 25px 1px rgba(0, 0, 0, 0.25);
 }
 
 .newsletter-section {

@@ -14,7 +14,7 @@ const Results = ( { handleReset, results }) => {
                     {results.map((result) => {
                         return (
                                 <Card key={result.id} className="results-card">
-                                        <Card.Img  src={result.images[0]} />
+                                        <Card.Img  src={result.images[3]} className="results-image" />
                                     <Card.Body className="results-body">
                                         <h3>{result.name}</h3>
                                         <div className="result-features">

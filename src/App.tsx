@@ -64,7 +64,6 @@ function App() : JSX.Element {
 
     // HANDLE DATE RANGE SELECTIONS
     const handleDateRangeChange = (value) => {
-      console.log(value)
       if (value) {
         setSelectedCity({
           ...selectedCity,
