@@ -1,4 +1,4 @@
-import { Author } from "../interfaces/Authors";
+import { Renter } from "../interfaces/Renter";
 import authorOne from "../assets/author-image-1.png"
 import authorTwo from "../assets/author-image-2.png"
 import authorThree from "../assets/author-image-3.png"
@@ -21,7 +21,7 @@ import authorNineteen from "../assets/author-image-19.png"
 import authorTwenty from "../assets/author-image-20.png"
 
 // ARRAY OF TOP 10 AUTHOR CARD CONTENT
-const authorCard: Author[] = [
+const renterCard: Renter[] = [
     {
         backgroundImage: authorEleven,
         profileImage: authorOne,
@@ -94,4 +94,4 @@ const authorCard: Author[] = [
     }                                    
 ]
 
-export default authorCard;
+export default renterCard;

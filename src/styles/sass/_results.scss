@@ -1,0 +1,74 @@
+// RESULTS SCSS
+.results-box {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 30px;
+    & .results-card {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        border: 2px solid rgba(93, 98, 111, 0.5);
+        border-radius: 20px;
+        & .feature-box {
+            text-align: center;
+        }
+        & .results-image  {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 30px;
+            & img {
+                height: auto;
+                max-width: 100%;
+            }
+        }
+        & .result-features {
+            display: flex;
+            align-items: baseline;
+            justify-content: start;
+            & svg {
+                margin-right: 5px;
+            }
+            & .feature-box-2 {
+                margin-left: 10px;
+            }
+        }
+        & .result-total-box {
+            border: 2px solid #1A7066 ;
+            border-radius: 10px;
+            text-align: center;
+            padding: 2px;
+        }
+        & .reviews {
+            display: flex;
+            align-items: baseline;
+        }
+        & .results-info {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            & p {
+                font-size: 0.8rem;
+            }
+            & svg, h5 {
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+// RESULTS HOVER
+
+.results-card:hover {
+    cursor: pointer;
+    box-shadow: 0 0 50px 15px #48abe0;
+}
+.results-card:focus {
+    cursor: pointer;
+    box-shadow: 0 0 50px 15px #48abe0;
+}
+
+.results-card:active {
+    transform: scale(0.9);
+    box-shadow: 3px 2px 25px 1px rgba(0, 0, 0, 0.25);
+}

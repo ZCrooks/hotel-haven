@@ -12214,12 +12214,28 @@ body h2, body .h2 {
   font-size: 3rem;
 }
 
+body h3, body .h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+body h4, body .h4 {
+  color: #1A7066;
+}
+
 p {
   color: #5d626f;
 }
 
 ul {
   list-style: none;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
 }
 
 header {
@@ -12230,21 +12246,17 @@ header {
   justify-content: center;
 }
 header .header-div {
-  width: 50%;
+  width: 60%;
   height: 300px;
   background-color: #04b9d8;
   padding: 30px;
   margin-right: -100px;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
 }
 header .header-img-div {
   width: 75%;
-}
-header h1, header .h1 {
-  position: absolute;
-  bottom: 40%;
-  z-index: 1;
-  margin-left: 5%;
 }
 header span {
   display: block;
@@ -12280,19 +12292,27 @@ header span {
 }
 .search-form input:hover, .search-form .rs-picker input:hover {
   cursor: pointer;
-  background-color: gray;
+  background-color: rgba(0, 13, 132, 0.4);
 }
 .search-form input:hover, .search-form .rs-picker input:focus {
   cursor: pointer;
-  background-color: gray;
+  background-color: rgba(0, 13, 132, 0.4);
 }
 .search-form .submit-button {
   background-color: #04b9d8;
   border-radius: 50%;
   width: 8%;
+  margin: 15px;
 }
-.search-form .form-control {
-  font-size: 0.9rem;
+.search-form .form-control::-moz-placeholder {
+  font-size: 1.3rem;
+  color: black;
+  text-align: center;
+}
+.search-form .form-control::placeholder, .search-form .rs-picker-toggle-placeholder {
+  font-size: 1.3rem;
+  color: black;
+  text-align: center;
 }
 
 .description-title, .description-container h3, .description-container .h3 {
@@ -12309,41 +12329,115 @@ header span {
   align-items: center;
 }
 
-.authors-section {
+.renters-section {
   background-color: #F1F5FA;
   margin-top: 5%;
   display: flex;
   flex-direction: column;
 }
-.authors-section .cards-box {
+.renters-section .cards-box {
   margin-top: 15px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  /* Adjust the minmax value as needed */
   grid-gap: 20px;
   max-width: 100%;
   justify-content: center;
 }
-.authors-section .authors-title {
+.renters-section .renters-title {
   text-align: center;
+  margin-top: 5%;
 }
-.authors-section .author-cards {
+.renters-section .renter-cards {
   margin: 10px;
   border-radius: 10px;
 }
-.authors-section .author-cards .prof-image {
+.renters-section .renter-cards .prof-image {
   border-radius: 50px;
   margin-bottom: 5px;
 }
-.authors-section .author-cards .prof-image .card-img {
+.renters-section .renter-cards .prof-image .card-img {
   border-radius: 90px;
 }
-.authors-section .icon-box {
+.renters-section .icon-box {
   display: flex;
   align-items: center;
   border-radius: 20px;
   width: 100px;
   background-color: red;
+}
+
+.results-box {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 30px;
+}
+.results-box .results-card {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  border: 2px solid rgba(93, 98, 111, 0.5);
+  border-radius: 20px;
+}
+.results-box .results-card .feature-box {
+  text-align: center;
+}
+.results-box .results-card .results-image {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 30px;
+}
+.results-box .results-card .results-image img {
+  height: auto;
+  max-width: 100%;
+}
+.results-box .results-card .result-features {
+  display: flex;
+  align-items: baseline;
+  justify-content: start;
+}
+.results-box .results-card .result-features svg {
+  margin-right: 5px;
+}
+.results-box .results-card .result-features .feature-box-2 {
+  margin-left: 10px;
+}
+.results-box .results-card .result-total-box {
+  border: 2px solid #1A7066;
+  border-radius: 10px;
+  text-align: center;
+  padding: 2px;
+}
+.results-box .results-card .reviews {
+  display: flex;
+  align-items: baseline;
+}
+.results-box .results-card .results-info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.results-box .results-card .results-info p {
+  font-size: 0.8rem;
+}
+.results-box .results-card .results-info svg, .results-box .results-card .results-info h5, .results-box .results-card .results-info .h5 {
+  margin-right: 5px;
+}
+
+.results-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 50px 15px #48abe0;
+}
+
+.results-card:focus {
+  cursor: pointer;
+  box-shadow: 0 0 50px 15px #48abe0;
+}
+
+.results-card:active {
+  transform: scale(0.9);
+  box-shadow: 3px 2px 25px 1px rgba(0, 0, 0, 0.25);
 }
 
 .newsletter-section {
@@ -12404,4 +12498,14 @@ footer .brand-links .logo-image {
 }
 footer .footer-menu a, footer .brand-links a {
   text-decoration: none;
+}
+footer .footer-bar {
+  margin-top: 5%;
+  background-color: wheat;
+  text-align: center;
+  padding: 10px;
+}
+footer .footer-bar span {
+  display: block;
+  font-weight: 700;
 }/*# sourceMappingURL=App.css.map */

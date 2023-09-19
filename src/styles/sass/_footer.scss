@@ -1,5 +1,4 @@
-// FOOTER MENU
-
+// FOOTER SCSS
 footer {
     margin-top: 10%;
     & .brand-links {
@@ -23,6 +22,16 @@ footer {
     & .footer-menu, .brand-links {
         & a {
             text-decoration: none;
+        }
+    }
+    & .footer-bar {
+        margin-top: 5%;
+        background-color: wheat;
+        text-align: center;
+        padding: 10px;
+        & span {
+            display: block;
+            font-weight: 700;
         }
     }
 }

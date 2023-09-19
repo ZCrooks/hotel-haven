@@ -72,7 +72,7 @@ const Footer = () => {
                                 <h3>Explore</h3>
                             </li>
                             <li>
-                                <a href="#">Hotels</a>
+                                <a href="#">Properties</a>
                             </li>
                             <li>
                                 <a href="#">Destinations</a>
@@ -131,6 +131,11 @@ const Footer = () => {
                     </Col>                   
                  </Row>
             </Container>
+            <div className="footer-bar">
+                <span>Developed by Zachary Crooks</span>
+                <span>Designed by Chisfis©</span>
+                <span>Powered by AirBnb</span>
+            </div>
         </footer>
     )
 }
