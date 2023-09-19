@@ -1,8 +1,25 @@
 // RESULTS SCSS
+.results-section {
+    margin-top: 5%;
+    & .results-container {
+        position: relative;
+    }
+    & .currency-dropdown button {
+        position: absolute;
+        right: 0;
+        background-color: wheat;
+        color: black;
+    }
+    & .dropdown-item  {
+        text-align: center;
+    }
+}
+
 .results-box {
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 30px;
+    margin-top: 8%;
     & .results-card {
         display: flex;
         flex-direction: row;

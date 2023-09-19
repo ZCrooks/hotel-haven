@@ -1,15 +1,45 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container } from "react-bootstrap";
 import { Card } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import { faBed, faBath, faStar} from "@fortawesome/free-solid-svg-icons";
 
 const Results = ( { handleReset, results }) => {
 
+//     const currencySymbol = (selectedCurrency) => {
+//   let symbol;
+//   if (selectedCurrency === 'usd' || selectedCurrency === 'cad') {
+//     symbol = '$';
+//   } else if (selectedCurrency === 'gbp') {
+//     symbol = '£';
+//   } else if (selectedCurrency === 'eur') {
+//     symbol = '€';
+//   } else if (selectedCurrency === 'jpy') {
+//     symbol = '¥';
+//   } else {
+//     symbol = '';
+//   }
+//   return symbol;
+// }
+
+//  <option value="usd"><span aria-hidden="true">&#127482;&#127480;</span> USD</option>
+// <option value="cad"><span aria-hidden="true">&#127464;&#127462;</span> CAD</option>
+
     console.log(results)
     return (
         <section className="results-section">
-            <Container>
+            <Container className="results-container">
                 <h2>Property in {results[13].city}</h2>
+                <Dropdown className="currency-dropdown">
+                    <Dropdown.Toggle variant="success" id="dropdown-basic">
+                        CURRENCY
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item>&#127482;&#127480;</Dropdown.Item>
+                        <Dropdown.Item>&#127464;&#127462;</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
                 <div className="results-box">
                     {results.map((result) => {
                         return (
@@ -40,26 +70,13 @@ const Results = ( { handleReset, results }) => {
                                             <div className="result-total-box">
                                                 <h4>${result.price.total.toLocaleString()}</h4> 
                                             </div>
-                                        </div>
-    
-                                       
+                                        </div>                                
                                     </Card.Body >
                                 </Card>
-
-
                         )
                     })}
                 </div>
-
-
             </Container>
-
-
-
-
-
-
-
 
             {/* <button onClick={handleReset}>RESET</button> */}
 

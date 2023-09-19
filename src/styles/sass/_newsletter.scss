@@ -2,6 +2,13 @@
 .newsletter-section {
     margin-top: 10%;
     margin-bottom: 10%;
+    & .results-container{
+        position: relative;
+        & .currency-dropdown button{
+            position: absolute;
+            right: 0;
+        }
+    }
     & .newsletter-image {
         margin-left: 10px;
     }

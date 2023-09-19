@@ -12366,10 +12366,27 @@ header span {
   background-color: red;
 }
 
+.results-section {
+  margin-top: 5%;
+}
+.results-section .results-container {
+  position: relative;
+}
+.results-section .currency-dropdown button {
+  position: absolute;
+  right: 0;
+  background-color: wheat;
+  color: black;
+}
+.results-section .dropdown-item {
+  text-align: center;
+}
+
 .results-box {
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 30px;
+  margin-top: 8%;
 }
 .results-box .results-card {
   display: flex;
@@ -12443,6 +12460,13 @@ header span {
 .newsletter-section {
   margin-top: 10%;
   margin-bottom: 10%;
+}
+.newsletter-section .results-container {
+  position: relative;
+}
+.newsletter-section .results-container .currency-dropdown button {
+  position: absolute;
+  right: 0;
 }
 .newsletter-section .newsletter-image {
   margin-left: 10px;
