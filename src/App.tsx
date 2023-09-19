@@ -23,6 +23,8 @@ function App() : JSX.Element {
     adults: "",
   });
 
+  const [currency, setCurrency] = useState("");
+
   // SET SEARCH RESULTS
   const [results, setResults] = useState([]);
 
@@ -76,7 +78,8 @@ function App() : JSX.Element {
     // HANDLE PROPERTY SEARCH USER SUBMISSION
     const handleSubmit = (e) => {
       e.preventDefault();
-      setLoading(true)
+      setLoading(true);
+      setCurrency("usd");
       fetchSearch();
     }
 
@@ -113,6 +116,8 @@ function App() : JSX.Element {
               <Results 
                 handleReset={handleReset}
                 results={results}
+                currency={currency}
+                setCurrency={setCurrency}
               />
               <Newsletter />
               <Footer />

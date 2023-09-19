@@ -7,10 +7,6 @@ import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 
 const FeaturedRenters = () => {
-
-    
-   
-
     return (
         <section className="renters-section">
             <Container>

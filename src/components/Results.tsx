@@ -3,30 +3,28 @@ import { Container } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import { useState } from "react";
 import { faBed, faBath, faStar} from "@fortawesome/free-solid-svg-icons";
 
-const Results = ( { handleReset, results }) => {
+const Results = ( { handleReset, results, currency, setCurrency }) => {
+console.log
 
-//     const currencySymbol = (selectedCurrency) => {
-//   let symbol;
-//   if (selectedCurrency === 'usd' || selectedCurrency === 'cad') {
-//     symbol = '$';
-//   } else if (selectedCurrency === 'gbp') {
-//     symbol = '£';
-//   } else if (selectedCurrency === 'eur') {
-//     symbol = '€';
-//   } else if (selectedCurrency === 'jpy') {
-//     symbol = '¥';
-//   } else {
-//     symbol = '';
-//   }
-//   return symbol;
-// }
+    // Set Currency Conversion state depending on user Selection
+    const currencyConversion = (selectedCurrency) => {
+        setCurrency(selectedCurrency);
+    }
 
-//  <option value="usd"><span aria-hidden="true">&#127482;&#127480;</span> USD</option>
-// <option value="cad"><span aria-hidden="true">&#127464;&#127462;</span> CAD</option>
+    //Render Currency Price based on user selection
+    const convertedPrice = (price) => {
+        let convertedPrice;
+        if (currency === "cad") {
+           convertedPrice = price * 1.33;
+        } else {
+            convertedPrice = price;
+        }
+        return Math.round(convertedPrice);
+    }
 
-    console.log(results)
     return (
         <section className="results-section">
             <Container className="results-container">
@@ -36,15 +34,19 @@ const Results = ( { handleReset, results }) => {
                         CURRENCY
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item>&#127482;&#127480;</Dropdown.Item>
-                        <Dropdown.Item>&#127464;&#127462;</Dropdown.Item>
+                        <Dropdown.Item 
+                        onClick={() => currencyConversion("usd")}>USD <span aria-hidden="true">&#127482;&#127480;</span>
+                        </Dropdown.Item>
+                        <Dropdown.Item 
+                        onClick={() => currencyConversion("cad")}>CAD <span aria-hidden="true">&#127464;&#127462;</span>
+                        </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
                 <div className="results-box">
                     {results.map((result) => {
                         return (
                                 <Card key={result.id} className="results-card">
-                                        <Card.Img  src={result.images[3]} className="results-image" />
+                                        <Card.Img  src={result.images[0]} className="results-image" />
                                     <Card.Body className="results-body">
                                         <h3>{result.name}</h3>
                                         <div className="result-features">
@@ -68,7 +70,7 @@ const Results = ( { handleReset, results }) => {
                                                 ) : null}
                                             </div>
                                             <div className="result-total-box">
-                                                <h4>${result.price.total.toLocaleString()}</h4> 
+                                                <h4>${`${convertedPrice(result.price.total.toLocaleString())}`}</h4> 
                                             </div>
                                         </div>                                
                                     </Card.Body >
