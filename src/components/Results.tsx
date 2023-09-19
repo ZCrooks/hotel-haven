@@ -22,7 +22,7 @@ const Results = ( { handleReset, results }) => {
                                                  <FontAwesomeIcon icon={faBed} style={{color: "#000000",}} /> 
                                                  {result.beds} {result.beds > 1 ? "beds" : "bed"}
                                             </p>
-                                            <p className="feature-box">
+                                            <p className="feature-box-2">
                                                 <FontAwesomeIcon icon={faBath} style={{color: "#000000",}} /> 
                                                 {result.bathrooms} {result.bathroom > 1 ? "bathrooms" : "bathroom"}
                                             </p>

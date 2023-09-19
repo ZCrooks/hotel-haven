@@ -12214,6 +12214,11 @@ body h2, body .h2 {
   font-size: 3rem;
 }
 
+body h3, body .h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
 body h4, body .h4 {
   color: #1A7066;
 }
@@ -12390,10 +12395,13 @@ header span {
 .results-box .results-card .result-features {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
+  justify-content: start;
 }
 .results-box .results-card .result-features svg {
   margin-right: 5px;
+}
+.results-box .results-card .result-features .feature-box-2 {
+  margin-left: 10px;
 }
 .results-box .results-card .result-total-box {
   border: 2px solid #1A7066;
@@ -12411,10 +12419,18 @@ header span {
   justify-content: space-between;
 }
 .results-box .results-card .results-info p {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+}
+.results-box .results-card .results-info svg, .results-box .results-card .results-info h5, .results-box .results-card .results-info .h5 {
+  margin-right: 5px;
 }
 
 .results-card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 50px 15px #48abe0;
+}
+
+.results-card:focus {
   cursor: pointer;
   box-shadow: 0 0 50px 15px #48abe0;
 }

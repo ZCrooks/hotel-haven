@@ -25,9 +25,12 @@
         & .result-features {
             display: flex;
             align-items: baseline;
-            justify-content: space-between;
+            justify-content: start;
             & svg {
                 margin-right: 5px;
+            }
+            & .feature-box-2 {
+                margin-left: 10px;
             }
         }
         & .result-total-box {
@@ -45,7 +48,10 @@
             align-items: baseline;
             justify-content: space-between;
             & p {
-                font-size: 0.7rem;
+                font-size: 0.8rem;
+            }
+            & svg, h5 {
+                margin-right: 5px;
             }
         }
     }
@@ -54,6 +60,10 @@
 // RESULTS HOVER
 
 .results-card:hover {
+    cursor: pointer;
+    box-shadow: 0 0 50px 15px #48abe0;
+}
+.results-card:focus {
     cursor: pointer;
     box-shadow: 0 0 50px 15px #48abe0;
 }
