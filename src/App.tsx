@@ -51,7 +51,7 @@ function App() : JSX.Element {
         setLoading(false);
       })
       .catch(error => {
-        alert('Error fetching data:', error);
+        alert('Error fetching data');
       });
     }
 
