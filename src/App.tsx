@@ -9,6 +9,7 @@ import FeaturedRenters from './components/FeaturedRenters';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import './App.css';
+import { onValue } from 'firebase/database';
 
 
 function App() : JSX.Element {
@@ -28,8 +29,11 @@ function App() : JSX.Element {
   // SET SEARCH RESULTS
   const [results, setResults] = useState([]);
 
+  const [autoCompleteResults, setAutoCompleteResults] = useState([]);
+
   // SET LOADING STATE
   const [loading, setLoading] = useState(false);
+  
 
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
   const fetchSearch = () => {
@@ -55,13 +59,37 @@ function App() : JSX.Element {
       });
     }
 
+  const autoComplete = (value) => {
+    axios.get('https://airbnb13.p.rapidapi.com/autocomplete', {
+    params: {
+      query: value
+    },
+    headers: {
+      'X-RapidAPI-Key': 'b384381131mshccb5ef49cf63d0cp1af8a5jsn8468569435f3',
+      'X-RapidAPI-Host': 'airbnb13.p.rapidapi.com'
+    }
+    })
+      .then(response => {
+        // Update state with API data // Set loading to false
+        setAutoCompleteResults(response.data)
+        console.log(response.data)
+      })
+      .catch(error => {
+        alert('Error fetching data'); 
+      });
+  }
+
     // HANDLE PROPERTY SEARCH FORM INPUT CHANGES
     const handleChange = (e) => {
       const value = e.target.value
+      console.log(e.target.value)
       setSelectedCity ({
         ...selectedCity,
         [e.target.name]: value
       })
+      if (e.target.name === "location") {
+        autoComplete(value)
+      }
     }
 
     // HANDLE DATE RANGE SELECTIONS
@@ -104,6 +132,7 @@ function App() : JSX.Element {
         handleChange={handleChange}
         handleDateRangeChange={handleDateRangeChange}
         results={results}
+        autoCompleteResults={autoCompleteResults}
       />
       {loading ?
         <div className="spinner-container">

@@ -11,7 +11,15 @@ import "rsuite/dist/rsuite.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDollarSign, faHouse, faLocationPin, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results }) => {
+const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, autoCompleteResults }) => {
+
+    // Handle wheter AutoComplete list is visible 
+    const [showAutoComplete, setShowAutoComplete] = useState (true)
+
+    const handleAutoCompleteClick = (result) => {
+        document.querySelector(".location-input").value = result.query;
+
+  };
 
     return (
         <>
@@ -39,7 +47,24 @@ const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results })
             <Form className="search-form" onSubmit={handleSubmit}>
                 <Row className="g-2 ms-4">
                     <Col md>
+                        <div className="location-input-container">
                         <Form.Control className="location-input" type="text" name="location" placeholder="Where are you going?" onChange={handleChange} />
+                        {autoCompleteResults.length > 0 && (
+                            <div className="auto-complete">
+                                {autoCompleteResults.map((result) => (
+                                    <p>
+                                        <button
+                                            type="button"
+                                            className="autocomplete-result-button"
+                                            onClick={() => handleAutoCompleteClick(result)}
+                                        >
+                                            {result.query}
+                                        </button>    
+                                    </p>
+                                ))}
+                            </div>
+                        )}
+                         </div>
                     </Col>
                     <Col md>
                         <DateRangePicker 
