@@ -30,7 +30,7 @@ header {
     width: 95%;
 }
 
-.rs-picker {
+.rs-picker, .location-input-container {
     width: 100%;
     height: 100px;
 }
@@ -72,3 +72,19 @@ header {
     }
 }
 
+.auto-complete {
+    z-index: 0;
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    & button {
+        background-color: white;
+        width: 100%;
+    }
+    & button:hover{
+        background-color: wheat;
+    }
+    & button:focus{
+        background-color: wheat;
+    }
+}
