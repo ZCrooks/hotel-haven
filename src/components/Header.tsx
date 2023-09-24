@@ -9,17 +9,18 @@ import { Button, InputGroup } from "react-bootstrap";
 import { DateRangePicker } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDollarSign, faHouse, faLocationPin, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faBullseye, faDollarSign, faHouse, faLocationPin, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, autoCompleteResults }) => {
 
-    // Handle wheter AutoComplete list is visible 
+    // Handle whether AutoComplete list is visible 
     const [showAutoComplete, setShowAutoComplete] = useState (true)
 
     const handleAutoCompleteClick = (result) => {
+        const div = document.querySelector(".auto-complete");
         document.querySelector(".location-input").value = result.query;
-
-  };
+        div.style.display = "none"
+    };
 
     return (
         <>
@@ -51,8 +52,8 @@ const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, a
                         <Form.Control className="location-input" type="text" name="location" placeholder="Where are you going?" onChange={handleChange} />
                         {autoCompleteResults.length > 0 && (
                             <div className="auto-complete">
-                                {autoCompleteResults.map((result) => (
-                                    <p>
+                                {autoCompleteResults.map((result, index) => (
+                                    <p key={index} >
                                         <button
                                             type="button"
                                             className="autocomplete-result-button"

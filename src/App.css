@@ -12315,6 +12315,23 @@ header span {
   text-align: center;
 }
 
+.auto-complete {
+  z-index: 0;
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+}
+.auto-complete button {
+  background-color: white;
+  width: 100%;
+}
+.auto-complete button:hover {
+  background-color: wheat;
+}
+.auto-complete button:focus {
+  background-color: wheat;
+}
+
 .description-title, .description-container h3, .description-container .h3 {
   text-align: center;
 }
