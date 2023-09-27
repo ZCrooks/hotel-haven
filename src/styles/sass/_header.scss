@@ -29,7 +29,6 @@ header {
     height: 100px;
     width: 95%;
 }
-
 .rs-picker, .location-input-container {
     width: 100%;
     height: 100px;
@@ -65,7 +64,7 @@ header {
         width: 8%;
         margin: 15px;
     }
-    & .form-control::placeholder, .rs-picker-toggle-placeholder {
+    & .form-control::placeholder, .rs-picker-toggle-placeholder, .rs-picker-toggle-value, .col-md input {
         font-size: 1.3rem;
         color: black;
         text-align: center;

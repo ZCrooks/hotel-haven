@@ -49,7 +49,7 @@ const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, a
                 <Row className="g-2 ms-4">
                     <Col md>
                         <div className="location-input-container">
-                        <Form.Control className="location-input" type="text" name="location" placeholder="Where are you going?" onChange={handleChange} />
+                        <Form.Control className="location-input" type="text" name="location" placeholder="What city are you going to?" onChange={handleChange} />
                         {autoCompleteResults.length > 0 && (
                             <div className="auto-complete">
                                 {autoCompleteResults.map((result, index) => (
@@ -73,7 +73,7 @@ const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, a
                         />
                     </Col>
                     <Col md>
-                        <Form.Control size="lg" type="number" placeholder="Number of Guests" name="adults" onChange={handleChange} />
+                        <Form.Control size="lg" type="number" min="0" placeholder="Number of Guests" name="adults" onChange={handleChange} />
                     </Col>  
                     <Button type="submit" className="submit-button"><FontAwesomeIcon icon={faMagnifyingGlass} /></Button> 
                 </Row>

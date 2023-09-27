@@ -3,11 +3,13 @@ import { Container } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
 import DropdownButton from 'react-bootstrap/DropdownButton';
+import Property from "./Property";
 import { useState } from "react";
 import { faBed, faBath, faStar} from "@fortawesome/free-solid-svg-icons";
 
-const Results = ( { handleReset, results, currency, setCurrency }) => {
-
+const Results = ( { handleReset, results, currency, setCurrency, handleSelect }) => {
+    console.log(results)
+    
     // Set Currency Conversion state depending on user Selection
     const currencyConversion = (selectedCurrency) => {
         setCurrency(selectedCurrency);
@@ -23,6 +25,7 @@ const Results = ( { handleReset, results, currency, setCurrency }) => {
         }
         return Math.round(convertedPrice).toLocaleString();
     }
+
 
     return (
         <section className="results-section">
@@ -42,12 +45,12 @@ const Results = ( { handleReset, results, currency, setCurrency }) => {
                         onClick={() => currencyConversion("cad")}>CAD <span aria-hidden="true">&#127464;&#127462;</span>
                         </Dropdown.Item>
                     </Dropdown.Menu>
-                </Dropdown>
+                </Dropdown> 
                 <div className="results-box">
                     {results.map((result) => {
                         if (result.price.total !== null ) {
                             return (
-                                    <Card key={result.id} className="results-card">
+                                    <Card key={result.id} className="results-card" onClick={() => handleSelect(result)}>
                                             <Card.Img  src={result.images[0]} className="results-image" />
                                         <Card.Body className="results-body">
                                             <h3>{result.name}</h3>
@@ -82,9 +85,6 @@ const Results = ( { handleReset, results, currency, setCurrency }) => {
                                 })}
                             </div>
                         </Container>
-
-            {/* <button onClick={handleReset}>RESET</button> */}
-
         </section>
     )
 }
