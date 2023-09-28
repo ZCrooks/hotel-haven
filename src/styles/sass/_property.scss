@@ -1,0 +1,126 @@
+// PROPERTY SCSS
+ .property {
+    & .property-booking {
+        // top: 0;
+        // bottom: 0%;
+        // position: fixed;
+        // overflow-y: scroll;
+        // overflow-x: hidden;
+        position: sticky;
+        top: 20px;
+        & .amount {
+            margin-left: 50%;
+        }
+        & .reserve-button {
+            border-radius: 40px;
+            background-color: #5D15EE;
+            border: 0;
+        }
+        & .reserve-button:hover {
+            background-color: $primary;
+        }
+        & .reserve-button:focus {
+            background-color: $primary;
+        }
+    }
+    & .property-key-card, .property-description-card, .property-amenities-card, .property-booking {
+        padding: 20px;
+        border-radius: 30px;
+        margin-top: 20px;
+    }
+    & .property-type {
+        border: 1px solid #D9E9FF;
+        background-color: #D9E9FF;
+        color: #282DB7;
+        width: 30%;
+        text-align: center;
+        border-radius: 20px;
+        white-space: nowrap;
+        padding: 5px;
+    }
+    & .property-photos{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+        & img {
+            border-radius: 20px;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+         }
+    }
+    & .property-host {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        & .property-host-div {
+            display: flex;
+            align-items: center;
+        }
+        & .property-previewAmenity-div {
+            display: flex;
+            align-items: center;
+            & svg {
+                height: 30px;
+            }
+        }
+        & p {
+            margin-left: 20px;
+        }
+        & .host-pic {
+            height: 100px;
+            width: 100px;
+            & img {
+            border-radius: 100%;  
+            }  
+            & p {
+                margin-left: 10px;
+            }
+        }        
+    }
+    & .property-details{
+        display: flex;  
+        align-items: baseline;
+        & p {
+            margin-left: 10px;
+        }
+        & .property-intro {
+        display: flex;
+        align-items: baseline;
+        }
+        & .property-location {
+            display: flex;
+            align-items: baseline;
+            margin-left: 20px;
+        }
+    }
+    & .property-features {
+        display: flex;
+        & div { 
+            display: flex;
+            align-items: baseline;
+            margin-right: 20px;
+            margin-top: 10px;
+            & p {
+                margin-left: 10px;
+                font-size: 1.4rem;
+            }
+        }
+    }
+    & .amenities {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 33% 33% 33%;
+        & .amenities-item {
+            display: flex;
+            align-items: center;
+            & svg {
+                height: 40px;
+                margin-right: 10px;
+            }
+        }
+    }
+    & hr {
+        width: 40%;
+    }
+ }   

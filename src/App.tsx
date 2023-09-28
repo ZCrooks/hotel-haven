@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap';
+import { Link, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
+import { Rental } from './interfaces/Rental';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
 import Results from './components/Results';
+import Property from './components/Property';
 import Description from './components/Description';
 import FeaturedRenters from './components/FeaturedRenters';
 import Newsletter from './components/Newsletter';
@@ -33,6 +36,21 @@ function App() : JSX.Element {
 
   // SET LOADING STATE
   const [loading, setLoading] = useState(false);
+
+  const [selectedProperty, setSelectedProperty] = useState({
+    //   name: "",
+    // rating: "", 
+    // address: "",
+    // type: "",
+    // pricePerNight: "",
+    // totalPrice: "",
+    // beds: "",
+    // bathrooms: "",
+    // bedrooms: "",
+    // persons: ""
+  });
+ 
+  const [showProperty, setShowProperty] = useState(false);
   
 
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
@@ -72,7 +90,6 @@ function App() : JSX.Element {
       .then(response => {
         // Update state with API data // Set loading to false
         setAutoCompleteResults(response.data)
-        console.log(response.data)
       })
       .catch(error => {
         alert('Error fetching data'); 
@@ -82,7 +99,6 @@ function App() : JSX.Element {
     // HANDLE PROPERTY SEARCH FORM INPUT CHANGES
     const handleChange = (e) => {
       const value = e.target.value
-      console.log(e.target.value)
       setSelectedCity ({
         ...selectedCity,
         [e.target.name]: value
@@ -122,6 +138,34 @@ function App() : JSX.Element {
       })
     }
 
+    // HANDLE CLICK ON EACH PROPERTY CARD THAT COMES UP AFTER SEARCH
+    const handleSelect = (property) => {
+        setShowProperty(true)
+        setSelectedProperty({
+          ...selectedProperty,
+          name: property.name,
+          rating: property.rating,
+          address: property.address,
+          type: property.type,
+          beds: property.beds,
+          images: property.images,
+          bathrooms: property.bathrooms,
+          bedrooms: property.bedrooms,
+          persons: property.persons,
+          totalPrice: property.price.total,
+          pricePerNight: property.price.rate,
+          reviewsCount: property.reviewsCount,
+          hostPic: property.hostThumbnail,
+          previewAmenities: property.previewAmenities,
+          amenityIds: property.amenityIds,
+          price: property.price
+        })
+    }
+
+    const handleGoBack = () => {
+      setShowProperty(false)
+    }
+
   return (
     <>
       <Navigation
@@ -134,7 +178,16 @@ function App() : JSX.Element {
         results={results}
         autoCompleteResults={autoCompleteResults}
       />
-      {loading ?
+      {showProperty ? (
+        <>
+         <Property
+         handleGoBack={handleGoBack}
+         selectedProperty={selectedProperty} /> 
+         ) 
+         <Footer />
+         </> ) : (
+          <>
+           {loading ?
         <div className="spinner-container">
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span> 
@@ -147,6 +200,7 @@ function App() : JSX.Element {
                 results={results}
                 currency={currency}
                 setCurrency={setCurrency}
+                handleSelect={handleSelect}
               />
               <Newsletter />
               <Footer />
@@ -158,7 +212,9 @@ function App() : JSX.Element {
               <Newsletter />
               <Footer />
             </>
-          )} 
+          )}
+          </>
+         )}
     </>
   )
 }
