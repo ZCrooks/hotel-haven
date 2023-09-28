@@ -157,7 +157,8 @@ function App() : JSX.Element {
           reviewsCount: property.reviewsCount,
           hostPic: property.hostThumbnail,
           previewAmenities: property.previewAmenities,
-          amenityIds: property.amenityIds
+          amenityIds: property.amenityIds,
+          price: property.price
         })
     }
 

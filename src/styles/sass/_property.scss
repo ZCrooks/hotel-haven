@@ -1,6 +1,29 @@
 // PROPERTY SCSS
  .property {
-    & .property-key-card, .property-description-card, .property-amenities-card {
+    & .property-booking {
+        // top: 0;
+        // bottom: 0%;
+        // position: fixed;
+        // overflow-y: scroll;
+        // overflow-x: hidden;
+        position: sticky;
+        top: 20px;
+        & .amount {
+            margin-left: 50%;
+        }
+        & .reserve-button {
+            border-radius: 40px;
+            background-color: #5D15EE;
+            border: 0;
+        }
+        & .reserve-button:hover {
+            background-color: $primary;
+        }
+        & .reserve-button:focus {
+            background-color: $primary;
+        }
+    }
+    & .property-key-card, .property-description-card, .property-amenities-card, .property-booking {
         padding: 20px;
         border-radius: 30px;
         margin-top: 20px;

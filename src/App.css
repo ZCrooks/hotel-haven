@@ -12473,7 +12473,25 @@ header span {
   box-shadow: 3px 2px 25px 1px rgba(0, 0, 0, 0.25);
 }
 
-.property .property-key-card, .property .property-description-card, .property .property-amenities-card {
+.property .property-booking {
+  position: sticky;
+  top: 20px;
+}
+.property .property-booking .amount {
+  margin-left: 50%;
+}
+.property .property-booking .reserve-button {
+  border-radius: 40px;
+  background-color: #5D15EE;
+  border: 0;
+}
+.property .property-booking .reserve-button:hover {
+  background-color: #04b9d8;
+}
+.property .property-booking .reserve-button:focus {
+  background-color: #04b9d8;
+}
+.property .property-key-card, .property .property-description-card, .property .property-amenities-card, .property .property-booking {
   padding: 20px;
   border-radius: 30px;
   margin-top: 20px;
