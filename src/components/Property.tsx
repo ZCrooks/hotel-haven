@@ -109,7 +109,7 @@ console.log(selectedProperty)
                                     <p><strong>Total</strong></p>
                                 </Col>
                                 <Col>
-                                    <p className="amount"><strong>${selectedProperty.price.total.toLocaleString()}</strong></p>                         
+                                    <p className="amount"><strong>${selectedProperty.price.total.toLocaleString()}</strong></ p>                         
                                 </Col>
                             </Row>
                             <Button className="reserve-button">Reserve</Button>                            

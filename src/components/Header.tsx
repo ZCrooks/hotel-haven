@@ -11,7 +11,7 @@ import "rsuite/dist/rsuite.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullseye, faDollarSign, faHouse, faLocationPin, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, autoCompleteResults }) => {
+const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, autoCompleteResults, locationPhoto }) => {
 
     // Handle whether AutoComplete list is visible 
     const [showAutoComplete, setShowAutoComplete] = useState (true)
@@ -38,7 +38,7 @@ const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, a
             <div className="header-img-div">   
                 <img 
                     className="header-img" 
-                    src={results.length > 0 && results[0].images[1] ? results[1].images[4] : headerImage} 
+                    src={results.length > 0 ? locationPhoto : headerImage} 
                     alt="Header Image" 
                 />    
          

@@ -37,21 +37,15 @@ function App() : JSX.Element {
   // SET LOADING STATE
   const [loading, setLoading] = useState(false);
 
-  const [selectedProperty, setSelectedProperty] = useState({
-    //   name: "",
-    // rating: "", 
-    // address: "",
-    // type: "",
-    // pricePerNight: "",
-    // totalPrice: "",
-    // beds: "",
-    // bathrooms: "",
-    // bedrooms: "",
-    // persons: ""
-  });
+  const [selectedProperty, setSelectedProperty] = useState({});
  
   const [showProperty, setShowProperty] = useState(false);
+
+  const [placeID, setPlaceID] = useState("");
   
+  const [placeDetails, setPlaceDetails] = useState([]);
+
+  const [locationPhoto, setLocationPhoto] = useState(null);
 
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
   const fetchSearch = () => {
@@ -77,6 +71,7 @@ function App() : JSX.Element {
       });
     }
 
+  // AUTOCOMPLETE SEARCH BAR
   const autoComplete = (value) => {
     axios.get('https://airbnb13.p.rapidapi.com/autocomplete', {
     params: {
@@ -95,6 +90,54 @@ function App() : JSX.Element {
         alert('Error fetching data'); 
       });
   }
+
+  // GOOGLE FETCH PLACES (CITY IDS)
+  const fetchPlaces = () => {
+    axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json', {
+      params: {
+        input: selectedCity.location,
+        inputtype: 'textquery',
+        key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8'
+      }
+    })
+    .then(response => {
+      setPlaceID(response.data.candidates[0].place_id)
+    })
+    .catch(error => {
+      console.error("Error with data", error);
+    })
+  }
+    // GOOGLE FETCH PLACES (CITY IDS)
+  const fetchDetails = () => {
+    axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/details/json', {
+      params: {
+        place_id: placeID,
+        key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8'
+      }
+    })
+    .then(response => {
+      setPlaceDetails(response.data.result.photos)
+    })
+    .catch(error => {
+      console.error("Error with data", error)
+    })
+  }
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      await fetchPlaces();
+      await fetchDetails();
+      // Set Image Url
+      const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${placeDetails[0].photo_reference}&key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8`;
+      setLocationPhoto(imageUrl)
+    } catch (error) {
+      // Handle errors
+      console.error("Error fetching data", error);
+    }
+  };
+  fetchData();
+}, [selectedCity, placeDetails]);
 
     // HANDLE PROPERTY SEARCH FORM INPUT CHANGES
     const handleChange = (e) => {
@@ -177,6 +220,7 @@ function App() : JSX.Element {
         handleDateRangeChange={handleDateRangeChange}
         results={results}
         autoCompleteResults={autoCompleteResults}
+        locationPhoto={locationPhoto}
       />
       {showProperty ? (
         <>
@@ -219,4 +263,4 @@ function App() : JSX.Element {
   )
 }
 
-export default App
+export default App;
