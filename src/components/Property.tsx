@@ -1,7 +1,7 @@
 import { Card, Container, Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMemo } from "react";
-import { faStar, faBath, faBed, faUser, faDoorOpen, faLocationDot, faWifi, faFan, faCar, faKitchenSet, faPersonSwimming, faSmoking, faDog, faDumbbell, faMugSaucer, faTv, faKey, faHotTubPerson, faFire } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faBath, faBed, faUser, faDoorOpen, faLocationDot, faWifi, faFan, faCar, faKitchenSet, faPersonSwimming, faSmoking, faDog, faDumbbell, faMugSaucer, faTv, faKey, faHotTubPerson, faFire, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
 const Property = ({ handleGoBack, selectedProperty }) => {
@@ -19,7 +19,7 @@ const Property = ({ handleGoBack, selectedProperty }) => {
     return (
         <section className="property">
             <Container>
-                <Button onClick={handleGoBack}>BACK</Button>
+                <Button className="back-button" onClick={handleGoBack}>BACK <FontAwesomeIcon icon={faRotateLeft} style={{color: "white",}} /></Button>
                 <GoogleMap
                     zoom={15} 
                     center={center} 

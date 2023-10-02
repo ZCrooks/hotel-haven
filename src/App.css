@@ -12600,6 +12600,15 @@ header span {
   width: 100%;
   height: 50vh;
 }
+.property .back-button {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 25%;
+  height: 50px;
+}
+.property .back-button:hover {
+  background-color: #04b9d8;
+}
 
 .newsletter-section {
   margin-top: 10%;
