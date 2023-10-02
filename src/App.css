@@ -12258,6 +12258,10 @@ header .header-div {
 header .header-img-div {
   width: 75%;
 }
+header .header-img-div .header-img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 header span {
   display: block;
 }
@@ -12591,6 +12595,10 @@ header span {
 }
 .property hr {
   width: 40%;
+}
+.property .map-container {
+  width: 100%;
+  height: 50vh;
 }
 
 .newsletter-section {

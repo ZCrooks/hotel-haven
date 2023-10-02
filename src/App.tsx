@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap';
 import { Link, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-import { Rental } from './interfaces/Rental';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
 import Results from './components/Results';
@@ -101,7 +100,11 @@ function App() : JSX.Element {
       }
     })
     .then(response => {
-      setPlaceID(response.data.candidates[0].place_id)
+      if (response.data.candidates[0]) {
+        setPlaceID(response.data.candidates[0].place_id)
+      } else {
+        return;
+      } 
     })
     .catch(error => {
       console.error("Error with data", error);
@@ -116,17 +119,18 @@ function App() : JSX.Element {
       }
     })
     .then(response => {
-      // Find Photos Array
-      setPlaceDetails(response.data.result.photos)
-      // Set City Photo to first pic returned from array (based on text query)
-      const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${response.data.result.photos[0].photo_reference}&key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8`;
-      setLocationPhoto(imageUrl);
+      if (response.data.result) {
+        // Find Photos Array
+        setPlaceDetails(response.data.result.photos)
+        // Set City Photo to first pic returned from array (based on text query)
+        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${response.data.result.photos[0].photo_reference}&key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8`;
+        setLocationPhoto(imageUrl);
+      } 
     })
     .catch(error => {
       console.error("Error with data", error)
     })
   }
-
 
 useEffect(() => {
   const fetchData = async () => {
@@ -204,7 +208,9 @@ useEffect(() => {
           hostPic: property.hostThumbnail,
           previewAmenities: property.previewAmenities,
           amenityIds: property.amenityIds,
-          price: property.price
+          price: property.price,
+          lng: property.lng,
+          lat: property.lat
         })
     }
 
