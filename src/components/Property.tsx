@@ -2,7 +2,6 @@ import { Card, Container, Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faBath, faBed, faUser, faDoorOpen, faLocationDot, faWifi, faFan, faCar, faKitchenSet, faPersonSwimming, faSmoking, faDog, faDumbbell, faMugSaucer, faTv, faKey, faHotTubPerson, faFire } from "@fortawesome/free-solid-svg-icons";
 const Property = ({ handleGoBack, selectedProperty }) => {
-console.log(selectedProperty)
     return (
         <section className="property">
             <Container>

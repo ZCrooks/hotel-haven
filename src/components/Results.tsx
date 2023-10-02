@@ -8,7 +8,6 @@ import { useState } from "react";
 import { faBed, faBath, faStar} from "@fortawesome/free-solid-svg-icons";
 
 const Results = ( { handleReset, results, currency, setCurrency, handleSelect }) => {
-    console.log(results)
     
     // Set Currency Conversion state depending on user Selection
     const currencyConversion = (selectedCurrency) => {

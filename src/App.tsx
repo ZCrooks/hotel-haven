@@ -116,28 +116,31 @@ function App() : JSX.Element {
       }
     })
     .then(response => {
+      // Find Photos Array
       setPlaceDetails(response.data.result.photos)
+      // Set City Photo to first pic returned from array (based on text query)
+      const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${response.data.result.photos[0].photo_reference}&key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8`;
+      setLocationPhoto(imageUrl);
     })
     .catch(error => {
       console.error("Error with data", error)
     })
   }
 
+
 useEffect(() => {
   const fetchData = async () => {
     try {
       await fetchPlaces();
       await fetchDetails();
-      // Set Image Url
-      const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference=${placeDetails[0].photo_reference}&key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8`;
-      setLocationPhoto(imageUrl)
     } catch (error) {
       // Handle errors
       console.error("Error fetching data", error);
     }
   };
   fetchData();
-}, [selectedCity, placeDetails]);
+}, [selectedCity, results]);
+
 
     // HANDLE PROPERTY SEARCH FORM INPUT CHANGES
     const handleChange = (e) => {
