@@ -17,6 +17,9 @@ header {
     }
     & .header-img-div {
         width: 75%;
+        & .header-img {
+            object-fit: cover;
+        }
     }
     & span {
         display: block;

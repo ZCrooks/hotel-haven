@@ -1,11 +1,6 @@
 // PROPERTY SCSS
  .property {
     & .property-booking {
-        // top: 0;
-        // bottom: 0%;
-        // position: fixed;
-        // overflow-y: scroll;
-        // overflow-x: hidden;
         position: sticky;
         top: 20px;
         & .amount {
@@ -122,5 +117,18 @@
     }
     & hr {
         width: 40%;
+    }
+    & .map-container{
+        width: 100%;
+        height: 50vh;
+    }
+    & .back-button {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        width: 25%;
+        height: 50px;
+    }
+    & .back-button:hover {
+        background-color: $primary;
     }
  }   

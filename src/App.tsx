@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap';
 import { Link, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
-import { Rental } from './interfaces/Rental';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
 import Results from './components/Results';
@@ -27,31 +26,32 @@ function App() : JSX.Element {
     adults: "",
   });
 
+  // SET CURRENCY
   const [currency, setCurrency] = useState("");
 
   // SET SEARCH RESULTS
   const [results, setResults] = useState([]);
 
+  // SET AUTOCOMPLETE RESULTS
   const [autoCompleteResults, setAutoCompleteResults] = useState([]);
 
   // SET LOADING STATE
   const [loading, setLoading] = useState(false);
 
-  const [selectedProperty, setSelectedProperty] = useState({
-    //   name: "",
-    // rating: "", 
-    // address: "",
-    // type: "",
-    // pricePerNight: "",
-    // totalPrice: "",
-    // beds: "",
-    // bathrooms: "",
-    // bedrooms: "",
-    // persons: ""
-  });
+  // SET PROPERTY SELECTED
+  const [selectedProperty, setSelectedProperty] = useState({});
  
+  // TOGGLE PROPERTY DETAILS DISPLAYING UPON CLICK
   const [showProperty, setShowProperty] = useState(false);
-  
+
+  // SET PLACEID (GOOGLE MAPS)
+  const [placeID, setPlaceID] = useState("");
+
+  // SET PLACE DETAILS (TO FIND PHOTO REFERENCE)
+  const [placeDetails, setPlaceDetails] = useState([]);
+
+  // SET SELECTED CITY'S PHOTO
+  const [locationPhoto, setLocationPhoto] = useState(null);
 
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
   const fetchSearch = () => {
@@ -73,14 +73,16 @@ function App() : JSX.Element {
         setLoading(false);
       })
       .catch(error => {
-        alert('Error fetching data');
+        alert ("No properties found. Please try again!")
       });
     }
-
+// axios.get('https://airbnb13.p.rapidapi.com/autocomplete', 
+  // AUTOCOMPLETE SEARCH BAR
   const autoComplete = (value) => {
-    axios.get('https://airbnb13.p.rapidapi.com/autocomplete', {
+    axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/autocomplete/json', {
     params: {
-      query: value
+      input: value,
+      key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8'
     },
     headers: {
       'X-RapidAPI-Key': 'b384381131mshccb5ef49cf63d0cp1af8a5jsn8468569435f3',
@@ -89,12 +91,69 @@ function App() : JSX.Element {
     })
       .then(response => {
         // Update state with API data // Set loading to false
-        setAutoCompleteResults(response.data)
+        console.log(response.data.predictions)
+        setAutoCompleteResults(response.data.predictions)
       })
       .catch(error => {
         alert('Error fetching data'); 
       });
   }
+
+  // GOOGLE FETCH PLACES (CITY IDS)
+  const fetchPlaces = () => {
+    axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json', {
+      params: {
+        input: selectedCity.location,
+        inputtype: 'textquery',
+        key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8'
+      }
+    })
+    .then(response => {
+      if (response.data.candidates[0]) {
+        setPlaceID(response.data.candidates[0].place_id)
+      } else {
+        return;
+      } 
+    })
+    .catch(error => {
+      console.error("Error with data", error);
+    })
+  }
+    // GOOGLE FETCH PLACES (CITY IDS)
+  const fetchDetails = () => {
+    axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/details/json', {
+      params: {
+        place_id: placeID,
+        key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8'
+      }
+    })
+    .then(response => {
+      if (response.data.result) {
+        // Find Photos Array
+        setPlaceDetails(response.data.result.photos)
+        // Set City Photo to first pic returned from array (based on text query)
+        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${response.data.result.photos[0].photo_reference}&key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8`;
+        setLocationPhoto(imageUrl);
+      } 
+    })
+    .catch(error => {
+      console.error("Error with data", error)
+    })
+  }
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      await fetchPlaces();
+      await fetchDetails();
+    } catch (error) {
+      // Handle errors
+      console.error("Error fetching data", error);
+    }
+  };
+  fetchData();
+}, [selectedCity, results]);
+
 
     // HANDLE PROPERTY SEARCH FORM INPUT CHANGES
     const handleChange = (e) => {
@@ -158,7 +217,9 @@ function App() : JSX.Element {
           hostPic: property.hostThumbnail,
           previewAmenities: property.previewAmenities,
           amenityIds: property.amenityIds,
-          price: property.price
+          price: property.price,
+          lng: property.lng,
+          lat: property.lat
         })
     }
 
@@ -177,6 +238,7 @@ function App() : JSX.Element {
         handleDateRangeChange={handleDateRangeChange}
         results={results}
         autoCompleteResults={autoCompleteResults}
+        locationPhoto={locationPhoto}
       />
       {showProperty ? (
         <>
@@ -201,6 +263,7 @@ function App() : JSX.Element {
                 currency={currency}
                 setCurrency={setCurrency}
                 handleSelect={handleSelect}
+                selectedCity={selectedCity}
               />
               <Newsletter />
               <Footer />
@@ -219,4 +282,4 @@ function App() : JSX.Element {
   )
 }
 
-export default App
+export default App;

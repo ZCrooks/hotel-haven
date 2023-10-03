@@ -12258,6 +12258,10 @@ header .header-div {
 header .header-img-div {
   width: 75%;
 }
+header .header-img-div .header-img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 header span {
   display: block;
 }
@@ -12389,13 +12393,22 @@ header span {
 .results-section .results-container {
   position: relative;
 }
-.results-section .currency-dropdown button {
+.results-section .results-features {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.results-section .results-features .currency-dropdown button, .results-section .results-features .dates {
+  background-color: wheat;
+  padding: 15px;
+  border-radius: 10px;
+}
+.results-section .results-features .currency-dropdown button {
   position: absolute;
   right: 0;
-  background-color: wheat;
   color: black;
 }
-.results-section .dropdown-item {
+.results-section .results-features .dropdown-item {
   text-align: center;
 }
 
@@ -12403,7 +12416,7 @@ header span {
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 30px;
-  margin-top: 8%;
+  margin-top: 5%;
 }
 .results-box .results-card {
   display: flex;
@@ -12591,6 +12604,19 @@ header span {
 }
 .property hr {
   width: 40%;
+}
+.property .map-container {
+  width: 100%;
+  height: 50vh;
+}
+.property .back-button {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 25%;
+  height: 50px;
+}
+.property .back-button:hover {
+  background-color: #04b9d8;
 }
 
 .newsletter-section {

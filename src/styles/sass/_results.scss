@@ -4,14 +4,24 @@
     & .results-container {
         position: relative;
     }
-    & .currency-dropdown button {
+
+    & .results-features {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        & .currency-dropdown button, .dates {
+            background-color: wheat; 
+            padding: 15px;
+            border-radius: 10px;
+        }
+        & .currency-dropdown button {
         position: absolute;
         right: 0;
-        background-color: wheat;
         color: black;
-    }
-    & .dropdown-item  {
+        }
+        & .dropdown-item  {
         text-align: center;
+        }
     }
 }
 
@@ -19,7 +29,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 30px;
-    margin-top: 8%;
+    margin-top: 5%;
     & .results-card {
         display: flex;
         flex-direction: row;

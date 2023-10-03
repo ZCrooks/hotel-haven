@@ -11,14 +11,14 @@ import "rsuite/dist/rsuite.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullseye, faDollarSign, faHouse, faLocationPin, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, autoCompleteResults }) => {
+const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, autoCompleteResults, locationPhoto }) => {
 
     // Handle whether AutoComplete list is visible 
     const [showAutoComplete, setShowAutoComplete] = useState (true)
 
     const handleAutoCompleteClick = (result) => {
         const div = document.querySelector(".auto-complete");
-        document.querySelector(".location-input").value = result.query;
+        document.querySelector(".location-input").value = result.description;
         div.style.display = "none"
     };
 
@@ -35,13 +35,12 @@ const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, a
                 <h1>Find Your Next <span>Vacation Property!</span></h1>
                 )}
             </div>
-            <div className="header-img-div">   
-                <img 
-                    className="header-img" 
-                    src={results.length > 0 && results[0].images[1] ? results[1].images[4] : headerImage} 
-                    alt="Header Image" 
-                />    
-         
+            <div className={results.length > 0 ? "location-photo-div" : "header-img-div"}>
+            <img
+                className="header-img"
+                src={results.length > 0 ? locationPhoto : headerImage}
+                alt="Header Image"
+            />
             </div>
         </header>
         <Container>
@@ -52,14 +51,14 @@ const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, a
                         <Form.Control className="location-input" type="text" name="location" placeholder="What city are you going to?" onChange={handleChange} />
                         {autoCompleteResults.length > 0 && (
                             <div className="auto-complete">
-                                {autoCompleteResults.map((result, index) => (
-                                    <p key={index} >
+                                {autoCompleteResults.map((result) => (
+                                    <p key={result.place_id}>
                                         <button
                                             type="button"
                                             className="autocomplete-result-button"
                                             onClick={() => handleAutoCompleteClick(result)}
                                         >
-                                            {result.query}
+                                        {result.description}
                                         </button>    
                                     </p>
                                 ))}

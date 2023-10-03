@@ -1,12 +1,32 @@
 import { Card, Container, Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faBath, faBed, faUser, faDoorOpen, faLocationDot, faWifi, faFan, faCar, faKitchenSet, faPersonSwimming, faSmoking, faDog, faDumbbell, faMugSaucer, faTv, faKey, faHotTubPerson, faFire } from "@fortawesome/free-solid-svg-icons";
+import { useMemo } from "react";
+import { faStar, faBath, faBed, faUser, faDoorOpen, faLocationDot, faWifi, faFan, faCar, faKitchenSet, faPersonSwimming, faSmoking, faDog, faDumbbell, faMugSaucer, faTv, faKey, faHotTubPerson, faFire, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+
 const Property = ({ handleGoBack, selectedProperty }) => {
-console.log(selectedProperty)
+    const { } = useLoadScript({
+        googleMapsApiKey: "AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8",
+    })
+
+    const center = {
+      lat: selectedProperty.lat, 
+      lng: selectedProperty.lng  
+    }
+
+    console.log(center)
+
     return (
         <section className="property">
             <Container>
-                <Button onClick={handleGoBack}>BACK</Button>
+                <Button className="back-button" onClick={handleGoBack}>BACK <FontAwesomeIcon icon={faRotateLeft} style={{color: "white",}} /></Button>
+                <GoogleMap
+                    zoom={15} 
+                    center={center} 
+                    mapContainerClassName="map-container"
+                > 
+                <Marker position={center} />   
+                </GoogleMap>
                 <Row>
                     <Col xs={8}>
                         <Card className="property-key-card">
@@ -84,7 +104,10 @@ console.log(selectedProperty)
                                     <p>{selectedProperty.price.priceItems[1] !== undefined ? selectedProperty.price.priceItems[1].title : null}</p>
                                 </Col>
                                 <Col>
-                                    <p className="amount">{selectedProperty.price.priceItems[1] !== undefined ? ( <>${selectedProperty.price.priceItems[1].amount}</>) : null}</p>                       
+                                    <p className="amount">{selectedProperty.price.priceItems[1] !== undefined && selectedProperty.price.priceItems[1].title !== "Cleaning fee" || selectedProperty.price.priceItems[1].title !== "Taxes" ? (
+                                         <>${selectedProperty.price.priceItems[1].amount}</>) : 
+                                         <>-${selectedProperty.price.priceItems[1].amount} </>}</p> 
+                                                       
                                 </Col>
                             </Row>
                             <Row>
@@ -109,7 +132,7 @@ console.log(selectedProperty)
                                     <p><strong>Total</strong></p>
                                 </Col>
                                 <Col>
-                                    <p className="amount"><strong>${selectedProperty.price.total.toLocaleString()}</strong></p>                         
+                                    <p className="amount"><strong>${selectedProperty.price.total.toLocaleString()}</strong></ p>                         
                                 </Col>
                             </Row>
                             <Button className="reserve-button">Reserve</Button>                            

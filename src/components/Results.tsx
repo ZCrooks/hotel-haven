@@ -7,9 +7,8 @@ import Property from "./Property";
 import { useState } from "react";
 import { faBed, faBath, faStar} from "@fortawesome/free-solid-svg-icons";
 
-const Results = ( { handleReset, results, currency, setCurrency, handleSelect }) => {
-    console.log(results)
-    
+const Results = ( { handleReset, results, currency, setCurrency, handleSelect, errorMessage, errorPresent, selectedCity }) => {
+ 
     // Set Currency Conversion state depending on user Selection
     const currencyConversion = (selectedCurrency) => {
         setCurrency(selectedCurrency);
@@ -26,26 +25,31 @@ const Results = ( { handleReset, results, currency, setCurrency, handleSelect })
         return Math.round(convertedPrice).toLocaleString();
     }
 
-
     return (
         <section className="results-section">
             <Container className="results-container">
-                <h2>Property in {results[13].city}</h2>
-                <Dropdown className="currency-dropdown">
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        {currency === "usd" ? 
-                        <span aria-hidden="true">&#127482;&#127480;</span>
-                        : <span aria-hidden="true">&#127464;&#127462;</span>}
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item 
-                        onClick={() => currencyConversion("usd")}>USD <span aria-hidden="true">&#127482;&#127480;</span>
-                        </Dropdown.Item>
-                        <Dropdown.Item 
-                        onClick={() => currencyConversion("cad")}>CAD <span aria-hidden="true">&#127464;&#127462;</span>
-                        </Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown> 
+                <h2>Properties in {results[13].city}</h2>
+                <p>{errorPresent ? errorMessage : null}</p>
+                <div className="results-features">
+                    <div className="dates">
+                        <h3>{`${selectedCity.checkin} - ${selectedCity.checkout}`}</h3>
+                    </div>
+                    <Dropdown className="currency-dropdown">
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            {currency === "usd" ? 
+                            <span aria-hidden="true">&#127482;&#127480;</span>
+                            : <span aria-hidden="true">&#127464;&#127462;</span>}
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            <Dropdown.Item 
+                            onClick={() => currencyConversion("usd")}>USD <span aria-hidden="true">&#127482;&#127480;</span>
+                            </Dropdown.Item>
+                            <Dropdown.Item 
+                            onClick={() => currencyConversion("cad")}>CAD <span aria-hidden="true">&#127464;&#127462;</span>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>            
+                </div>
                 <div className="results-box">
                     {results.map((result) => {
                         if (result.price.total !== null ) {
