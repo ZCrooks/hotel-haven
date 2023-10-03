@@ -26,24 +26,31 @@ function App() : JSX.Element {
     adults: "",
   });
 
+  // SET CURRENCY
   const [currency, setCurrency] = useState("");
 
   // SET SEARCH RESULTS
   const [results, setResults] = useState([]);
 
+  // SET AUTOCOMPLETE RESULTS
   const [autoCompleteResults, setAutoCompleteResults] = useState([]);
 
   // SET LOADING STATE
   const [loading, setLoading] = useState(false);
 
+  // SET PROPERTY SELECTED
   const [selectedProperty, setSelectedProperty] = useState({});
  
+  // TOGGLE PROPERTY DETAILS DISPLAYING UPON CLICK
   const [showProperty, setShowProperty] = useState(false);
 
+  // SET PLACEID (GOOGLE MAPS)
   const [placeID, setPlaceID] = useState("");
-  
+
+  // SET PLACE DETAILS (TO FIND PHOTO REFERENCE)
   const [placeDetails, setPlaceDetails] = useState([]);
 
+  // SET SELECTED CITY'S PHOTO
   const [locationPhoto, setLocationPhoto] = useState(null);
 
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
@@ -66,15 +73,16 @@ function App() : JSX.Element {
         setLoading(false);
       })
       .catch(error => {
-        alert('Error fetching data');
+        alert ("No properties found. Please try again!")
       });
     }
-
+// axios.get('https://airbnb13.p.rapidapi.com/autocomplete', 
   // AUTOCOMPLETE SEARCH BAR
   const autoComplete = (value) => {
-    axios.get('https://airbnb13.p.rapidapi.com/autocomplete', {
+    axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/autocomplete/json', {
     params: {
-      query: value
+      input: value,
+      key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8'
     },
     headers: {
       'X-RapidAPI-Key': 'b384381131mshccb5ef49cf63d0cp1af8a5jsn8468569435f3',
@@ -83,7 +91,8 @@ function App() : JSX.Element {
     })
       .then(response => {
         // Update state with API data // Set loading to false
-        setAutoCompleteResults(response.data)
+        console.log(response.data.predictions)
+        setAutoCompleteResults(response.data.predictions)
       })
       .catch(error => {
         alert('Error fetching data'); 
@@ -123,7 +132,7 @@ function App() : JSX.Element {
         // Find Photos Array
         setPlaceDetails(response.data.result.photos)
         // Set City Photo to first pic returned from array (based on text query)
-        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=500&photoreference=${response.data.result.photos[0].photo_reference}&key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8`;
+        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${response.data.result.photos[0].photo_reference}&key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8`;
         setLocationPhoto(imageUrl);
       } 
     })
@@ -254,6 +263,7 @@ useEffect(() => {
                 currency={currency}
                 setCurrency={setCurrency}
                 handleSelect={handleSelect}
+                selectedCity={selectedCity}
               />
               <Newsletter />
               <Footer />
