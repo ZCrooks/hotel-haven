@@ -11,7 +11,7 @@ import "rsuite/dist/rsuite.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullseye, faDollarSign, faHouse, faLocationPin, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, autoCompleteResults, locationPhoto }) => {
+const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, autoCompleteResults, locationPhoto, handleAutoCompleteSelect }) => {
 
     // Handle whether AutoComplete list is visible 
     const [showAutoComplete, setShowAutoComplete] = useState (true)
@@ -52,7 +52,7 @@ const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, a
                         {autoCompleteResults.length > 0 && (
                             <div className="auto-complete">
                                 {autoCompleteResults.map((result) => (
-                                    <p key={result.place_id}>
+                                    <p key={result.place_id} onClick={() => handleAutoCompleteSelect(result)}>
                                         <button
                                             type="button"
                                             className="autocomplete-result-button"

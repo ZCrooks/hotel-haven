@@ -5,6 +5,9 @@ import { faStar, faBath, faBed, faUser, faDoorOpen, faLocationDot, faWifi, faFan
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
 const Property = ({ handleGoBack, selectedProperty }) => {
+    console.log(selectedProperty)
+
+    // GOOGLE MAPS - MAP RENDERING LOGIC
     const { } = useLoadScript({
         googleMapsApiKey: "AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8",
     })
@@ -13,8 +16,6 @@ const Property = ({ handleGoBack, selectedProperty }) => {
       lat: selectedProperty.lat, 
       lng: selectedProperty.lng  
     }
-
-    console.log(center)
 
     return (
         <section className="property">
@@ -104,7 +105,7 @@ const Property = ({ handleGoBack, selectedProperty }) => {
                                     <p>{selectedProperty.price.priceItems[1] !== undefined ? selectedProperty.price.priceItems[1].title : null}</p>
                                 </Col>
                                 <Col>
-                                    <p className="amount">{selectedProperty.price.priceItems[1] !== undefined && selectedProperty.price.priceItems[1].title !== "Cleaning fee" || selectedProperty.price.priceItems[1].title !== "Taxes" ? (
+                                    <p className="amount">{selectedProperty.price.priceItems[1] === undefined || selectedProperty.price.priceItems[1].title === "Cleaning fee" || selectedProperty.price.priceItems[1].title === "Taxes" ? (
                                          <>${selectedProperty.price.priceItems[1].amount}</>) : 
                                          <>-${selectedProperty.price.priceItems[1].amount} </>}</p> 
                                                        

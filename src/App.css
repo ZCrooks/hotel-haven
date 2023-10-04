@@ -12608,6 +12608,7 @@ header span {
 .property .map-container {
   width: 100%;
   height: 50vh;
+  border-radius: 25px;
 }
 .property .back-button {
   margin-top: 30px;

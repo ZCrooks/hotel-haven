@@ -47,9 +47,6 @@ function App() : JSX.Element {
   // SET PLACEID (GOOGLE MAPS)
   const [placeID, setPlaceID] = useState("");
 
-  // SET PLACE DETAILS (TO FIND PHOTO REFERENCE)
-  const [placeDetails, setPlaceDetails] = useState([]);
-
   // SET SELECTED CITY'S PHOTO
   const [locationPhoto, setLocationPhoto] = useState(null);
 
@@ -82,7 +79,8 @@ function App() : JSX.Element {
     axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/autocomplete/json', {
     params: {
       input: value,
-      key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8'
+      key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8',
+      types: "locality"
     },
     headers: {
       'X-RapidAPI-Key': 'b384381131mshccb5ef49cf63d0cp1af8a5jsn8468569435f3',
@@ -99,38 +97,21 @@ function App() : JSX.Element {
       });
   }
 
-  // GOOGLE FETCH PLACES (CITY IDS)
-  const fetchPlaces = () => {
-    axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json', {
-      params: {
-        input: selectedCity.location,
-        inputtype: 'textquery',
-        key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8'
-      }
-    })
-    .then(response => {
-      if (response.data.candidates[0]) {
-        setPlaceID(response.data.candidates[0].place_id)
-      } else {
-        return;
-      } 
-    })
-    .catch(error => {
-      console.error("Error with data", error);
-    })
+  const handleAutoCompleteSelect = (selection) => {
+    setPlaceID(selection.place_id)
   }
-    // GOOGLE FETCH PLACES (CITY IDS)
+
+  // GOOGLE FETCH DETAILS (CITY IDS)
   const fetchDetails = () => {
     axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/details/json', {
       params: {
         place_id: placeID,
-        key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8'
+        key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8',
+        fields: "photo"
       }
     })
     .then(response => {
       if (response.data.result) {
-        // Find Photos Array
-        setPlaceDetails(response.data.result.photos)
         // Set City Photo to first pic returned from array (based on text query)
         const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${response.data.result.photos[0].photo_reference}&key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8`;
         setLocationPhoto(imageUrl);
@@ -144,7 +125,6 @@ function App() : JSX.Element {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      await fetchPlaces();
       await fetchDetails();
     } catch (error) {
       // Handle errors
@@ -152,7 +132,7 @@ useEffect(() => {
     }
   };
   fetchData();
-}, [selectedCity, results]);
+}, [results]);
 
 
     // HANDLE PROPERTY SEARCH FORM INPUT CHANGES
@@ -239,6 +219,7 @@ useEffect(() => {
         results={results}
         autoCompleteResults={autoCompleteResults}
         locationPhoto={locationPhoto}
+        handleAutoCompleteSelect={handleAutoCompleteSelect}
       />
       {showProperty ? (
         <>
