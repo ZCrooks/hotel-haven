@@ -105,7 +105,7 @@ const Property = ({ handleGoBack, selectedProperty }) => {
                                     <p>{selectedProperty.price.priceItems[1] !== undefined ? selectedProperty.price.priceItems[1].title : null}</p>
                                 </Col>
                                 <Col>
-                                    <p className="amount">{selectedProperty.price.priceItems[1] === undefined || selectedProperty.price.priceItems[1].title === "Cleaning fee" || selectedProperty.price.priceItems[1].title === "Taxes" ? (
+                                    <p className="amount">{selectedProperty.price.priceItems[1] === undefined || selectedProperty.price.priceItems[1].title === "Cleaning fee" || selectedProperty.price.priceItems[1].title === "Taxes" || selectedProperty.price.priceItems[1].title === "Airbnb service fee" ? (
                                          <>${selectedProperty.price.priceItems[1].amount}</>) : 
                                          <>-${selectedProperty.price.priceItems[1].amount} </>}</p> 
                                                        

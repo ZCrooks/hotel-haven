@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap';
-import { Link, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
@@ -11,12 +10,8 @@ import FeaturedRenters from './components/FeaturedRenters';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
 import './App.css';
-import { onValue } from 'firebase/database';
-
 
 function App() : JSX.Element {
-  // SET UPDATED FORM DATA (USER CHOICES)
-  const [updateForm, setUpdateForm] = useState("")
 
   // SET USER'S SELECTED CITY
   const [selectedCity, setSelectedCity] = useState({
@@ -101,12 +96,14 @@ function App() : JSX.Element {
     setPlaceID(selection.place_id)
   }
 
+
   // GOOGLE FETCH DETAILS (CITY IDS)
   const fetchDetails = () => {
     axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/details/json', {
       params: {
         place_id: placeID,
         key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8',
+        types: "locality",
         fields: "photo"
       }
     })
@@ -168,13 +165,14 @@ useEffect(() => {
 
     // HANDLE RESET OF RESULTS AND USER INPUT
     const handleReset = () => {
-      setResults([])
+      setResults([]);
       setSelectedCity({
         location:"",
         checkin: "",
         checkout:"",
         adults: ""
-      })
+      });
+      setAutoCompleteResults([]);
     }
 
     // HANDLE CLICK ON EACH PROPERTY CARD THAT COMES UP AFTER SEARCH
@@ -204,7 +202,8 @@ useEffect(() => {
     }
 
     const handleGoBack = () => {
-      setShowProperty(false)
+      setShowProperty(false);
+      setAutoCompleteResults([]);
     }
 
   return (

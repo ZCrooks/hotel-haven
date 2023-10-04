@@ -1,7 +1,6 @@
 import headerImage from "../assets/header-img.jpeg";
 import Container from 'react-bootstrap/Container';
 import { useState, useEffect } from "react";
-import { Component } from 'react';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
