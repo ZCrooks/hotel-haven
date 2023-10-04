@@ -12320,7 +12320,7 @@ header span {
 }
 
 .auto-complete {
-  z-index: 0;
+  z-index: 1;
   position: absolute;
   background-color: white;
   padding: 10px;
@@ -12608,6 +12608,7 @@ header span {
 .property .map-container {
   width: 100%;
   height: 50vh;
+  border-radius: 25px;
 }
 .property .back-button {
   margin-top: 30px;

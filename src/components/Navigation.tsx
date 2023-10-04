@@ -17,12 +17,6 @@ const Navigation = ({ handleReset }) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <NavDropdown title="Currency" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">USD</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-               CAD
-              </NavDropdown.Item>
-            </NavDropdown>
             <NavDropdown title="Language" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">English</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
