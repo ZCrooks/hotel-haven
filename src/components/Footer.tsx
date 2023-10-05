@@ -10,7 +10,7 @@ const Footer = () => {
     return (
         <footer>
             <Container>
-                <Row className="justify-content-between align-items-start">
+                <Row className="justify-content-md-center">
                     <Col md={4}>
                         <ul className="brand-links">
                             <li>

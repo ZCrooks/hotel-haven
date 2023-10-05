@@ -35,3 +35,11 @@
         background-color: red;
     }
 }
+
+@media (max-width: 750px) {
+    .renters-section {
+        & .cards-box {
+            grid-template-columns: 50%;
+        }
+    }
+}

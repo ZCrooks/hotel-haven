@@ -40,3 +40,34 @@
         }
     }
 }
+
+// NEWSLETTER MEDIA QUERIES 
+
+@media (max-width: 1050px) {
+    .newsletter-section {
+        & .newsletter-form {
+            & .col-md {
+                width: 80%;
+            }
+        & .newsletter-submit-button {
+            width: 20%;
+            height: 90%;
+            }
+        }
+    }
+}
+
+@media (max-width: 770px) {
+    .newsletter-section {
+        & .row {
+            display: flex;
+            flex-direction: column;
+        }
+        & .form-control {
+            height: 90px;
+        }
+        & img {
+            margin-top: 10%;
+        }
+    }
+}

@@ -9,7 +9,7 @@ header {
         width: 60%;
         height: 300px;
         background-color: $primary;
-        padding: 30px;
+        padding: 20px;
         margin-right: -100px;
         z-index: 1;
         display: flex;
@@ -88,5 +88,34 @@ header {
     }
     & button:focus{
         background-color: wheat;
+    }
+}
+
+// HEADER MEDIA QUERIES
+@media (max-width: 1000px) {
+    header {
+        flex-direction: column;
+        & .header-img-div, .location-photo-div {
+            width: 100%;
+            & img {
+                width: 100%;
+            }
+        }
+        & .header-div {
+            width: 100%;
+            margin-right: 0;
+            height: 200px;
+            & h1 {
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media (max-width: 625px) {
+    header {
+        & h1 {
+            font-size: 3.1rem;
+        }
     }
 }

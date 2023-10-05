@@ -12,3 +12,13 @@
         align-items: center;
     }
 }
+
+// DESCRIPTION MEDIA QUERIES 
+@media (max-width: 770px) {
+    .description-container {
+        & .row {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
