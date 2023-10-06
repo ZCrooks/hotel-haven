@@ -10,6 +10,10 @@ img {
     display: block;
 }
 
+body {
+    overflow-x: hidden;
+}
+
 // FONT FAMILY
 h1, h2, h3 { 
     font-family: 'Inter', sans-serif;

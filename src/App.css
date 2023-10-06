@@ -12195,6 +12195,10 @@ img {
   display: block;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 h1, .h1, h2, .h2, h3, .h3 {
   font-family: "Inter", sans-serif;
 }
@@ -12305,7 +12309,7 @@ header span {
 .search-form .submit-button {
   background-color: #04b9d8;
   border-radius: 50%;
-  width: 8%;
+  width: 10%;
   margin: 15px;
 }
 .search-form .form-control::-moz-placeholder {
@@ -12351,8 +12355,32 @@ header span {
     margin-right: 0;
     height: 200px;
   }
-  header .header-div h1, header .header-div .h1 {
+  header .header-div h1, header .header-div .h1, header .header-div p {
     text-align: center;
+  }
+}
+@media (max-width: 770px) {
+  .search-form {
+    margin: 0 auto;
+  }
+  .search-form .rs-picker-toggle-placeholder {
+    font-size: 0.8rem;
+  }
+  .g-2 {
+    display: flex;
+    flex-direction: column;
+  }
+  .g-2 .col-md {
+    width: 33%;
+    height: 100%;
+  }
+  .g-2 .submit-button {
+    margin-top: 5%;
+    position: relative;
+    border-radius: 50px;
+    top: 100%;
+    right: 75%;
+    width: 50%;
   }
 }
 @media (max-width: 625px) {
@@ -12360,12 +12388,17 @@ header span {
     font-size: 3.1rem;
   }
 }
+@media (max-width: 480px) {
+  .search-form .rs-picker-toggle-placeholder {
+    font-size: 0.6rem;
+  }
+}
 .description-title, .description-container h3, .description-container .h3 {
   text-align: center;
 }
 
 .description-container {
-  margin-top: 5%;
+  margin-top: 10%;
 }
 .description-container .description-box {
   margin-top: 20px;
@@ -12375,6 +12408,9 @@ header span {
 }
 
 @media (max-width: 770px) {
+  .description-container {
+    margin-top: 15%;
+  }
   .description-container .row {
     display: flex;
     flex-direction: column;
@@ -12419,7 +12455,10 @@ header span {
 
 @media (max-width: 750px) {
   .renters-section .cards-box {
-    grid-template-columns: 50%;
+    grid-template-columns: 40%;
+  }
+  .renters-section .cards-box .renter-cards {
+    margin: 0;
   }
 }
 .results-section {

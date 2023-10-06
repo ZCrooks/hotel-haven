@@ -4,7 +4,7 @@
 }
 
 .description-container {
-    margin-top: 5%;
+    margin-top: 10%;
     & .description-box {
         margin-top: 20px;
         display: flex;
@@ -16,6 +16,7 @@
 // DESCRIPTION MEDIA QUERIES 
 @media (max-width: 770px) {
     .description-container {
+        margin-top: 15%;
         & .row {
             display: flex;
             flex-direction: column;
