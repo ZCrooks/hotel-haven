@@ -12382,10 +12382,32 @@ header span {
     right: 75%;
     width: 50%;
   }
+  .rs-anim-fade {
+    left: 10% !important;
+  }
 }
 @media (max-width: 625px) {
-  header h1, header .h1 {
+  header .header-div {
+    height: 300px;
+  }
+  header .header-div h1, header .header-div .h1 {
     font-size: 3.1rem;
+  }
+}
+@media (max-width: 590px) {
+  .rs-anim-fade {
+    height: 80vh;
+    width: 350px;
+  }
+  .rs-anim-fade .rs-picker-daterange-calendar-group {
+    display: flex;
+    flex-direction: column;
+  }
+  .rs-anim-fade .rs-calendar {
+    margin-left: 0;
+  }
+  .rs-anim-fade .rs-picker-toolbar-right button {
+    margin-right: 150px;
   }
 }
 @media (max-width: 480px) {
