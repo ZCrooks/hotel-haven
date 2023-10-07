@@ -28,7 +28,7 @@ const Property = ({ handleGoBack, selectedProperty }) => {
                 > 
                 <Marker position={center} />   
                 </GoogleMap>
-                <Row>
+                <Row className="property-main">
                     <Col xs={8}>
                         <Card className="property-key-card">
                             <p className="property-type">{selectedProperty.type}</p>
