@@ -12389,6 +12389,8 @@ header span {
 @media (max-width: 625px) {
   header .header-div {
     height: 300px;
+    display: flex;
+    justify-content: center;
   }
   header .header-div h1, header .header-div .h1 {
     font-size: 3.1rem;
@@ -12582,6 +12584,14 @@ header span {
   box-shadow: 3px 2px 25px 1px rgba(0, 0, 0, 0.25);
 }
 
+@media (max-width: 990px) {
+  .results-section {
+    margin-top: 15%;
+  }
+  .results-section .results-box {
+    grid-template-columns: 100%;
+  }
+}
 .property .property-booking {
   position: sticky;
   top: 20px;

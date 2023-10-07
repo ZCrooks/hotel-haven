@@ -84,7 +84,6 @@
 }
 
 // RESULTS HOVER
-
 .results-card:hover {
     cursor: pointer;
     box-shadow: 0 0 50px 15px #48abe0;
@@ -99,3 +98,13 @@
     box-shadow: 3px 2px 25px 1px rgba(0, 0, 0, 0.25);
 }
 
+// RESULTS MEDIA QUERIES
+@media (max-width: 990px) { 
+    .results-section {
+        margin-top: 15%;
+        & .results-box {
+            grid-template-columns: 100%; 
+        }
+    }
+
+}
