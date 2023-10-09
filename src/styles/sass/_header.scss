@@ -9,7 +9,7 @@ header {
         width: 60%;
         height: 300px;
         background-color: $primary;
-        padding: 30px;
+        padding: 20px;
         margin-right: -100px;
         z-index: 1;
         display: flex;
@@ -64,7 +64,7 @@ header {
     & .submit-button {
         background-color: $primary;
         border-radius: 50%;
-        width: 8%;
+        width: 10%;
         margin: 15px;
     }
     & .form-control::placeholder, .rs-picker-toggle-placeholder, .rs-picker-toggle-value, .col-md input {
@@ -88,5 +88,94 @@ header {
     }
     & button:focus{
         background-color: wheat;
+    }
+}
+
+// HEADER MEDIA QUERIES
+@media (max-width: 1000px) {
+    header {
+        flex-direction: column;
+        & .header-img-div, .location-photo-div {
+            width: 100%;
+            & img {
+                width: 100%;
+            }
+        }
+        & .header-div {
+            width: 100%;
+            margin-right: 0;
+            height: 200px;
+            & h1, p {
+                text-align: center;
+            }
+        }
+    }
+}
+
+@media (max-width: 770px) {
+    .search-form {
+        margin: 0 auto;
+        & .rs-picker-toggle-placeholder {
+            font-size: 0.8rem;
+        }
+    }
+    .g-2 {
+        display: flex;
+        flex-direction: column;
+        & .col-md {
+            width: 33%;
+            height: 100%;
+        }
+        & .submit-button {
+            margin-top: 5%;
+            position: relative;
+            border-radius: 50px;
+            top: 100%;
+            right: 75%;
+            width: 50%;
+        }
+    }
+    .rs-anim-fade {
+        left: 10% !important;
+    }
+}
+
+@media (max-width: 625px) {
+    header {
+        & .header-div {
+            height: 300px;  
+            display: flex;
+            justify-content: center;      
+            & h1 {
+                font-size: 3.1rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 590px) {
+    .rs-anim-fade {
+        height: 80vh;
+        width: 350px;
+        & .rs-picker-daterange-calendar-group {
+            display: flex;
+            flex-direction: column;
+        }
+        & .rs-calendar {
+            margin-left: 0;
+        }
+        & .rs-picker-toolbar-right {
+            & button {
+                margin-right: 150px;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .search-form {
+        & .rs-picker-toggle-placeholder {
+            font-size: 0.6rem;
+        }
     }
 }
