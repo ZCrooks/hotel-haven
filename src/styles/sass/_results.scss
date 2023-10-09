@@ -107,3 +107,10 @@
         }
     }
 }
+
+@media (max-width: 480px) {
+    .results-card {
+        flex-direction: column !important;
+        align-items: center;
+    }
+}

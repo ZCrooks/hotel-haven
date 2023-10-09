@@ -107,6 +107,7 @@
         display: grid;
         grid-gap: 10px;
         grid-template-columns: 33% 33% 33%;
+        padding: 0;
         & .amenities-item {
             display: flex;
             align-items: center;
@@ -153,6 +154,9 @@
         }
         & .property-host {
             flex-direction: column;
+            & .property-host-div {
+                margin-bottom: 10px;
+            }
         }
         & .property-main {
             flex-direction: column-reverse;
@@ -166,5 +170,11 @@
                 }
             }
         }
+    }
+}
+
+@media (max-width: 480px) {
+    .amenities {
+        grid-template-columns: 50% 50% !important;
     }
 }

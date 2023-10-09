@@ -12479,7 +12479,7 @@ header span {
 
 @media (max-width: 750px) {
   .renters-section .cards-box {
-    grid-template-columns: 40%;
+    grid-template-columns: 50% 50%;
   }
   .renters-section .cards-box .renter-cards {
     margin: 0;
@@ -12592,6 +12592,12 @@ header span {
     grid-template-columns: 100%;
   }
 }
+@media (max-width: 480px) {
+  .results-card {
+    flex-direction: column !important;
+    align-items: center;
+  }
+}
 .property .property-booking {
   position: sticky;
   top: 20px;
@@ -12700,6 +12706,7 @@ header span {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 33% 33% 33%;
+  padding: 0;
 }
 .property .amenities .amenities-item {
   display: flex;
@@ -12744,6 +12751,9 @@ header span {
   .property .property-host {
     flex-direction: column;
   }
+  .property .property-host .property-host-div {
+    margin-bottom: 10px;
+  }
   .property .property-main {
     flex-direction: column-reverse;
   }
@@ -12755,6 +12765,11 @@ header span {
   }
   .property .property-main .col-8 .property-photos {
     grid-template-columns: 50% 50%;
+  }
+}
+@media (max-width: 480px) {
+  .amenities {
+    grid-template-columns: 50% 50% !important;
   }
 }
 .newsletter-section {

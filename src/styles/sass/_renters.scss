@@ -39,7 +39,7 @@
 @media (max-width: 750px) {
     .renters-section {
         & .cards-box {
-            grid-template-columns: 40%;
+            grid-template-columns: 50% 50%;
             & .renter-cards {
                 margin: 0;
             }
