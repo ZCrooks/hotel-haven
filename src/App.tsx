@@ -14,7 +14,10 @@ import { PropertyDetails } from './interfaces/PropertyDetails';
 import { ChangeEvent, FormEvent } from 'react';
 import './App.css';
 
+
 function App(): JSX.Element {
+  const rapidAPIKey = import.meta.env.VITE_REACT_APP_RAPIDAPI_KEY;
+  const googleAPIKey = import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY;
 
   // SET USER'S SELECTED CITY
   const [selectedCity, setSelectedCity] = useState<City>({
@@ -77,13 +80,12 @@ function App(): JSX.Element {
       adults: selectedCity.adults.toString(),
     },
     headers: {
-      'X-RapidAPI-Key': 'b384381131mshccb5ef49cf63d0cp1af8a5jsn8468569435f3',
+      'X-RapidAPI-Key': rapidAPIKey,
       'X-RapidAPI-Host': 'airbnb13.p.rapidapi.com'
     }
     })
       .then(response => {
         // Update state with API data // Set loading to false
-        console.log(response.data.results)
         setResults(response.data.results)
         setLoading(false);
       })
@@ -97,12 +99,8 @@ function App(): JSX.Element {
     axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/autocomplete/json', {
     params: {
       input: value,
-      key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8',
+      key: googleAPIKey,
       types: "locality"
-    },
-    headers: {
-      'X-RapidAPI-Key': 'b384381131mshccb5ef49cf63d0cp1af8a5jsn8468569435f3',
-      'X-RapidAPI-Host': 'airbnb13.p.rapidapi.com'
     }
     })
       .then(response => {
@@ -124,7 +122,7 @@ function App(): JSX.Element {
     axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/details/json', {
       params: {
         place_id: placeID,
-        key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8',
+        key: googleAPIKey,
         types: "locality",
         fields: "photo"
       }
@@ -132,7 +130,7 @@ function App(): JSX.Element {
     .then(response => {
       if (response.data.result) {
         // Set City Photo to first pic returned from array (based on text query)
-        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${response.data.result.photos[0].photo_reference}&key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8`;
+        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${response.data.result.photos[0].photo_reference}&key=${googleAPIKey}`;
         setLocationPhoto(imageUrl);
       } 
     })
