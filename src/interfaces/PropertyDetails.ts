@@ -11,7 +11,7 @@ export interface PropertyDetails {
     totalPrice: number,
     pricePerNight: number,
     reviewsCount: number,
-    hostPic: string,
+    hostThumbnail: string,
     previewAmenities: string[],
     amenityIds: number[],
     price: {[key: string] : any}

@@ -50,7 +50,7 @@ function App(): JSX.Element {
     totalPrice: 0,
     pricePerNight: 0,
     reviewsCount: 0,
-    hostPic: "",
+    hostThumbnail: "",
     previewAmenities: [],
     amenityIds: [],
     price: {},
@@ -83,6 +83,7 @@ function App(): JSX.Element {
     })
       .then(response => {
         // Update state with API data // Set loading to false
+        console.log(response.data.results)
         setResults(response.data.results)
         setLoading(false);
       })
@@ -213,7 +214,7 @@ useEffect(() => {
           totalPrice: property.price.total,
           pricePerNight: property.price.rate,
           reviewsCount: property.reviewsCount,
-          hostPic: property.hostPic,
+          hostThumbnail: property.hostThumbnail,
           previewAmenities: property.previewAmenities,
           amenityIds: property.amenityIds,
           price: property.price,

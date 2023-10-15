@@ -50,7 +50,7 @@ const Property: React.FC<PropertyProps> = ({
                             <div className="property-host">
                                 <div className="property-host-div">
                                     <div className="host-pic">
-                                        <Card.Img  src={selectedProperty.hostPic}/>
+                                        <Card.Img  src={selectedProperty.hostThumbnail}/>
                                     </div>
                                     <p>Hosted by <strong>RENTER</strong></p>                            
                                 </div>
