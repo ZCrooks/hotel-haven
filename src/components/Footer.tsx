@@ -1,12 +1,11 @@
 import { Container, Col, Row } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import logo from "../assets/logo.png";
 import youtube from "../assets/square-youtube.svg";
 import facebook from "../assets/square-facebook.svg";
 import instagram from "../assets/square-instagram.svg";
 import x from "../assets/x-twitter.svg";
 
-const Footer = () => {
+const Footer= () => {
     return (
         <footer>
             <Container>

@@ -1,10 +1,6 @@
 import renterCard from "./Cards";
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
-
 
 const FeaturedRenters = () => {
     return (
@@ -36,7 +32,6 @@ const FeaturedRenters = () => {
             </Container>
         </section>
     )
-    
 }
 
 export default FeaturedRenters;

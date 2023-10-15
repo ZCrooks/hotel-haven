@@ -2,20 +2,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Property from "./Property";
-import { useState } from "react";
+import { ResultsProps } from "../interfaces/ResultsProps";
 import { faBed, faBath, faStar} from "@fortawesome/free-solid-svg-icons";
 
-const Results = ( { handleReset, results, currency, setCurrency, handleSelect, errorMessage, errorPresent, selectedCity }) => {
+const Results: React.FC<ResultsProps> = ({
+  results,
+  currency,
+  setCurrency,
+  handleSelect,
+  errorMessage,
+  errorPresent,
+  selectedCity,
+}) => {
  
     // Set Currency Conversion state depending on user Selection
-    const currencyConversion = (selectedCurrency) => {
+    const currencyConversion = (selectedCurrency: string) => {
         setCurrency(selectedCurrency);
     }
 
     //Render Currency Price based on user selection
-    const convertedPrice = (price) => {
+    const convertedPrice = (price: number) => {
         let convertedPrice;
         if (currency === "cad") {
            convertedPrice = price * 1.33;
@@ -51,7 +57,7 @@ const Results = ( { handleReset, results, currency, setCurrency, handleSelect, e
                     </Dropdown>            
                 </div>
                 <div className="results-box">
-                    {results.map((result) => {
+                    {results.map((result: any) => {
                         if (result.price.total !== null ) {
                             return (
                                     <Card key={result.id} className="results-card" onClick={() => handleSelect(result)}>

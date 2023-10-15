@@ -9,12 +9,15 @@ import Description from './components/Description';
 import FeaturedRenters from './components/FeaturedRenters';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
+import { City } from './interfaces/City';
+import { PropertyDetails } from './interfaces/PropertyDetails';
+import { ChangeEvent, FormEvent } from 'react';
 import './App.css';
 
-function App() : JSX.Element {
+function App(): JSX.Element {
 
   // SET USER'S SELECTED CITY
-  const [selectedCity, setSelectedCity] = useState({
+  const [selectedCity, setSelectedCity] = useState<City>({
     location: "",
     checkin: "",
     checkout: "",
@@ -22,7 +25,7 @@ function App() : JSX.Element {
   });
 
   // SET CURRENCY
-  const [currency, setCurrency] = useState("");
+  const [currency, setCurrency] = useState<string>("");
 
   // SET SEARCH RESULTS
   const [results, setResults] = useState([]);
@@ -31,19 +34,38 @@ function App() : JSX.Element {
   const [autoCompleteResults, setAutoCompleteResults] = useState([]);
 
   // SET LOADING STATE
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // SET PROPERTY SELECTED
-  const [selectedProperty, setSelectedProperty] = useState({});
+  const [selectedProperty, setSelectedProperty] = useState<PropertyDetails>({
+    name: "",
+    rating: 0,
+    address: "",
+    type: "",
+    beds: 0,
+    images: [],
+    bathrooms: 0,
+    bedrooms: 0,
+    persons: 0,
+    totalPrice: 0,
+    pricePerNight: 0,
+    reviewsCount: 0,
+    hostPic: "",
+    previewAmenities: [],
+    amenityIds: [],
+    price: {},
+    lng: 0,
+    lat: 0,
+  });
  
   // TOGGLE PROPERTY DETAILS DISPLAYING UPON CLICK
-  const [showProperty, setShowProperty] = useState(false);
+  const [showProperty, setShowProperty] = useState<boolean>(false);
 
   // SET PLACEID (GOOGLE MAPS)
-  const [placeID, setPlaceID] = useState("");
+  const [placeID, setPlaceID] = useState<string>("");
 
   // SET SELECTED CITY'S PHOTO
-  const [locationPhoto, setLocationPhoto] = useState(null);
+  const [locationPhoto, setLocationPhoto] = useState<string>("");
 
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
   const fetchSearch = () => {
@@ -65,12 +87,12 @@ function App() : JSX.Element {
         setLoading(false);
       })
       .catch(error => {
-        alert ("No properties found. Please try again!")
+        alert (error)
       });
     }
-// axios.get('https://airbnb13.p.rapidapi.com/autocomplete', 
+
   // AUTOCOMPLETE SEARCH BAR
-  const autoComplete = (value) => {
+  const autoComplete = (value: string) => {
     axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/autocomplete/json', {
     params: {
       input: value,
@@ -84,15 +106,14 @@ function App() : JSX.Element {
     })
       .then(response => {
         // Update state with API data // Set loading to false
-        console.log(response.data.predictions)
         setAutoCompleteResults(response.data.predictions)
       })
       .catch(error => {
-        alert('Error fetching data'); 
+        alert(error); 
       });
   }
 
-  const handleAutoCompleteSelect = (selection) => {
+  const handleAutoCompleteSelect = (selection: {place_id: string}) => {
     setPlaceID(selection.place_id)
   }
 
@@ -133,7 +154,7 @@ useEffect(() => {
 
 
     // HANDLE PROPERTY SEARCH FORM INPUT CHANGES
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value
       setSelectedCity ({
         ...selectedCity,
@@ -145,7 +166,7 @@ useEffect(() => {
     }
 
     // HANDLE DATE RANGE SELECTIONS
-    const handleDateRangeChange = (value) => {
+    const handleDateRangeChange = (value: Date[] | null) : void => {
       if (value) {
         setSelectedCity({
           ...selectedCity,
@@ -156,7 +177,7 @@ useEffect(() => {
     }
     
     // HANDLE PROPERTY SEARCH USER SUBMISSION
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
       setCurrency("usd");
@@ -176,7 +197,7 @@ useEffect(() => {
     }
 
     // HANDLE CLICK ON EACH PROPERTY CARD THAT COMES UP AFTER SEARCH
-    const handleSelect = (property) => {
+    const handleSelect = (property: PropertyDetails) => {
         setShowProperty(true)
         setSelectedProperty({
           ...selectedProperty,
@@ -192,7 +213,7 @@ useEffect(() => {
           totalPrice: property.price.total,
           pricePerNight: property.price.rate,
           reviewsCount: property.reviewsCount,
-          hostPic: property.hostThumbnail,
+          hostPic: property.hostPic,
           previewAmenities: property.previewAmenities,
           amenityIds: property.amenityIds,
           price: property.price,
@@ -201,7 +222,7 @@ useEffect(() => {
         })
     }
 
-    const handleGoBack = () => {
+    const handleReturn = () => {
       setShowProperty(false);
       setAutoCompleteResults([]);
     }
@@ -223,7 +244,7 @@ useEffect(() => {
       {showProperty ? (
         <>
          <Property
-         handleGoBack={handleGoBack}
+         handleReturn={handleReturn}
          selectedProperty={selectedProperty} /> 
          ) 
          <Footer />
@@ -238,12 +259,13 @@ useEffect(() => {
           results.length > 0 ? (
             <>
               <Results 
-                handleReset={handleReset}
                 results={results}
                 currency={currency}
                 setCurrency={setCurrency}
                 handleSelect={handleSelect}
                 selectedCity={selectedCity}
+                errorMessage={''} 
+              errorPresent={false} 
               />
               <Newsletter />
               <Footer />
