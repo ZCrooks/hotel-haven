@@ -16,5 +16,6 @@ export interface PropertyDetails {
     amenityIds: number[],
     price: {[key: string] : any}
     lng: number,
-    lat: number
+    lat: number,
+    deeplink: string
 }

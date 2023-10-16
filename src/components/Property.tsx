@@ -19,6 +19,11 @@ const Property: React.FC<PropertyProps> = ({
       lng: selectedProperty.lng  
     }
 
+    // RESERVE BUTTON CLICK
+    const handleReserve = () => {
+        alert(`MOCK WEBSITE: Please visit link to reserve this property: ${selectedProperty.deeplink}`)
+    }
+
     return (
         <section className="property">
             <Container>
@@ -138,7 +143,7 @@ const Property: React.FC<PropertyProps> = ({
                                     <p className="amount"><strong>${selectedProperty.price.total.toLocaleString()}</strong></ p>                         
                                 </Col>
                             </Row>
-                            <Button className="reserve-button">Reserve</Button>                            
+                            <Button className="reserve-button" onClick={handleReserve}>Reserve</Button>                            
                         </Card>                
                     </Col>
                 </Row>

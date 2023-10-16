@@ -60,6 +60,7 @@ function App(): JSX.Element {
     price: {},
     lng: 0,
     lat: 0,
+    deeplink: ""
   });
  
   // TOGGLE PROPERTY DETAILS DISPLAYING UPON CLICK
@@ -218,7 +219,8 @@ useEffect(() => {
           amenityIds: property.amenityIds,
           price: property.price,
           lng: property.lng,
-          lat: property.lat
+          lat: property.lat,
+          deeplink: property.deeplink
         })
     }
 
