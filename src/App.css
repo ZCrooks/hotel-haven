@@ -12344,10 +12344,16 @@ header span {
   header {
     flex-direction: column;
   }
-  header .header-img-div, header .location-photo-div {
+  header .header-img-div {
     width: 100%;
   }
-  header .header-img-div img, header .location-photo-div img {
+  header .header-img-div img {
+    width: 100%;
+  }
+  header .location-photo-div {
+    width: 75%;
+  }
+  header .location-photo-div img {
     width: 100%;
   }
   header .header-div {
@@ -12480,9 +12486,16 @@ header span {
 @media (max-width: 750px) {
   .renters-section .cards-box {
     grid-template-columns: 50% 50%;
+    margin-left: 10%;
   }
   .renters-section .cards-box .renter-cards {
     margin: 0;
+  }
+}
+@media (max-width: 400px) {
+  .renters-section .cards-box {
+    grid-template-columns: 100%;
+    margin-left: 25%;
   }
 }
 .results-section {
@@ -12791,6 +12804,9 @@ header span {
   margin-top: 5px;
   align-items: first baseline;
 }
+.newsletter-section .link-box p {
+  margin-left: 10px;
+}
 .newsletter-section .link-box-2 {
   background-color: #FFE1E1;
 }
@@ -12869,4 +12885,18 @@ footer .footer-bar span {
   display: block;
   font-weight: 700;
   font-size: 1.5rem;
+}
+
+@media (max-width: 770px) {
+  footer .footer-container li {
+    text-align: center;
+  }
+  footer .brand-links {
+    left: 30%;
+  }
+}
+@media (max-width: 400px) {
+  footer .brand-links {
+    left: 20%;
+  }
 }/*# sourceMappingURL=App.css.map */

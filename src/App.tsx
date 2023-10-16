@@ -16,6 +16,7 @@ import './App.css';
 
 
 function App(): JSX.Element {
+  // API KEYS
   const rapidAPIKey = import.meta.env.VITE_REACT_APP_RAPIDAPI_KEY;
   const googleAPIKey = import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY;
 
@@ -135,7 +136,7 @@ function App(): JSX.Element {
       } 
     })
     .catch(error => {
-      console.error("Error with data", error)
+      alert(error)
     })
   }
 
@@ -145,7 +146,7 @@ useEffect(() => {
       await fetchDetails();
     } catch (error) {
       // Handle errors
-      console.error("Error fetching data", error);
+      alert(error);
     }
   };
   fetchData();

@@ -8,7 +8,7 @@ import x from "../assets/x-twitter.svg";
 const Footer= () => {
     return (
         <footer>
-            <Container>
+            <Container className="footer-container">
                 <Row className="justify-content-md-center">
                     <Col md={4}>
                         <ul className="brand-links">

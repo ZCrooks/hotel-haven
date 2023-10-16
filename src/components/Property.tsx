@@ -8,11 +8,10 @@ const Property: React.FC<PropertyProps> = ({
   handleReturn,
   selectedProperty
 }) => {
-    console.log(selectedProperty)
-
     // GOOGLE MAPS - MAP RENDERING LOGIC
+    const googleAPIKey = import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY;
     const { } = useLoadScript({
-        googleMapsApiKey: "AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8",
+        googleMapsApiKey: googleAPIKey,
     })
 
     const center = {

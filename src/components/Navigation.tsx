@@ -2,7 +2,7 @@ import logo from "../assets/logo.png"
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
 
 interface NavigationProps {
-  handleReset: () => void; // Specify the function type here
+  handleReset: () => void; 
 }
 
 const Navigation: React.FC<NavigationProps> = ({ handleReset }) => {

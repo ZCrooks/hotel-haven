@@ -95,8 +95,14 @@ header {
 @media (max-width: 1000px) {
     header {
         flex-direction: column;
-        & .header-img-div, .location-photo-div {
+        & .header-img-div {
             width: 100%;
+            & img {
+                width: 100%;
+            }
+        }
+        & .location-photo-div {
+            width: 75%;
             & img {
                 width: 100%;
             }

@@ -37,4 +37,23 @@ footer {
     }
 }
 
+// FOOTER MEDIA QUERIES
+@media (max-width: 770px) {
+    footer {
+        & .footer-container li {
+            text-align: center;
+        }
+        & .brand-links {
+            left: 30%;
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    footer {
+        & .brand-links {
+            left: 20%;
+        }
+    }
+}
 
