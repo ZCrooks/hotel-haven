@@ -9,12 +9,18 @@ import Description from './components/Description';
 import FeaturedRenters from './components/FeaturedRenters';
 import Newsletter from './components/Newsletter';
 import Footer from './components/Footer';
+import { City } from './interfaces/City';
+import { PropertyDetails } from './interfaces/PropertyDetails';
+import { ChangeEvent, FormEvent } from 'react';
 import './App.css';
 
-function App() : JSX.Element {
+
+function App(): JSX.Element {
+  const rapidAPIKey = import.meta.env.VITE_REACT_APP_RAPIDAPI_KEY;
+  const googleAPIKey = import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY;
 
   // SET USER'S SELECTED CITY
-  const [selectedCity, setSelectedCity] = useState({
+  const [selectedCity, setSelectedCity] = useState<City>({
     location: "",
     checkin: "",
     checkout: "",
@@ -22,7 +28,7 @@ function App() : JSX.Element {
   });
 
   // SET CURRENCY
-  const [currency, setCurrency] = useState("");
+  const [currency, setCurrency] = useState<string>("");
 
   // SET SEARCH RESULTS
   const [results, setResults] = useState([]);
@@ -31,19 +37,38 @@ function App() : JSX.Element {
   const [autoCompleteResults, setAutoCompleteResults] = useState([]);
 
   // SET LOADING STATE
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // SET PROPERTY SELECTED
-  const [selectedProperty, setSelectedProperty] = useState({});
+  const [selectedProperty, setSelectedProperty] = useState<PropertyDetails>({
+    name: "",
+    rating: 0,
+    address: "",
+    type: "",
+    beds: 0,
+    images: [],
+    bathrooms: 0,
+    bedrooms: 0,
+    persons: 0,
+    totalPrice: 0,
+    pricePerNight: 0,
+    reviewsCount: 0,
+    hostThumbnail: "",
+    previewAmenities: [],
+    amenityIds: [],
+    price: {},
+    lng: 0,
+    lat: 0,
+  });
  
   // TOGGLE PROPERTY DETAILS DISPLAYING UPON CLICK
-  const [showProperty, setShowProperty] = useState(false);
+  const [showProperty, setShowProperty] = useState<boolean>(false);
 
   // SET PLACEID (GOOGLE MAPS)
-  const [placeID, setPlaceID] = useState("");
+  const [placeID, setPlaceID] = useState<string>("");
 
   // SET SELECTED CITY'S PHOTO
-  const [locationPhoto, setLocationPhoto] = useState(null);
+  const [locationPhoto, setLocationPhoto] = useState<string>("");
 
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
   const fetchSearch = () => {
@@ -55,7 +80,7 @@ function App() : JSX.Element {
       adults: selectedCity.adults.toString(),
     },
     headers: {
-      'X-RapidAPI-Key': 'b384381131mshccb5ef49cf63d0cp1af8a5jsn8468569435f3',
+      'X-RapidAPI-Key': rapidAPIKey,
       'X-RapidAPI-Host': 'airbnb13.p.rapidapi.com'
     }
     })
@@ -65,34 +90,29 @@ function App() : JSX.Element {
         setLoading(false);
       })
       .catch(error => {
-        alert ("No properties found. Please try again!")
+        alert (error)
       });
     }
-// axios.get('https://airbnb13.p.rapidapi.com/autocomplete', 
+
   // AUTOCOMPLETE SEARCH BAR
-  const autoComplete = (value) => {
+  const autoComplete = (value: string) => {
     axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/autocomplete/json', {
     params: {
       input: value,
-      key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8',
+      key: googleAPIKey,
       types: "locality"
-    },
-    headers: {
-      'X-RapidAPI-Key': 'b384381131mshccb5ef49cf63d0cp1af8a5jsn8468569435f3',
-      'X-RapidAPI-Host': 'airbnb13.p.rapidapi.com'
     }
     })
       .then(response => {
         // Update state with API data // Set loading to false
-        console.log(response.data.predictions)
         setAutoCompleteResults(response.data.predictions)
       })
       .catch(error => {
-        alert('Error fetching data'); 
+        alert(error); 
       });
   }
 
-  const handleAutoCompleteSelect = (selection) => {
+  const handleAutoCompleteSelect = (selection: {place_id: string}) => {
     setPlaceID(selection.place_id)
   }
 
@@ -102,7 +122,7 @@ function App() : JSX.Element {
     axios.get('https://proxy.junocollege.com/https://maps.googleapis.com/maps/api/place/details/json', {
       params: {
         place_id: placeID,
-        key: 'AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8',
+        key: googleAPIKey,
         types: "locality",
         fields: "photo"
       }
@@ -110,7 +130,7 @@ function App() : JSX.Element {
     .then(response => {
       if (response.data.result) {
         // Set City Photo to first pic returned from array (based on text query)
-        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${response.data.result.photos[0].photo_reference}&key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8`;
+        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${response.data.result.photos[0].photo_reference}&key=${googleAPIKey}`;
         setLocationPhoto(imageUrl);
       } 
     })
@@ -133,7 +153,7 @@ useEffect(() => {
 
 
     // HANDLE PROPERTY SEARCH FORM INPUT CHANGES
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value
       setSelectedCity ({
         ...selectedCity,
@@ -145,7 +165,7 @@ useEffect(() => {
     }
 
     // HANDLE DATE RANGE SELECTIONS
-    const handleDateRangeChange = (value) => {
+    const handleDateRangeChange = (value: Date[] | null) : void => {
       if (value) {
         setSelectedCity({
           ...selectedCity,
@@ -156,7 +176,7 @@ useEffect(() => {
     }
     
     // HANDLE PROPERTY SEARCH USER SUBMISSION
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
       setCurrency("usd");
@@ -176,7 +196,7 @@ useEffect(() => {
     }
 
     // HANDLE CLICK ON EACH PROPERTY CARD THAT COMES UP AFTER SEARCH
-    const handleSelect = (property) => {
+    const handleSelect = (property: PropertyDetails) => {
         setShowProperty(true)
         setSelectedProperty({
           ...selectedProperty,
@@ -192,7 +212,7 @@ useEffect(() => {
           totalPrice: property.price.total,
           pricePerNight: property.price.rate,
           reviewsCount: property.reviewsCount,
-          hostPic: property.hostThumbnail,
+          hostThumbnail: property.hostThumbnail,
           previewAmenities: property.previewAmenities,
           amenityIds: property.amenityIds,
           price: property.price,
@@ -201,7 +221,7 @@ useEffect(() => {
         })
     }
 
-    const handleGoBack = () => {
+    const handleReturn = () => {
       setShowProperty(false);
       setAutoCompleteResults([]);
     }
@@ -223,7 +243,7 @@ useEffect(() => {
       {showProperty ? (
         <>
          <Property
-         handleGoBack={handleGoBack}
+         handleReturn={handleReturn}
          selectedProperty={selectedProperty} /> 
          ) 
          <Footer />
@@ -238,12 +258,13 @@ useEffect(() => {
           results.length > 0 ? (
             <>
               <Results 
-                handleReset={handleReset}
                 results={results}
                 currency={currency}
                 setCurrency={setCurrency}
                 handleSelect={handleSelect}
                 selectedCity={selectedCity}
+                errorMessage={''} 
+              errorPresent={false} 
               />
               <Newsletter />
               <Footer />

@@ -8,19 +8,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useState } from 'react';
 import { db } from '../Firebase';
+import { ChangeEvent, FormEvent } from 'react';
 import { addDoc, collection, serverTimestamp} from 'firebase/firestore';
 
-const Newsletter = () => {
-
+const Newsletter = () => { 
     // Store User Input (email) in State
     const [input, setInput] = useState("")
 
     // Set User Input in State
-    const handleInput = (e) => {
+    const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value)
     }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
 
         // add to firebase Firestore

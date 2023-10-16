@@ -1,10 +1,13 @@
 import { Card, Container, Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useMemo } from "react";
 import { faStar, faBath, faBed, faUser, faDoorOpen, faLocationDot, faWifi, faFan, faCar, faKitchenSet, faPersonSwimming, faSmoking, faDog, faDumbbell, faMugSaucer, faTv, faKey, faHotTubPerson, faFire, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { PropertyProps } from "../interfaces/PropertyProps";
 
-const Property = ({ handleGoBack, selectedProperty }) => {
+const Property: React.FC<PropertyProps> = ({
+  handleReturn,
+  selectedProperty
+}) => {
     console.log(selectedProperty)
 
     // GOOGLE MAPS - MAP RENDERING LOGIC
@@ -20,7 +23,7 @@ const Property = ({ handleGoBack, selectedProperty }) => {
     return (
         <section className="property">
             <Container>
-                <Button className="back-button" onClick={handleGoBack}>BACK <FontAwesomeIcon icon={faRotateLeft} style={{color: "white",}} /></Button>
+                <Button className="back-button" onClick={handleReturn}>BACK <FontAwesomeIcon icon={faRotateLeft} style={{color: "white",}} /></Button>
                 <GoogleMap
                     zoom={15} 
                     center={center} 
@@ -47,7 +50,7 @@ const Property = ({ handleGoBack, selectedProperty }) => {
                             <div className="property-host">
                                 <div className="property-host-div">
                                     <div className="host-pic">
-                                        <Card.Img  src={selectedProperty.hostPic}/>
+                                        <Card.Img  src={selectedProperty.hostThumbnail}/>
                                     </div>
                                     <p>Hosted by <strong>RENTER</strong></p>                            
                                 </div>
@@ -79,7 +82,7 @@ const Property = ({ handleGoBack, selectedProperty }) => {
                             </div>
         
                             <ul className="property-photos">
-                                {selectedProperty.images.slice(0, 6).map((image) => {
+                                {selectedProperty.images.slice(0, 6).map((image: string) => {
                                     return (
                                         <li key={image}>
                                             <Card.Img  src={image} alt="Property Image"/>
@@ -150,7 +153,7 @@ const Property = ({ handleGoBack, selectedProperty }) => {
                     <p>About the property's amenities and services</p>
                     <hr></hr>
                 <ul className="amenities">
-                    {selectedProperty.amenityIds.map((id) => {
+                    {selectedProperty.amenityIds.map((id: number) => {
                         return id === 51 ? (
                             <li key={id} className="amenities-item">
                                 <FontAwesomeIcon icon={faKey} style={{ color: "#676e7c" }} /> Self Check-in

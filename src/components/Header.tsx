@@ -1,25 +1,42 @@
 import headerImage from "../assets/header-img.jpeg";
 import Container from 'react-bootstrap/Container';
-import { useState, useEffect } from "react";
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { Button, InputGroup } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { DateRangePicker } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBullseye, faDollarSign, faHouse, faLocationPin, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { HeaderProps } from "../interfaces/HeaderProps";
+import {faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, autoCompleteResults, locationPhoto, handleAutoCompleteSelect }) => {
+interface AutoCompleteResult {
+  place_id: string;
+  description: string;
+}
 
-    // Handle whether AutoComplete list is visible 
-    const [showAutoComplete, setShowAutoComplete] = useState (true)
-
-    const handleAutoCompleteClick = (result) => {
-        const div = document.querySelector(".auto-complete");
-        document.querySelector(".location-input").value = result.description;
-        div.style.display = "none"
+const Header: React.FC<HeaderProps> = ({
+  handleSubmit,
+  handleChange,
+  handleDateRangeChange,
+  results,
+  autoCompleteResults,
+  locationPhoto,
+  handleAutoCompleteSelect
+}) =>  {
+    
+    // Handle Click of Autocomplete Selection
+    const handleAutoCompleteClick = (result: any) => {
+        const div = document.querySelector(".auto-complete") as HTMLDivElement | null;
+        const locationInput = document.querySelector(".location-input") as HTMLInputElement | null;
+        if (locationInput) {
+            locationInput.value = result.description;
+        }
+        if (div) {
+            div.style.display = "none";
+        } 
     };
+
 
     return (
         <>
@@ -50,7 +67,7 @@ const Header = ( { handleSubmit, handleChange, handleDateRangeChange, results, a
                         <Form.Control className="location-input" type="text" name="location" placeholder="City" onChange={handleChange} />
                         {autoCompleteResults.length > 0 && (
                             <div className="auto-complete">
-                                {autoCompleteResults.map((result) => (
+                                {autoCompleteResults.map((result: AutoCompleteResult) => (
                                     <p key={result.place_id} onClick={() => handleAutoCompleteSelect(result)}>
                                         <button
                                             type="button"

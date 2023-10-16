@@ -1,9 +1,11 @@
 import logo from "../assets/logo.png"
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 
-const Navigation = ({ handleReset }) => {
+interface NavigationProps {
+  handleReset: () => void; // Specify the function type here
+}
+
+const Navigation: React.FC<NavigationProps> = ({ handleReset }) => {
     return (
     <Navbar expand="lg" className="bg-body-primary">
       <Container>
