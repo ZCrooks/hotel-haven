@@ -19,7 +19,7 @@ const Description = () => {
                                 <img src={smartSearch} alt="" />
                             </div>
                             <h3>Smart search</h3>
-                            <p>Name your destination city, desired dates, and number of guests in the searchbar. Hotel Haven will do the rest for you!.</p>
+                            <p>Start typing your destination city, select it from the dropdown, add your travel dates dates, and input your number of guests in the searchbar. Hotel Haven will do the rest for you!.</p>
                         </Col>
                         <Col className='description-box'>
                             <div>
