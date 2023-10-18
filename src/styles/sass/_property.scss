@@ -1,5 +1,9 @@
 // PROPERTY SCSS
  .property {
+    & h2 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
     & .property-booking {
         position: sticky;
         top: 20px;
@@ -10,6 +14,7 @@
             border-radius: 40px;
             background-color: #5D15EE;
             border: 0;
+            margin-top: 10px;
         }
         & .reserve-button:hover {
             background-color: $primary;
@@ -49,6 +54,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-top: 10px;
         & .property-host-div {
             display: flex;
             align-items: center;
@@ -92,6 +98,8 @@
     }
     & .property-features {
         display: flex;
+        margin-top: 10px;
+        margin-bottom: 10px;
         & div { 
             display: flex;
             align-items: baseline;
@@ -106,6 +114,7 @@
     & .amenities {
         display: grid;
         grid-gap: 10px;
+        row-gap: 20px;
         grid-template-columns: 33% 33% 33%;
         padding: 0;
         & .amenities-item {

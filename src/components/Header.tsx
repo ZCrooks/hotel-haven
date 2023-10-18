@@ -44,8 +44,8 @@ const Header: React.FC<HeaderProps> = ({
             <div className="header-div">
                  {results.length > 0 ? (
                     <>
-                    <h1>{results[1].address}</h1>
-                    <p>{results.length} Properties Available</p>                   
+                    <p>{results.length} Properties Available</p>  
+                    <h1>{results[1].address}</h1>                 
                     </>
                  ) : ( 
                 <h1>Find Your Next <span>Vacation Property!</span></h1>
