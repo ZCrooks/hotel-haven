@@ -74,7 +74,7 @@ function App(): JSX.Element {
 
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
   const fetchSearch = () => {
-    axios.get('https://airbnb13.p.rapidapi.com/search-location', {
+    axios.get('https://proxy.junocollege.com/https://airbnb13.p.rapidapi.com/search-location', {
     params: {
       location: selectedCity.location.toString(),
       checkin: selectedCity.checkin.toString(),
