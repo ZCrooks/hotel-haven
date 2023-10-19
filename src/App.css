@@ -4051,6 +4051,7 @@ template {
 
 * {
   box-sizing: border-box;
+  border: 2px solid red;
 }
 
 .sr-only {
@@ -4073,7 +4074,7 @@ img {
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 
 h1, h2, h3 {
@@ -4779,13 +4780,5 @@ footer .footer-bar span {
 @media (max-width: 770px) {
   footer .footer-container li {
     text-align: center;
-  }
-  footer .brand-links {
-    left: 30%;
-  }
-}
-@media (max-width: 400px) {
-  footer .brand-links {
-    left: 20%;
   }
 }/*# sourceMappingURL=App.css.map */
