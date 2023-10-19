@@ -4051,7 +4051,6 @@ template {
 
 * {
   box-sizing: border-box;
-  border: 2px solid red;
 }
 
 .sr-only {
@@ -4074,7 +4073,7 @@ img {
 }
 
 body {
-  overflow-x: hidden !important;
+  overflow-x: hidden;
 }
 
 h1, h2, h3 {
