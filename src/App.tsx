@@ -32,7 +32,7 @@ function App(): JSX.Element {
   const [currency, setCurrency] = useState<string>("");
 
   // SET SEARCH RESULTS
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<any[]>([]);
 
   // SET AUTOCOMPLETE RESULTS
   const [autoCompleteResults, setAutoCompleteResults] = useState([]);
@@ -228,7 +228,6 @@ useEffect(() => {
       setShowProperty(false);
       setAutoCompleteResults([]);
     }
-
   return (
     <>
       <Navigation
@@ -258,7 +257,7 @@ useEffect(() => {
             <span className="visually-hidden">Loading...</span> 
           </Spinner> 
         </div> : 
-          results.length > 0 ? (
+          results && results.length > 0 ? (
             <>
               <Results 
                 results={results}

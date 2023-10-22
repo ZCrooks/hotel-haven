@@ -2,22 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy"
-      content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com/v3">
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+    rel="stylesheet">           
     <script src="https://kit.fontawesome.com/3cacf8891d.js" crossorigin="anonymous"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8&libraries=places"></script>
-
     <title>Hotel Haven</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      function initMap() {
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUMsi4yxyoCtP5XxFHX51HXIDqfV3Y2a8&callback=initMap" async defer></script>
   </body>
 </html>
+
