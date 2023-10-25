@@ -42,7 +42,7 @@ const Header: React.FC<HeaderProps> = ({
         <>
         <header>
             <div className="header-div">
-                 {results.length > 0 ? (
+                 {results && results.length > 0 ? (
                     <>
                     <p>{results.length} Properties Available</p>  
                     <h1>{results[1].address}</h1>                 
@@ -51,10 +51,10 @@ const Header: React.FC<HeaderProps> = ({
                 <h1>Find Your Next <span>Vacation Property!</span></h1>
                 )}
             </div>
-            <div className={results.length > 0 ? "location-photo-div" : "header-img-div"}>
+            <div className={results ? "location-photo-div" : "header-img-div"}>
             <img
                 className="header-img"
-                src={results.length > 0 ? locationPhoto : headerImage}
+                src={results && results.length > 0 ? locationPhoto : headerImage}
                 alt="Header Image"
             />
             </div>

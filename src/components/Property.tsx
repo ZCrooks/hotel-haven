@@ -8,16 +8,18 @@ const Property: React.FC<PropertyProps> = ({
   handleReturn,
   selectedProperty
 }) => {
-    // GOOGLE MAPS - MAP RENDERING LOGIC
-    const googleAPIKey = import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY;
-    const { } = useLoadScript({
-        googleMapsApiKey: googleAPIKey,
-    })
+  // GOOGLE MAPS - MAP RENDERING LOGIC
+  const googleAPIKey = import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY as string; // Use process.env to access environment variables
+  const { isLoaded, loadError } = useLoadScript({
+    googleMapsApiKey: googleAPIKey
+  });
 
-    const center = {
-      lat: selectedProperty.lat, 
-      lng: selectedProperty.lng  
-    }
+  if (loadError) return "Error loading maps"; // Return an error message if the maps fail to load
+
+  const center = {
+    lat: selectedProperty.lat,
+    lng: selectedProperty.lng
+  };
 
     // RESERVE BUTTON CLICK
     const handleReserve = () => {
@@ -28,13 +30,19 @@ const Property: React.FC<PropertyProps> = ({
         <section className="property">
             <Container>
                 <Button className="back-button" onClick={handleReturn}>BACK <FontAwesomeIcon icon={faRotateLeft} style={{color: "white",}} /></Button>
-                <GoogleMap
-                    zoom={15} 
-                    center={center} 
-                    mapContainerClassName="map-container"
-                > 
-                <Marker position={center} />   
-                </GoogleMap>
+        <div className="map-container">
+          {isLoaded ? (
+            <GoogleMap
+              zoom={15}
+              center={center}
+              mapContainerClassName="map-container"
+            >
+              <Marker position={center} />
+            </GoogleMap>
+          ) : (
+            <p>Loading map...</p>
+          )}
+        </div>
                 <Row className="property-main">
                     <Col xs={8}>
                         <Card className="property-key-card">
