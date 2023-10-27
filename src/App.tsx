@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
@@ -47,6 +48,7 @@ function App(): JSX.Element {
     address: "",
     type: "",
     beds: 0,
+    id: 0,
     images: [],
     bathrooms: 0,
     bedrooms: 0,
@@ -63,14 +65,14 @@ function App(): JSX.Element {
     deeplink: ""
   });
  
-  // TOGGLE PROPERTY DETAILS DISPLAYING UPON CLICK
-  const [showProperty, setShowProperty] = useState<boolean>(false);
-
   // SET PLACEID (GOOGLE MAPS)
   const [placeID, setPlaceID] = useState<string>("");
 
   // SET SELECTED CITY'S PHOTO
   const [locationPhoto, setLocationPhoto] = useState<string>("");
+
+  // DEFINE NAVIGATION
+  const navigate = useNavigate();
 
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
   const fetchSearch = () => {
@@ -183,6 +185,7 @@ useEffect(() => {
       setLoading(true);
       setCurrency("usd");
       fetchSearch();
+      navigate(`/searchQuery/${placeID}`)
     }
 
     // HANDLE RESET OF RESULTS AND USER INPUT
@@ -199,13 +202,13 @@ useEffect(() => {
 
     // HANDLE CLICK ON EACH PROPERTY CARD THAT COMES UP AFTER SEARCH
     const handleSelect = (property: PropertyDetails) => {
-        setShowProperty(true)
         setSelectedProperty({
           ...selectedProperty,
           name: property.name,
           rating: property.rating,
           address: property.address,
           type: property.type,
+          id: property.id,
           beds: property.beds,
           images: property.images,
           bathrooms: property.bathrooms,
@@ -222,67 +225,100 @@ useEffect(() => {
           lat: property.lat,
           deeplink: property.deeplink
         })
+        navigate(`/property/${property.id}`)
+        window.scrollTo(0, 0);
     }
 
     const handleReturn = () => {
-      setShowProperty(false);
       setAutoCompleteResults([]);
+      navigate(`/searchQuery/${placeID}`)
     }
+
   return (
     <>
       <Navigation
         handleReset={handleReset} 
       />
-      <Header 
-        handleSubmit={handleSubmit} 
-        handleChange={handleChange}
-        handleDateRangeChange={handleDateRangeChange}
-        results={results}
-        autoCompleteResults={autoCompleteResults}
-        locationPhoto={locationPhoto}
-        handleAutoCompleteSelect={handleAutoCompleteSelect}
-      />
-      {showProperty ? (
-        <>
-         <Property
-         handleReturn={handleReturn}
-         selectedProperty={selectedProperty} /> 
-         ) 
-         <Footer />
-         </> ) : (
-          <>
-           {loading ?
-        <div className="spinner-container">
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span> 
-          </Spinner> 
-        </div> : 
-          results && results.length > 0 ? (
+      <Routes>
+        <Route
+          path="/"
+          element = {
             <>
-              <Results 
-                results={results}
-                currency={currency}
-                setCurrency={setCurrency}
-                handleSelect={handleSelect}
-                selectedCity={selectedCity}
-                errorMessage={''} 
-              errorPresent={false} 
-              />
-              <Newsletter />
+            <Header 
+              handleSubmit={handleSubmit} 
+              handleChange={handleChange}
+              handleDateRangeChange={handleDateRangeChange}
+              results={results}
+              autoCompleteResults={autoCompleteResults}
+              locationPhoto={locationPhoto}
+              handleAutoCompleteSelect={handleAutoCompleteSelect}
+            />
+            <Description />
+            <FeaturedRenters />
+            <Newsletter />
+            <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/searchQuery/:placeID"
+          element = {
+            <>
+            <Header  
+              handleSubmit={handleSubmit} 
+              handleChange={handleChange}
+              handleDateRangeChange={handleDateRangeChange}
+              results={results}
+              autoCompleteResults={autoCompleteResults}
+              locationPhoto={locationPhoto}
+              handleAutoCompleteSelect={handleAutoCompleteSelect} />
+              {loading ?
+                <div className="spinner-container">
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span> 
+                  </Spinner> 
+                </div> : (
+                <>
+                  <Results 
+                    results={results}
+                    currency={currency}
+                    setCurrency={setCurrency}
+                    handleSelect={handleSelect}
+                    selectedCity={selectedCity}
+                    errorMessage={''} 
+                    errorPresent={false} 
+                  />
+                  <Newsletter />
+                  <Footer />
+                </>
+                )}
+            </>
+          }
+        />
+        <Route
+          path="/property/:propertyID"
+          element = {
+            <>
+              <Header  
+              handleSubmit={handleSubmit} 
+              handleChange={handleChange}
+              handleDateRangeChange={handleDateRangeChange}
+              results={results}
+              autoCompleteResults={autoCompleteResults}
+              locationPhoto={locationPhoto}
+              handleAutoCompleteSelect={handleAutoCompleteSelect} />
+              <Property
+                handleReturn={handleReturn}
+                selectedProperty={selectedProperty} /> 
               <Footer />
             </>
-            ) : ( 
-            <>
-              <Description />
-              <FeaturedRenters />
-              <Newsletter />
-              <Footer />
-            </>
-          )}
-          </>
-         )}
-    </>
+          }
+        />
+      </Routes>
+    </> 
   )
 }
 
 export default App;
+
+ 
