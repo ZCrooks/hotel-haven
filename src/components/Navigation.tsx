@@ -1,5 +1,7 @@
 import logo from "../assets/logo.png"
 import { Navbar, Nav, NavDropdown, Container, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+
 
 interface NavigationProps {
   handleReset: () => void; 
@@ -8,9 +10,11 @@ const Navigation: React.FC<NavigationProps> = ({ handleReset }) => {
     return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="/" onClick={handleReset}>
-          <img src={logo} alt="Home Haven Logo" width="250" height="90"/>
-        </Navbar.Brand>
+         <LinkContainer to="/">
+            <Navbar.Brand  onClick={handleReset}>
+              <img src={logo} alt="Home Haven Logo" width="250" height="90"/>
+            </Navbar.Brand>
+         </LinkContainer>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Travellers</Nav.Link>
