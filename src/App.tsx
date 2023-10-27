@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Spinner } from 'react-bootstrap';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Navigation from './components/Navigation';
 import Header from './components/Header';
@@ -178,11 +179,13 @@ useEffect(() => {
     }
     
     // HANDLE PROPERTY SEARCH USER SUBMISSION
+    const navigate = useNavigate();
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
       setCurrency("usd");
       fetchSearch();
+      navigate("/searchQuery")
     }
 
     // HANDLE RESET OF RESULTS AND USER INPUT
@@ -228,61 +231,84 @@ useEffect(() => {
       setShowProperty(false);
       setAutoCompleteResults([]);
     }
+
   return (
     <>
       <Navigation
         handleReset={handleReset} 
       />
-      <Header 
-        handleSubmit={handleSubmit} 
-        handleChange={handleChange}
-        handleDateRangeChange={handleDateRangeChange}
-        results={results}
-        autoCompleteResults={autoCompleteResults}
-        locationPhoto={locationPhoto}
-        handleAutoCompleteSelect={handleAutoCompleteSelect}
-      />
-      {showProperty ? (
-        <>
-         <Property
-         handleReturn={handleReturn}
-         selectedProperty={selectedProperty} /> 
-         ) 
-         <Footer />
-         </> ) : (
-          <>
-           {loading ?
-        <div className="spinner-container">
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span> 
-          </Spinner> 
-        </div> : 
-          results && results.length > 0 ? (
+      <Routes>
+        <Route
+          path="/"
+          element = {
             <>
-              <Results 
-                results={results}
-                currency={currency}
-                setCurrency={setCurrency}
-                handleSelect={handleSelect}
-                selectedCity={selectedCity}
-                errorMessage={''} 
-              errorPresent={false} 
-              />
-              <Newsletter />
+            <Header 
+              handleSubmit={handleSubmit} 
+              handleChange={handleChange}
+              handleDateRangeChange={handleDateRangeChange}
+              results={results}
+              autoCompleteResults={autoCompleteResults}
+              locationPhoto={locationPhoto}
+              handleAutoCompleteSelect={handleAutoCompleteSelect}
+            />
+            <Description />
+            <FeaturedRenters />
+            <Newsletter />
+            <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/searchQuery"
+          element = {
+            <>
+            <Header  
+              handleSubmit={handleSubmit} 
+              handleChange={handleChange}
+              handleDateRangeChange={handleDateRangeChange}
+              results={results}
+              autoCompleteResults={autoCompleteResults}
+              locationPhoto={locationPhoto}
+              handleAutoCompleteSelect={handleAutoCompleteSelect} />
+              {loading ?
+                <div className="spinner-container">
+                  <Spinner animation="border" role="status">
+                    <span className="visually-hidden">Loading...</span> 
+                  </Spinner> 
+                </div> : (
+                <>
+                  <Results 
+                    results={results}
+                    currency={currency}
+                    setCurrency={setCurrency}
+                    handleSelect={handleSelect}
+                    selectedCity={selectedCity}
+                    errorMessage={''} 
+                    errorPresent={false} 
+                  />
+                  <Newsletter />
+                  <Footer />
+                </>
+                )}
+            </>
+          }
+        />
+        <Route
+          path="/property"
+          element = {
+            <>
+              <Property
+                handleReturn={handleReturn}
+                selectedProperty={selectedProperty} /> 
               <Footer />
             </>
-            ) : ( 
-            <>
-              <Description />
-              <FeaturedRenters />
-              <Newsletter />
-              <Footer />
-            </>
-          )}
-          </>
-         )}
-    </>
+          }
+        />
+      </Routes>
+    </> 
   )
 }
 
 export default App;
+
+ 
