@@ -38,7 +38,6 @@ const Header: React.FC<HeaderProps> = ({
         } 
     };
 
-
     return (
         <>
         <header>

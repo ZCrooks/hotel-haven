@@ -2,6 +2,9 @@
 .newsletter-section {
     margin-top: 10%;
     margin-bottom: 10%;
+    & h2 {
+        margin-bottom: 10px;
+    }
     & .results-container{
         position: relative;
         & .currency-dropdown button{
@@ -14,7 +17,7 @@
     }
     & .link-box {
         display: flex;
-        margin-top: 5px;
+        margin-top: 10px;
         align-items: first baseline;
         & p {
             margin-left: 10px;

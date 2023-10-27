@@ -5,6 +5,7 @@ export interface PropertyDetails {
     type: string,
     beds: number,
     images: string[],
+    id: number,
     bathrooms: number
     bedrooms: number,
     persons: number,

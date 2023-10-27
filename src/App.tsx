@@ -48,6 +48,7 @@ function App(): JSX.Element {
     address: "",
     type: "",
     beds: 0,
+    id: 0,
     images: [],
     bathrooms: 0,
     bedrooms: 0,
@@ -64,14 +65,14 @@ function App(): JSX.Element {
     deeplink: ""
   });
  
-  // TOGGLE PROPERTY DETAILS DISPLAYING UPON CLICK
-  const [showProperty, setShowProperty] = useState<boolean>(false);
-
   // SET PLACEID (GOOGLE MAPS)
   const [placeID, setPlaceID] = useState<string>("");
 
   // SET SELECTED CITY'S PHOTO
   const [locationPhoto, setLocationPhoto] = useState<string>("");
+
+  // DEFINE NAVIGATION
+  const navigate = useNavigate();
 
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
   const fetchSearch = () => {
@@ -179,13 +180,12 @@ useEffect(() => {
     }
     
     // HANDLE PROPERTY SEARCH USER SUBMISSION
-    const navigate = useNavigate();
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
       setCurrency("usd");
       fetchSearch();
-      navigate("/searchQuery")
+      navigate(`/searchQuery/${placeID}`)
     }
 
     // HANDLE RESET OF RESULTS AND USER INPUT
@@ -202,13 +202,13 @@ useEffect(() => {
 
     // HANDLE CLICK ON EACH PROPERTY CARD THAT COMES UP AFTER SEARCH
     const handleSelect = (property: PropertyDetails) => {
-        setShowProperty(true)
         setSelectedProperty({
           ...selectedProperty,
           name: property.name,
           rating: property.rating,
           address: property.address,
           type: property.type,
+          id: property.id,
           beds: property.beds,
           images: property.images,
           bathrooms: property.bathrooms,
@@ -225,11 +225,13 @@ useEffect(() => {
           lat: property.lat,
           deeplink: property.deeplink
         })
+        navigate(`/property/${property.id}`)
+        window.scrollTo(0, 0);
     }
 
     const handleReturn = () => {
-      setShowProperty(false);
       setAutoCompleteResults([]);
+      navigate(`/searchQuery/${placeID}`)
     }
 
   return (
@@ -259,7 +261,7 @@ useEffect(() => {
           }
         />
         <Route
-          path="/searchQuery"
+          path="/searchQuery/:placeID"
           element = {
             <>
             <Header  
@@ -294,9 +296,17 @@ useEffect(() => {
           }
         />
         <Route
-          path="/property"
+          path="/property/:propertyID"
           element = {
             <>
+              <Header  
+              handleSubmit={handleSubmit} 
+              handleChange={handleChange}
+              handleDateRangeChange={handleDateRangeChange}
+              results={results}
+              autoCompleteResults={autoCompleteResults}
+              locationPhoto={locationPhoto}
+              handleAutoCompleteSelect={handleAutoCompleteSelect} />
               <Property
                 handleReturn={handleReturn}
                 selectedProperty={selectedProperty} /> 

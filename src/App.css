@@ -4677,6 +4677,9 @@ header span {
   margin-top: 10%;
   margin-bottom: 10%;
 }
+.newsletter-section h2 {
+  margin-bottom: 10px;
+}
 .newsletter-section .results-container {
   position: relative;
 }
@@ -4689,7 +4692,7 @@ header span {
 }
 .newsletter-section .link-box {
   display: flex;
-  margin-top: 5px;
+  margin-top: 10px;
   align-items: first baseline;
 }
 .newsletter-section .link-box p {
