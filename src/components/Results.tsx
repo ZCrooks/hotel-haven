@@ -34,7 +34,7 @@ const Results: React.FC<ResultsProps> = ({
     return (
         <section className="results-section">
             <Container className="results-container">
-                <h2>Properties in {results[13].city}</h2>
+                <h2>Properties in {(typeof results[13] !=='undefined') ? results[13].city : ''}</h2>
                 <p>{errorPresent ? errorMessage : null}</p>
                 <div className="results-features">
                     <div className="dates">
