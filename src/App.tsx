@@ -76,11 +76,13 @@ function App(): JSX.Element {
 
   // FETCH 'SEARCH' ENDPOINT (AIRBNB API)
   const fetchSearch = () => {
+    const checkIn = new Date(selectedCity.checkin).toISOString().slice(0,10);
+    const checkOut = new Date(selectedCity.checkout).toISOString().slice(0,10);
     axios.get('https://proxy.junocollege.com/https://airbnb13.p.rapidapi.com/search-location', {
     params: {
       location: selectedCity.location.toString(),
-      checkin: selectedCity.checkin.toString(),
-      checkout: selectedCity.checkout.toString(),
+      checkin: checkIn,
+      checkout: checkOut,
       adults: selectedCity.adults.toString(),
     },
     headers: {
@@ -89,6 +91,7 @@ function App(): JSX.Element {
     }
     })
       .then(response => {
+        if (response.data.error) alert(response.data.message);
         // Update state with API data // Set loading to false
         setResults(response.data.results)
         setLoading(false);
