@@ -5,6 +5,11 @@ header {
     align-items: center;
     margin: 0 auto;
     justify-content: center;
+    & .location-photo-div {
+        & .header-img {
+            height: 75vh;
+        }
+    }
     & .header-div {
         width: 60%;
         background-color: $primary;
