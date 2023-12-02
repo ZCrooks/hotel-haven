@@ -4126,6 +4126,9 @@ header {
   margin: 0 auto;
   justify-content: center;
 }
+header .location-photo-div .header-img {
+  height: 75vh;
+}
 header .header-div {
   width: 60%;
   background-color: #04b9d8;
