@@ -4232,9 +4232,6 @@ header span {
   header .header-img-div img {
     width: 100%;
   }
-  header .location-photo-div {
-    width: 75%;
-  }
   header .location-photo-div img {
     width: 100%;
   }
@@ -4769,6 +4766,9 @@ footer .brand-links .logo-image {
 footer .footer-menu a, footer .brand-links a {
   text-decoration: none;
 }
+footer .footer-menu li, footer .brand-links li {
+  margin: 15px 0;
+}
 footer .footer-bar {
   margin-top: 5%;
   background-color: wheat;
@@ -4784,5 +4784,8 @@ footer .footer-bar span {
 @media (max-width: 770px) {
   footer .footer-container li {
     text-align: center;
+  }
+  footer .brand-links {
+    margin-left: 25%;
   }
 }/*# sourceMappingURL=App.css.map */

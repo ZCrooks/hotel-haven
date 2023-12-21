@@ -23,6 +23,9 @@ footer {
         & a {
             text-decoration: none;
         }
+        & li {
+            margin: 15px 0;
+        }
     }
     & .footer-bar {
         margin-top: 5%;
@@ -42,6 +45,9 @@ footer {
     footer {
         & .footer-container li {
             text-align: center;
+        }
+        & .brand-links {
+            margin-left: 25%;
         }
     }
 }
