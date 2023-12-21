@@ -111,7 +111,6 @@ header {
             }
         }
         & .location-photo-div {
-            width: 75%;
             & img {
                 width: 100%;
             }
@@ -183,6 +182,11 @@ header {
             & button {
                 margin-right: 150px;
             }
+        }
+    }
+    & .location-photo-div {
+        & .header-img {
+            height: 60vh;
         }
     }
 }
