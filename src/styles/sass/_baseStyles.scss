@@ -52,6 +52,20 @@ ul {
     list-style: none;
 }
 
+.back-button, .reset-button {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 25%;
+    height: 50px;
+    background-color: $primary;
+    border-radius: 15px;
+    color: $secondary;
+    font-size: 1rem;
+}
+
+.back-button:hover, .reset-button:hover {
+    background-color: turquoise;
+}
 // LOADING SPINNER
 .spinner-container {
     display: flex;

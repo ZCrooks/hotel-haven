@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Container } from "react-bootstrap";
+import { Container, Form } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
 import { ResultsProps } from "../interfaces/ResultsProps";
-import { faBed, faBath, faStar} from "@fortawesome/free-solid-svg-icons";
+import { faBed, faBath, faStar, faRotateLeft} from "@fortawesome/free-solid-svg-icons";
 
 const Results: React.FC<ResultsProps> = ({
   results,
@@ -13,6 +13,7 @@ const Results: React.FC<ResultsProps> = ({
   errorMessage,
   errorPresent,
   selectedCity,
+  handleReset
 }) => {
  
     // Set Currency Conversion state depending on user Selection
@@ -36,10 +37,37 @@ const Results: React.FC<ResultsProps> = ({
             <Container className="results-container">
                 <h2>Properties in {(typeof results[13] !=='undefined') ? results[13].city : ''}</h2>
                 <p>{errorPresent ? errorMessage : null}</p>
+                <button className="reset-button" onClick={handleReset}>RESET <FontAwesomeIcon icon={faRotateLeft} style={{color: "white",}} /></button>
                 <div className="results-features">
                     <div className="dates">
-                        <h3>{`${selectedCity.checkin} - ${selectedCity.checkout}`}</h3>
+                        <h3>DATES: {`${selectedCity.checkin} - ${selectedCity.checkout}`}</h3>
                     </div>
+                    <Form>
+                    {['checkbox'].map((type) => (
+                        <div key={`default-${type}`} className="mb-3">
+                        <Form.Check 
+                            type={type}
+                            id={`default-${type}`}
+                            label={`default ${type}`}
+                        />
+                        <Form.Check 
+                            type={type}
+                            id={`default-${type}`}
+                            label={`default ${type}`}
+                        />
+                        <Form.Check 
+                            type={type}
+                            id={`default-${type}`}
+                            label={`default ${type}`}
+                        />      
+                        <Form.Check 
+                            type={type}
+                            id={`default-${type}`}
+                            label={`default ${type}`}
+                        />                                            
+                        </div>
+                    ))}
+                    </Form>
                     <Dropdown className="currency-dropdown">
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
                             {currency === "usd" ? 

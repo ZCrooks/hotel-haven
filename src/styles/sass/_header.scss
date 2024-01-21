@@ -7,7 +7,7 @@ header {
     justify-content: center;
     & .location-photo-div {
         & .header-img {
-            height: 75vh;
+            height: 50vh;
         }
     }
     & .header-div {
@@ -182,11 +182,6 @@ header {
             & button {
                 margin-right: 150px;
             }
-        }
-    }
-    & .location-photo-div {
-        & .header-img {
-            height: 60vh;
         }
     }
 }

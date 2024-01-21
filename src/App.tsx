@@ -113,6 +113,7 @@ function App(): JSX.Element {
       .then(response => {
         // Update state with API data // Set loading to false
         setAutoCompleteResults(response.data.predictions)
+        console.log(response.data.predictions);
       })
       .catch(error => {
         alert(error); 
@@ -146,17 +147,17 @@ function App(): JSX.Element {
     })
   }
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      await fetchDetails();
-    } catch (error) {
-      // Handle errors
-      alert(error);
-    }
-  };
-  fetchData();
-}, [results]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await fetchDetails();
+      } catch (error) {
+        // Handle errors
+        alert(error);
+      }
+    };
+    fetchData();
+  }, [results]);
 
 
     // HANDLE PROPERTY SEARCH FORM INPUT CHANGES
@@ -290,6 +291,7 @@ useEffect(() => {
                     selectedCity={selectedCity}
                     errorMessage={''} 
                     errorPresent={false} 
+                    handleReset={handleReset}
                   />
                   <Newsletter />
                   <Footer />

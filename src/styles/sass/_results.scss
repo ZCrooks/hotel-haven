@@ -9,6 +9,9 @@
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+        background-color: turquoise;
+        padding: 20px;
+        border-radius: 50px;
         & .currency-dropdown button, .dates {
             background-color: wheat; 
             padding: 15px;
@@ -101,7 +104,7 @@
 // RESULTS MEDIA QUERIES
 @media (max-width: 990px) { 
     .results-section {
-        margin-top: 15%;
+        margin-top: 5%;
         & .results-box {
             grid-template-columns: 100%; 
         }
