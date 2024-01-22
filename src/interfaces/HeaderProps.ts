@@ -8,4 +8,5 @@ export interface HeaderProps {
   autoCompleteResults: any; 
   locationPhoto: string;
   handleAutoCompleteSelect: (result: any) => void; 
+  handleAutoCompleteClick: (result: any) => void; 
 }

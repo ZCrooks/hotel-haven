@@ -35,6 +35,9 @@ function App(): JSX.Element {
   // SET SEARCH RESULTS
   const [results, setResults] = useState<any[]>([]);
 
+  // SET CITY NAME FOR RESULTS PAGE
+  const [location, setLocation] = useState<string>("");
+
   // SET AUTOCOMPLETE RESULTS
   const [autoCompleteResults, setAutoCompleteResults] = useState([]);
 
@@ -120,10 +123,21 @@ function App(): JSX.Element {
       });
   }
 
+  const handleAutoCompleteClick = (result: any) => {
+    const div = document.querySelector(".auto-complete") as HTMLDivElement | null;
+    const locationInput = document.querySelector(".location-input") as HTMLInputElement | null;
+    if (locationInput) {
+        locationInput.value = result.description;
+        setLocation(locationInput.value);
+    }
+    if (div) {
+        div.style.display = "none";
+    } 
+  }; 
+
   const handleAutoCompleteSelect = (selection: {place_id: string}) => {
     setPlaceID(selection.place_id)
   }
-
 
   // GOOGLE FETCH DETAILS (CITY IDS)
   const fetchDetails = () => {
@@ -256,6 +270,7 @@ function App(): JSX.Element {
               autoCompleteResults={autoCompleteResults}
               locationPhoto={locationPhoto}
               handleAutoCompleteSelect={handleAutoCompleteSelect}
+              handleAutoCompleteClick={handleAutoCompleteClick}
             />
             <Description />
             <FeaturedRenters />
@@ -275,6 +290,7 @@ function App(): JSX.Element {
               results={results}
               autoCompleteResults={autoCompleteResults}
               locationPhoto={locationPhoto}
+               handleAutoCompleteClick={handleAutoCompleteClick}
               handleAutoCompleteSelect={handleAutoCompleteSelect} />
               {loading ?
                 <div className="spinner-container">
@@ -292,6 +308,7 @@ function App(): JSX.Element {
                     errorMessage={''} 
                     errorPresent={false} 
                     handleReset={handleReset}
+                    location={location}
                   />
                   <Newsletter />
                   <Footer />
@@ -311,6 +328,7 @@ function App(): JSX.Element {
               results={results}
               autoCompleteResults={autoCompleteResults}
               locationPhoto={locationPhoto}
+              handleAutoCompleteClick={handleAutoCompleteClick}
               handleAutoCompleteSelect={handleAutoCompleteSelect} />
               <Property
                 handleReturn={handleReturn}

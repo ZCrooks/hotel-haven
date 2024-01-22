@@ -7,4 +7,5 @@ export interface ResultsProps {
   errorPresent: boolean;
   selectedCity: any;
   handleReset: any;
+  location: string;
 }

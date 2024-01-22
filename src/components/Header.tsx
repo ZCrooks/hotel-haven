@@ -22,28 +22,15 @@ const Header: React.FC<HeaderProps> = ({
   results,
   autoCompleteResults,
   locationPhoto,
-  handleAutoCompleteSelect
+  handleAutoCompleteSelect,
+  handleAutoCompleteClick
 }) =>  {
-    
-    // Handle Click of Autocomplete Selection
-    const handleAutoCompleteClick = (result: any) => {
-        const div = document.querySelector(".auto-complete") as HTMLDivElement | null;
-        const locationInput = document.querySelector(".location-input") as HTMLInputElement | null;
-        if (locationInput) {
-            locationInput.value = result.description;
-        }
-        if (div) {
-            div.style.display = "none";
-        } 
-    };
-
     return (
         <>
         <header>
             <div className="header-div">
                  {results && results.length > 0 ? (
                     <>
-                    <p>{results.length} Properties Available</p>  
                     <h1>{results[1].address}</h1>                 
                     </>
                  ) : ( 
