@@ -12252,7 +12252,18 @@ ul {
   font-size: 1rem;
 }
 
-.back-button:hover, .reset-button:hover {
+.submit-button {
+  background-color: #04b9d8;
+  border-radius: 50%;
+  width: 10%;
+  margin: 15px;
+}
+
+.back-button:hover, .reset-button:hover, .submit-button:hover {
+  background-color: turquoise;
+}
+
+.back-button:focus, .reset-button:focus, .submit-button:focus {
   background-color: turquoise;
 }
 
@@ -12315,6 +12326,16 @@ header span {
   height: 5px;
 }
 
+.rs-picker-daterange-calendar-group {
+  background-color: #04b9d8;
+}
+.rs-picker-daterange-calendar-group button, .rs-picker-daterange-calendar-group span {
+  color: black;
+}
+.rs-picker-daterange-calendar-group .rs-calendar-table-cell-un-same-month span {
+  color: white;
+}
+
 .search-form input, .search-form .rs-picker-toggle {
   border-right: 1px solid #E1E8F1;
   border-radius: 50px;
@@ -12328,12 +12349,6 @@ header span {
 .search-form input:hover, .search-form .rs-picker input:focus {
   cursor: pointer;
   background-color: rgba(0, 13, 132, 0.4);
-}
-.search-form .submit-button {
-  background-color: #04b9d8;
-  border-radius: 50%;
-  width: 10%;
-  margin: 15px;
 }
 .search-form .form-control::-moz-placeholder {
   font-size: 1.3rem;
@@ -12352,18 +12367,20 @@ header span {
 .auto-complete {
   z-index: 1;
   position: absolute;
-  background-color: white;
+  background-color: black;
   padding: 10px;
 }
 .auto-complete button {
-  background-color: white;
+  background-color: black;
   width: 100%;
+  margin-top: 0;
+  color: white;
 }
 .auto-complete button:hover {
-  background-color: wheat;
+  background-color: #04b9d8;
 }
 .auto-complete button:focus {
-  background-color: wheat;
+  background-color: #04b9d8;
 }
 
 @media (max-width: 1000px) {

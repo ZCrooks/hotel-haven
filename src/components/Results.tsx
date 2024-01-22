@@ -14,7 +14,6 @@ const Results: React.FC<ResultsProps> = ({
   errorPresent,
   selectedCity,
   handleReset,
-  location
 }) => {
  
     // Set Currency Conversion state depending on user Selection
@@ -36,7 +35,7 @@ const Results: React.FC<ResultsProps> = ({
     return (
         <section className="results-section">
             <Container className="results-container">
-                <h2>Properties in {(typeof results[13] !=='undefined') ? location : ''}</h2>
+                <h2>Properties in {(typeof results[13] !=='undefined') ? selectedCity.location : ''}</h2>
                 <p>{errorPresent ? errorMessage : null}</p>
                 <button className="reset-button" onClick={handleReset}>RESET <FontAwesomeIcon icon={faRotateLeft} style={{color: "white",}} /></button>
                 <div className="results-features">

@@ -29,6 +29,7 @@ header {
         display: block;
     }
 }
+// FORM
 .g-2 {
     border-radius: 50px;
     min-height: 40px;
@@ -39,7 +40,7 @@ header {
 .rs-picker, .location-input-container {
     width: 100%;
     height: 100px;
-}
+} 
 
 .rs-picker-toggle {
     height: 60px;
@@ -48,6 +49,16 @@ header {
 .vl {
     border-left: 6px solid green;
     height: 5px;
+}
+
+.rs-picker-daterange-calendar-group {
+    background-color: $primary;
+    & button, span {
+        color: black;;
+    }
+    & .rs-calendar-table-cell-un-same-month span {
+        color: white;
+    }
 }
 
 .search-form {
@@ -65,12 +76,6 @@ header {
         cursor: pointer;
         background-color: rgba(0, 13, 132, 0.4);
     }
-    & .submit-button {
-        background-color: $primary;
-        border-radius: 50%;
-        width: 10%;
-        margin: 15px;
-    }
     & .form-control::placeholder, .rs-picker-toggle-placeholder, .rs-picker-toggle-value, .col-md input {
         font-size: 1.3rem;
         color: black;
@@ -86,17 +91,19 @@ header {
 .auto-complete {
     z-index: 1;
     position: absolute;
-    background-color: white;
+    background-color: black;
     padding: 10px;
     & button {
-        background-color: white;
+        background-color: black;
         width: 100%;
+        margin-top: 0;
+        color: white;
     }
     & button:hover{
-        background-color: wheat;
+        background-color: $primary;
     }
     & button:focus{
-        background-color: wheat;
+        background-color: $primary;
     }
 }
 

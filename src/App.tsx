@@ -116,28 +116,38 @@ function App(): JSX.Element {
       .then(response => {
         // Update state with API data // Set loading to false
         setAutoCompleteResults(response.data.predictions)
-        console.log(response.data.predictions);
+        if (response.data.predictions && response.data.predictions.length > 0) {
+          const firstPrediction = response.data.predictions[0];
+          setPlaceID(firstPrediction.place_id);
+        }
       })
       .catch(error => {
         alert(error); 
       });
   }
 
+  const div = document.querySelector(".auto-complete") as HTMLDivElement | null;
+  
   const handleAutoCompleteClick = (result: any) => {
-    const div = document.querySelector(".auto-complete") as HTMLDivElement | null;
     const locationInput = document.querySelector(".location-input") as HTMLInputElement | null;
     if (locationInput) {
         locationInput.value = result.description;
-        setLocation(locationInput.value);
     }
     if (div) {
-        div.style.display = "none";
+      div.style.display = "none";
     } 
   }; 
+ 
+  window.addEventListener("click", (e) => {
+    if (div && !div.contains(e.target as Node) && !document.querySelector(".location-input")?.contains(e.target as Node)) {
+        div.style.display = "none";
+    }
+  });
 
   const handleAutoCompleteSelect = (selection: {place_id: string}) => {
     setPlaceID(selection.place_id)
   }
+
 
   // GOOGLE FETCH DETAILS (CITY IDS)
   const fetchDetails = () => {
@@ -175,15 +185,16 @@ function App(): JSX.Element {
 
 
     // HANDLE PROPERTY SEARCH FORM INPUT CHANGES
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => { 
       const value = e.target.value
+      setLocation(value);
+      if (e.target.name === "location") {
+        autoComplete(value)
+      }
       setSelectedCity ({
         ...selectedCity,
         [e.target.name]: value
       })
-      if (e.target.name === "location") {
-        autoComplete(value)
-      }
     }
 
     // HANDLE DATE RANGE SELECTIONS
@@ -196,14 +207,14 @@ function App(): JSX.Element {
         })
       }
     }
-    
+
     // HANDLE PROPERTY SEARCH USER SUBMISSION
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
       setCurrency("usd");
       fetchSearch();
-      navigate(`/searchQuery/${placeID}`)
+      navigate(`/searchQuery/${placeID}`);
     }
 
     // HANDLE RESET OF RESULTS AND USER INPUT
@@ -216,6 +227,7 @@ function App(): JSX.Element {
         adults: ""
       });
       setAutoCompleteResults([]);
+      navigate(`/`)
     }
 
     // HANDLE CLICK ON EACH PROPERTY CARD THAT COMES UP AFTER SEARCH
