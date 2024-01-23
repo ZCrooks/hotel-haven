@@ -12213,6 +12213,10 @@ p {
   font-family: "Poppins", sans-serif;
 }
 
+a:hover, a:hover {
+  color: turquoise;
+}
+
 body h1, body .h1 {
   font-weight: 600;
   color: white;
@@ -12404,6 +12408,9 @@ header span {
   header .header-div h1, header .header-div .h1, header .header-div p {
     text-align: center;
   }
+  header .header-div h1, header .header-div .h1 {
+    margin-top: 25px;
+  }
 }
 @media (max-width: 770px) {
   .search-form {
@@ -12544,6 +12551,11 @@ header span {
 .results-section .results-container {
   position: relative;
 }
+.results-section .results-header-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .results-section .results-features {
   display: flex;
   align-items: flex-start;
@@ -12551,6 +12563,8 @@ header span {
   background-color: turquoise;
   padding: 20px;
   border-radius: 50px;
+  position: sticky;
+  top: 20px;
 }
 .results-section .results-features .currency-dropdown button, .results-section .results-features .dates {
   background-color: wheat;
@@ -12570,11 +12584,11 @@ header span {
   display: grid;
   grid-template-columns: 50% 50%;
   gap: 30px;
-  margin-top: 5%;
+  border: none;
 }
 .results-box .results-card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding: 10px;
   border: 2px solid rgba(93, 98, 111, 0.5);
   border-radius: 20px;
@@ -12587,6 +12601,7 @@ header span {
   height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
+  margin: 0 auto;
 }
 .results-box .results-card .results-image img {
   height: auto;

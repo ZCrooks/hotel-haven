@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Container, Form } from "react-bootstrap";
-import { Card } from "react-bootstrap";
+import { Container, Form, Row, Col, Card } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
 import { ResultsProps } from "../interfaces/ResultsProps";
 import { faBed, faBath, faStar, faRotateLeft} from "@fortawesome/free-solid-svg-icons";
@@ -37,8 +36,27 @@ const Results: React.FC<ResultsProps> = ({
             <Container className="results-container">
                 <h2>Properties in {(typeof results[13] !=='undefined') ? selectedCity.location : ''}</h2>
                 <p>{errorPresent ? errorMessage : null}</p>
-                <button className="reset-button" onClick={handleReset}>RESET <FontAwesomeIcon icon={faRotateLeft} style={{color: "white",}} /></button>
-                <div className="results-features">
+                <div className="results-header-buttons">
+                    <button className="reset-button" onClick={handleReset}>RESET <FontAwesomeIcon icon={faRotateLeft} style={{color: "white",}} /></button>
+                    <Dropdown className="currency-dropdown">                
+                        <Dropdown.Menu>
+                            <Dropdown.Item 
+                            onClick={() => currencyConversion("usd")}>USD <span aria-hidden="true">&#127482;&#127480;</span>
+                            </Dropdown.Item>
+                            <Dropdown.Item 
+                            onClick={() => currencyConversion("cad")}>CAD <span aria-hidden="true">&#127464;&#127462;</span>
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                        <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            {currency === "usd" ? 
+                            <span aria-hidden="true">&#127482;&#127480;</span>
+                            : <span aria-hidden="true">&#127464;&#127462;</span>}
+                        </Dropdown.Toggle>
+                    </Dropdown>   
+                </div>  
+                <Row>
+                <Col lg={4} md={4}>
+                <Card className="results-features">
                     <div className="dates">
                         <h3>DATES: {`${selectedCity.checkin} - ${selectedCity.checkout}`}</h3>
                     </div>
@@ -67,24 +85,11 @@ const Results: React.FC<ResultsProps> = ({
                         />                                            
                         </div>
                     ))}
-                    </Form>
-                    <Dropdown className="currency-dropdown">
-                        <Dropdown.Toggle variant="success" id="dropdown-basic">
-                            {currency === "usd" ? 
-                            <span aria-hidden="true">&#127482;&#127480;</span>
-                            : <span aria-hidden="true">&#127464;&#127462;</span>}
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item 
-                            onClick={() => currencyConversion("usd")}>USD <span aria-hidden="true">&#127482;&#127480;</span>
-                            </Dropdown.Item>
-                            <Dropdown.Item 
-                            onClick={() => currencyConversion("cad")}>CAD <span aria-hidden="true">&#127464;&#127462;</span>
-                            </Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>            
-                </div>
-                <div className="results-box">
+                    </Form>       
+                </Card>
+                </Col>
+                <Col lg={8} md={8}>
+                <Card className="results-box">
                     {results.map((result: any) => {
                         if (result.price.total !== null ) {
                             return (
@@ -121,8 +126,10 @@ const Results: React.FC<ResultsProps> = ({
                                     )
                                 }
                                 })}
-                            </div>
-                        </Container>
+                </Card>
+                </Col>
+                </Row>
+            </Container>
         </section>
     )
 }

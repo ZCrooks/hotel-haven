@@ -4,7 +4,11 @@
     & .results-container {
         position: relative;
     }
-
+    & .results-header-buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
     & .results-features {
         display: flex;
         align-items: flex-start;
@@ -12,6 +16,8 @@
         background-color: turquoise;
         padding: 20px;
         border-radius: 50px;
+        position: sticky;
+        top: 20px;
         & .currency-dropdown button, .dates {
             background-color: wheat; 
             padding: 15px;
@@ -32,10 +38,10 @@
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 30px;
-    margin-top: 5%;
+    border: none;
     & .results-card {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         padding: 10px;
         border: 2px solid rgba(93, 98, 111, 0.5);
         border-radius: 20px;
@@ -46,6 +52,7 @@
             width: 200px;
             height: 200px;
             object-fit: cover;
+            margin: 0 auto;
             & img {
                 height: auto;
                 max-width: 100%;

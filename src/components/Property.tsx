@@ -157,6 +157,7 @@ const Property: React.FC<PropertyProps> = ({
                 </Row>
                 <Card className="property-description-card">
                     <h3>Stay Information</h3>
+                    <hr></hr>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum adipisci aliquam, quae voluptatibus quod incidunt quas eveniet maxime ratione nulla ad reiciendis suscipit natus iste perspiciatis. Animi consectetur quas minima placeat laudantium odio facere dolor non quam. Maiores maxime quae, reprehenderit ipsam hic, eligendi facilis laborum veritatis provident libero cum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae rem facere itaque provident at iure quasi quod nobis voluptate molestias!</p>
                 </Card>
 
