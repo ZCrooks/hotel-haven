@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({
             <div className="header-div">
                  {results && results.length > 0 ? (
                     <>
-                    <h1>{results[1].address}</h1>                 
+                    <h1>{results[1].city}</h1>                 
                     </>
                  ) : ( 
                 <h1>Find Your Next <span>Vacation Property!</span></h1>

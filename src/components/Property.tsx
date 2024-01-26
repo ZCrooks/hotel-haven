@@ -89,8 +89,7 @@ const Property: React.FC<PropertyProps> = ({
                                 <div>
                                     <FontAwesomeIcon icon={faDoorOpen} style={{color: "#676e7c",}} />
                                     <p>{selectedProperty.bedrooms} {selectedProperty.bedrooms > 1 ? "bedrooms" : "bedroom"}</p>
-                                </div>
-                                
+                                </div>                               
                             </div>
         
                             <ul className="property-photos">

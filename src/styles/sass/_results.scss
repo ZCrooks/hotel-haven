@@ -14,25 +14,31 @@
         align-items: flex-start;
         justify-content: space-between;
         background-color: turquoise;
-        padding: 20px;
+        padding: 25px;
         border-radius: 50px;
         position: sticky;
         top: 20px;
-        & .currency-dropdown button, .dates {
+        & .amenities-form {
+            margin-top: 10px;
+        }
+        & .dates, .currency-dropdown {
             background-color: wheat; 
             padding: 15px;
             border-radius: 10px;
         }
-        & .currency-dropdown button {
-        position: absolute;
-        right: 0;
-        color: black;
+        & .currency-dropdown {
+            position: absolute;
+            right: 0;
+            & #dropdown-basic {
+                background-color: $primary;
+            }
         }
         & .dropdown-item  {
-        text-align: center;
+            text-align: center;
         }
     }
 }
+
 
 .results-box {
     display: grid;
@@ -41,7 +47,6 @@
     border: none;
     & .results-card {
         display: flex;
-        flex-direction: column;
         padding: 10px;
         border: 2px solid rgba(93, 98, 111, 0.5);
         border-radius: 20px;
@@ -49,7 +54,7 @@
             text-align: center;
         }
         & .results-image  {
-            width: 200px;
+            width: 100%;
             height: 200px;
             object-fit: cover;
             margin: 0 auto;
