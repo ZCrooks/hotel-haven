@@ -12557,9 +12557,6 @@ header span {
   align-items: center;
 }
 .results-section .results-features {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
   background-color: turquoise;
   padding: 25px;
   border-radius: 50px;
@@ -12573,6 +12570,9 @@ header span {
   background-color: wheat;
   padding: 15px;
   border-radius: 10px;
+}
+.results-section .results-features .mb-3 {
+  margin-bottom: 10px !important;
 }
 .results-section .results-features .currency-dropdown {
   position: absolute;
@@ -12596,6 +12596,11 @@ header span {
   padding: 10px;
   border: 2px solid rgba(93, 98, 111, 0.5);
   border-radius: 20px;
+}
+.results-box .results-card .super-host {
+  position: relative;
+  left: 45%;
+  margin-bottom: 5px;
 }
 .results-box .results-card .feature-box {
   text-align: center;

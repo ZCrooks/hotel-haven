@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Form, Row, Col, Card } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
 import { ResultsProps } from "../interfaces/ResultsProps";
-import { faBed, faBath, faStar, faRotateLeft, faSwimmer, faCar} from "@fortawesome/free-solid-svg-icons";
+import { faBed, faBath, faStar, faRotateLeft, faSwimmer, faCar, faAward} from "@fortawesome/free-solid-svg-icons";
 import amenities from "../array/amenities";
 import { useState, useEffect, ChangeEvent } from "react";
 
@@ -17,9 +17,14 @@ const Results: React.FC<ResultsProps> = ({
   handleReset,
 }) => {
 
-    // Set States
+    // Set State for amenity checkbox clicked
     const [selection, setSelection] = useState<number[]>([]);
+
+    // Set state for properties upon user search
     const [filteredProperties, setFilterProperties] = useState(results);
+
+    // Set state indicating whether property host is listed as a super Host
+    const [isSuperHost, setIsSuperHost] = useState(false);
 
     // Set Currency Conversion state depending on user Selection
     const currencyConversion = (selectedCurrency: string) => {
@@ -70,6 +75,7 @@ const Results: React.FC<ResultsProps> = ({
         updateResults();
     };
 
+    console.log(results)
     return (
         <section className="results-section">
             <Container className="results-container">
@@ -124,7 +130,8 @@ const Results: React.FC<ResultsProps> = ({
                                 if (result.price.total !== null ) {
                                     return (
                                             <Card key={result.id} className="results-card" onClick={() => handleSelect(result)}>
-                                                    <Card.Img  src={result.images[0]} className="results-image" />
+                                                {result.isSuperhost ? <FontAwesomeIcon className="super-host" icon={faAward} size="2xl" style={{color: "#04b9d8",}} /> : null }
+                                                <Card.Img  src={result.images[0]} className="results-image" />
                                                 <Card.Body className="results-body">
                                                     <h3>{result.name}</h3>
                                                     <p>{result.address}</p>

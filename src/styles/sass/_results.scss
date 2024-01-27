@@ -10,9 +10,6 @@
         align-items: center;
     }
     & .results-features {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
         background-color: turquoise;
         padding: 25px;
         border-radius: 50px;
@@ -25,6 +22,9 @@
             background-color: wheat; 
             padding: 15px;
             border-radius: 10px;
+        }
+        & .mb-3{
+            margin-bottom: 10px !important;
         }
         & .currency-dropdown {
             position: absolute;
@@ -39,7 +39,6 @@
     }
 }
 
-
 .results-box {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -50,6 +49,11 @@
         padding: 10px;
         border: 2px solid rgba(93, 98, 111, 0.5);
         border-radius: 20px;
+        & .super-host {
+            position: relative;
+            left: 45%;
+            margin-bottom: 5px;
+        }
         & .feature-box {
             text-align: center;
         }
