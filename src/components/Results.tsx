@@ -17,6 +17,8 @@ const Results: React.FC<ResultsProps> = ({
   handleReset,
 }) => {
 
+    console.clear()
+
     // Set State for amenity checkbox clicked
     const [selection, setSelection] = useState<number[]>([]);
 
@@ -52,30 +54,39 @@ const Results: React.FC<ResultsProps> = ({
     // UseEffect
     useEffect(() => {
         updateResults();
-    }, [selection, results])
+    }, [selection, results, isSuperHost])
 
     // Update Results based on user's filter (amenities)
     const updateResults = () => {
         let filteredProperties = results;
-        selection.forEach((number) => {
-            filteredProperties = results.filter((property: any) => property.amenityIds.includes(number));
-        });
+        if (selection.length > 0) {
+            filteredProperties = results.filter((property: any) =>
+                selection.every((number) => property.amenityIds.includes(number))
+            );
+        }
+        if (isSuperHost) {
+            filteredProperties = results.filter((property: any) => property.isSuperhost === true);
+        } 
         setFilterProperties(filteredProperties);
     }
+    
 
     // Handle user checkbox submit for property amenities
     const handleForm = (e: ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        const value = parseInt(e.target.value);
-        if (!selection.includes(value)) {
-            setSelection((prevSelection) => [...prevSelection, value]);
+        e.preventDefault();        
+        if (e.target.id === "super-host") {
+            setIsSuperHost((prevIsSuperHost) => !prevIsSuperHost);    
         } else {
-            setSelection((prevSelection) => prevSelection.filter((item) => item !== value));
+            const value = parseInt(e.target.value);
+            if (!selection.includes(value)) {
+                setSelection((prevSelection) => [...prevSelection, value]);
+            } else {
+                setSelection((prevSelection) => prevSelection.filter((item) => item !== value));
+            } 
         }
         updateResults();
     };
 
-    console.log(results)
     return (
         <section className="results-section">
             <Container className="results-container">
@@ -102,12 +113,23 @@ const Results: React.FC<ResultsProps> = ({
                 <Row>
                     <Col lg={4} md={4}>
                     <Card className="results-features">
+                        <h4>DATES Selected</h4>
                         <div className="dates">
-                            <h4>{`${formatDate(selectedCity.checkin)} - ${formatDate(selectedCity.checkout)}`}</h4>
+                            <h5>{`${formatDate(selectedCity.checkin)} - ${formatDate(selectedCity.checkout)}`}</h5>
                         </div>
-                        <Form className="amenities-form">
+                        <Form className="user-preference-form">
+                            <Form.Label><h4>Superhosts Only <span><FontAwesomeIcon className="super-host" icon={faAward} size="xl" style={{color: "#04b9d8",}} /></span> </h4></Form.Label>
+                                <div key={results.isSuperhost} className="mb-3">
+                                    <Form.Check
+                                        type="checkbox"
+                                        id="super-host"  
+                                        label="Superhost"
+                                        checked={isSuperHost}
+                                        onChange={handleForm}
+                                    />
+                                </div>
                             <Form.Label><h4>Amenities</h4></Form.Label>
-                            <Form.Group controlId="amenity">
+                            <Form.Group controlId="amenity" className="amenities-group">
                                 {amenities.map((amenityID: any) => (
                                     <div key={amenityID.value} className="mb-3">
                                         <Form.Check

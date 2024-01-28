@@ -12563,8 +12563,13 @@ header span {
   position: sticky;
   top: 20px;
 }
-.results-section .results-features .amenities-form {
+.results-section .results-features .user-preference-form {
   margin-top: 10px;
+}
+.results-section .results-features .user-preference-form .amenities-group {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 10px;
 }
 .results-section .results-features .dates, .results-section .results-features .currency-dropdown {
   background-color: wheat;
