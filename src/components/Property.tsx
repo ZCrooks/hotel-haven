@@ -3,23 +3,27 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faBath, faBed, faUser, faDoorOpen, faLocationDot, faWifi, faFan, faCar, faKitchenSet, faPersonSwimming, faSmoking, faDog, faDumbbell, faMugSaucer, faTv, faKey, faHotTubPerson, faFire, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { PropertyProps } from "../interfaces/PropertyProps";
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
+
 
 const Property: React.FC<PropertyProps> = ({
   handleReturn,
   selectedProperty
 }) => {
-  // GOOGLE MAPS - MAP RENDERING LOGIC
-  const googleAPIKey = import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY as string; // Use process.env to access environment variables
-  const { isLoaded, loadError } = useLoadScript({
+
+    // GOOGLE MAPS - MAP RENDERING LOGIC
+    const googleAPIKey = import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY as string; // Use process.env to access environment variables
+    const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: googleAPIKey
-  });
+    });
 
-  if (loadError) return "Error loading maps"; // Return an error message if the maps fail to load
+    if (loadError) return "Error loading maps"; // Return an error message if the maps fail to load
 
-  const center = {
+    const center = {
     lat: selectedProperty.lat,
     lng: selectedProperty.lng
-  };
+    };
 
     // RESERVE BUTTON CLICK
     const handleReserve = () => {
@@ -93,10 +97,15 @@ const Property: React.FC<PropertyProps> = ({
                             </div>
         
                             <ul className="property-photos">
-                                {selectedProperty.images.slice(0, 6).map((image: string) => {
+                                {selectedProperty.images.slice(0, 9).map((image: string) => {
                                     return (
                                         <li key={image}>
-                                            <Card.Img  src={image} alt="Property Image"/>
+                                             <Zoom>
+                                                <Card.Img  
+                                                    src={image} 
+                                                    alt="Property Image"
+                                                />
+                                            </Zoom>
                                         </li>
                                     )
                                 })}                        

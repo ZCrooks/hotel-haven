@@ -17,8 +17,6 @@ const Results: React.FC<ResultsProps> = ({
   handleReset,
 }) => {
 
-    console.clear()
-
     // Set State for amenity checkbox clicked
     const [selection, setSelection] = useState<number[]>([]);
 
@@ -86,7 +84,7 @@ const Results: React.FC<ResultsProps> = ({
         }
         updateResults();
     };
-
+    console.log(filteredProperties)
     return (
         <section className="results-section">
             <Container className="results-container">
