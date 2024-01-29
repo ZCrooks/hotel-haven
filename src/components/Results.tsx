@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Container, Form, Row, Col, Card } from "react-bootstrap";
+import { Container, Form, Row, Col, Card, Carousel } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
 import { ResultsProps } from "../interfaces/ResultsProps";
 import { faBed, faBath, faStar, faRotateLeft, faSwimmer, faCar, faAward} from "@fortawesome/free-solid-svg-icons";
@@ -84,7 +84,7 @@ const Results: React.FC<ResultsProps> = ({
         }
         updateResults();
     };
-    console.log(filteredProperties)
+    
     return (
         <section className="results-section">
             <Container className="results-container">
@@ -151,7 +151,13 @@ const Results: React.FC<ResultsProps> = ({
                                     return (
                                             <Card key={result.id} className="results-card" onClick={() => handleSelect(result)}>
                                                 {result.isSuperhost ? <FontAwesomeIcon className="super-host" icon={faAward} size="2xl" style={{color: "#04b9d8",}} /> : null }
-                                                <Card.Img  src={result.images[0]} className="results-image" />
+                                                <Carousel controls={false} indicators={false} interval={2000}>
+                                                    {result.images.map((image: string, index: number) => (
+                                                    <Carousel.Item key={index}>
+                                                        <img src={image} alt={`Slide ${index + 1}`} className="results-image" />
+                                                    </Carousel.Item>
+                                                    ))}
+                                                </Carousel>
                                                 <Card.Body className="results-body">
                                                     <h3>{result.name}</h3>
                                                     <p>{result.address}</p>
