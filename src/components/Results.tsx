@@ -84,7 +84,7 @@ const Results: React.FC<ResultsProps> = ({
         }
         updateResults();
     };
-    
+   
     return (
         <section className="results-section">
             <Container className="results-container">
@@ -149,9 +149,10 @@ const Results: React.FC<ResultsProps> = ({
                             {filteredProperties.map((result: any) => {
                                 if (result.price.total !== null ) {
                                     return (
-                                            <Card key={result.id} className="results-card" onClick={() => handleSelect(result)}>
+                                            <Card 
+                                                key={result.id} className="results-card" onClick={() => handleSelect(result)}>
                                                 {result.isSuperhost ? <FontAwesomeIcon className="super-host" icon={faAward} size="2xl" style={{color: "#04b9d8",}} /> : null }
-                                                <Carousel controls={false} indicators={false} interval={2000}>
+                                                <Carousel  interval={null} onClick={(e) => e.stopPropagation()} >
                                                     {result.images.map((image: string, index: number) => (
                                                     <Carousel.Item key={index}>
                                                         <img src={image} alt={`Slide ${index + 1}`} className="results-image" />

@@ -1,6 +1,6 @@
 import { Card, Container, Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faBath, faBed, faUser, faDoorOpen, faLocationDot, faWifi, faFan, faCar, faKitchenSet, faPersonSwimming, faSmoking, faDog, faDumbbell, faMugSaucer, faTv, faKey, faHotTubPerson, faFire, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faBath, faBed, faUser, faDoorOpen, faLocationDot, faWifi, faFan, faCar, faKitchenSet, faPersonSwimming, faSmoking, faDog, faDumbbell, faMugSaucer, faTv, faKey, faHotTubPerson, faFire, faRotateLeft, faAward } from "@fortawesome/free-solid-svg-icons";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { PropertyProps } from "../interfaces/PropertyProps";
 import Zoom from 'react-medium-image-zoom';
@@ -50,7 +50,10 @@ const Property: React.FC<PropertyProps> = ({
                 <Row className="property-main">
                     <Col xs={8}>
                         <Card className="property-key-card">
-                            <p className="property-type">{selectedProperty.type}</p>
+                            <div className="property-host-type">
+                                <p className="property-type">{selectedProperty.type}</p>
+                                {selectedProperty.isSuperhost ? <FontAwesomeIcon className="super-host" icon={faAward} size="2xl" style={{color: "#04b9d8",}} /> : null}                                
+                            </div>
                             <h2>{selectedProperty.name}</h2>
                             <div className="property-details">
                                 <div className="property-intro">
@@ -231,6 +234,19 @@ const Property: React.FC<PropertyProps> = ({
                     })}
                 </ul>
                 </Card>
+                <Card className="property-important-information">
+                    <h3>Things to know</h3>
+                    <hr></hr>
+                    <h4>Cancellation Policy</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque sint repudiandae totam corporis odit atque. Provident itaque dolorum illum consequuntur.</p>
+                    <ol>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
+                    </ol>
+                </Card>                
             </Container>
         </section>
     )

@@ -65,7 +65,8 @@ function App(): JSX.Element {
     price: {},
     lng: 0,
     lat: 0,
-    deeplink: ""
+    deeplink: "",
+    isSuperhost: ""
   });
  
   // SET PLACEID (GOOGLE MAPS)
@@ -162,7 +163,7 @@ function App(): JSX.Element {
     .then(response => {
       if (response.data.result) {
         // Set City Photo to first pic returned from array (based on text query)
-        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${response.data.result.photos[0].photo_reference}&key=${googleAPIKey}`;
+        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${response.data.result.photos[1].photo_reference}&key=${googleAPIKey}`;
         setLocationPhoto(imageUrl);
       } 
     })
@@ -227,7 +228,7 @@ function App(): JSX.Element {
         adults: ""
       });
       setAutoCompleteResults([]);
-      navigate(`/`)
+      navigate(`/`);
     }
 
     // HANDLE CLICK ON EACH PROPERTY CARD THAT COMES UP AFTER SEARCH
@@ -253,7 +254,8 @@ function App(): JSX.Element {
           price: property.price,
           lng: property.lng,
           lat: property.lat,
-          deeplink: property.deeplink
+          deeplink: property.deeplink,
+          isSuperhost: property.isSuperhost
         })
         navigate(`/property/${property.id}`)
         window.scrollTo(0, 0);

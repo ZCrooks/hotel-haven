@@ -12209,7 +12209,7 @@ h1, .h1, h2, .h2, h3, .h3 {
   font-family: "Inter", sans-serif;
 }
 
-p {
+p, ol {
   font-family: "Poppins", sans-serif;
 }
 
@@ -12231,9 +12231,6 @@ body h2, body .h2 {
 body h3, body .h3 {
   font-size: 1.5rem;
   font-weight: 600;
-}
-
-body h4, body .h4 {
   color: #1A7066;
 }
 
@@ -12706,7 +12703,7 @@ header span {
 .property .property-booking .reserve-button:focus {
   background-color: #04b9d8;
 }
-.property .property-key-card, .property .property-description-card, .property .property-amenities-card, .property .property-booking {
+.property .property-key-card, .property .property-description-card, .property .property-amenities-card, .property .property-booking, .property .property-important-information {
   padding: 20px;
   border-radius: 30px;
   margin-top: 20px;
@@ -12720,6 +12717,11 @@ header span {
   border-radius: 20px;
   white-space: nowrap;
   padding: 5px;
+}
+.property .property-host-type {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .property .property-photos {
   display: grid;
@@ -12945,7 +12947,6 @@ footer .brand-links .brand-logo {
 }
 footer .brand-links .logo-image {
   width: 50%;
-  background-color: #5d626f;
 }
 footer .footer-menu a, footer .brand-links a {
   text-decoration: none;

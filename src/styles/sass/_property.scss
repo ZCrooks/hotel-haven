@@ -23,7 +23,7 @@
             background-color: $primary;
         }
     }
-    & .property-key-card, .property-description-card, .property-amenities-card, .property-booking {
+    & .property-key-card, .property-description-card, .property-amenities-card, .property-booking, .property-important-information {
         padding: 20px;
         border-radius: 30px;
         margin-top: 20px;
@@ -37,6 +37,11 @@
         border-radius: 20px;
         white-space: nowrap;
         padding: 5px;
+    }
+    & .property-host-type {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
     & .property-photos{
         display: grid;

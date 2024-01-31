@@ -19,7 +19,7 @@ h1, h2, h3 {
     font-family: 'Inter', sans-serif;
 }
 
-p { 
+p, ol { 
     font-family: 'Poppins', sans-serif;
 }
 
@@ -43,11 +43,9 @@ body h2 {
 body h3 {
     font-size: 1.5rem;
     font-weight: 600;
-}
-
-body h4 {
     color: #1A7066;
 }
+
 
 p {
     color: $tertiary;
