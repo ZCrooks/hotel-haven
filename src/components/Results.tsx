@@ -182,7 +182,6 @@ const Results: React.FC<ResultsProps> = ({
                                                                 </p>
                                                             ) : null
                                                         })}
-                                                    
                                                     </div>
                                                     <div className="results-info">
                                                         <div className="reviews">
