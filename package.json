@@ -28,6 +28,7 @@
     "react-bootstrap": "^2.8.0",
     "react-bootstrap-counter": "^1.0.1",
     "react-dom": "^18.2.0",
+    "react-medium-image-zoom": "^5.1.10",
     "react-router-dom": "^6.15.0",
     "rsuite": "^5.39.0"
   },

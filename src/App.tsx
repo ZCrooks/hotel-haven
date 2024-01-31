@@ -35,6 +35,9 @@ function App(): JSX.Element {
   // SET SEARCH RESULTS
   const [results, setResults] = useState<any[]>([]);
 
+  // SET CITY NAME FOR RESULTS PAGE
+  const [location, setLocation] = useState<string>("");
+
   // SET AUTOCOMPLETE RESULTS
   const [autoCompleteResults, setAutoCompleteResults] = useState([]);
 
@@ -62,14 +65,15 @@ function App(): JSX.Element {
     price: {},
     lng: 0,
     lat: 0,
-    deeplink: ""
+    deeplink: "",
+    isSuperhost: ""
   });
  
   // SET PLACEID (GOOGLE MAPS)
   const [placeID, setPlaceID] = useState<string>("");
 
   // SET SELECTED CITY'S PHOTO
-  const [locationPhoto, setLocationPhoto] = useState<string>("");
+  const [cityImages, setCityImages] = useState([]);
 
   // DEFINE NAVIGATION
   const navigate = useNavigate();
@@ -113,11 +117,33 @@ function App(): JSX.Element {
       .then(response => {
         // Update state with API data // Set loading to false
         setAutoCompleteResults(response.data.predictions)
+        if (response.data.predictions && response.data.predictions.length > 0) {
+          const firstPrediction = response.data.predictions[0];
+          setPlaceID(firstPrediction.place_id);
+        }
       })
       .catch(error => {
         alert(error); 
       });
   }
+
+  const div = document.querySelector(".auto-complete") as HTMLDivElement | null;
+  
+  const handleAutoCompleteClick = (result: any) => {
+    const locationInput = document.querySelector(".location-input") as HTMLInputElement | null;
+    if (locationInput) {
+        locationInput.value = result.description;
+    }
+    if (div) {
+      div.style.display = "none";
+    } 
+  }; 
+ 
+  window.addEventListener("click", (e) => {
+    if (div && !div.contains(e.target as Node) && !document.querySelector(".location-input")?.contains(e.target as Node)) {
+        div.style.display = "none";
+    }
+  });
 
   const handleAutoCompleteSelect = (selection: {place_id: string}) => {
     setPlaceID(selection.place_id)
@@ -136,9 +162,10 @@ function App(): JSX.Element {
     })
     .then(response => {
       if (response.data.result) {
-        // Set City Photo to first pic returned from array (based on text query)
-        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${response.data.result.photos[0].photo_reference}&key=${googleAPIKey}`;
-        setLocationPhoto(imageUrl);
+ 
+        // Set city's images (readying for carousel)
+        const photos = response.data.result.photos.map((photo: {photo_reference: string}) => photo.photo_reference);
+        setCityImages(photos.map((photoRef: string) => `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${photoRef}&key=${googleAPIKey}`));
       } 
     })
     .catch(error => {
@@ -146,29 +173,30 @@ function App(): JSX.Element {
     })
   }
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      await fetchDetails();
-    } catch (error) {
-      // Handle errors
-      alert(error);
-    }
-  };
-  fetchData();
-}, [results]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await fetchDetails();
+      } catch (error) {
+        // Handle errors
+        alert(error);
+      }
+    };
+    fetchData();
+  }, [results]);
 
 
     // HANDLE PROPERTY SEARCH FORM INPUT CHANGES
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => { 
       const value = e.target.value
+      setLocation(value);
+      if (e.target.name === "location") {
+        autoComplete(value)
+      }
       setSelectedCity ({
         ...selectedCity,
         [e.target.name]: value
       })
-      if (e.target.name === "location") {
-        autoComplete(value)
-      }
     }
 
     // HANDLE DATE RANGE SELECTIONS
@@ -181,14 +209,14 @@ useEffect(() => {
         })
       }
     }
-    
+
     // HANDLE PROPERTY SEARCH USER SUBMISSION
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       setLoading(true);
       setCurrency("usd");
       fetchSearch();
-      navigate(`/searchQuery/${placeID}`)
+      navigate(`/searchQuery/${placeID}`);
     }
 
     // HANDLE RESET OF RESULTS AND USER INPUT
@@ -200,7 +228,13 @@ useEffect(() => {
         checkout:"",
         adults: ""
       });
+      setLocation("");
       setAutoCompleteResults([]);
+      const locationInput = document.querySelector(".location-input") as HTMLInputElement | null;
+      if (locationInput) {
+        locationInput.value = "";
+      }
+      navigate(`/`);
     }
 
     // HANDLE CLICK ON EACH PROPERTY CARD THAT COMES UP AFTER SEARCH
@@ -226,7 +260,8 @@ useEffect(() => {
           price: property.price,
           lng: property.lng,
           lat: property.lat,
-          deeplink: property.deeplink
+          deeplink: property.deeplink,
+          isSuperhost: property.isSuperhost
         })
         navigate(`/property/${property.id}`)
         window.scrollTo(0, 0);
@@ -253,8 +288,9 @@ useEffect(() => {
               handleDateRangeChange={handleDateRangeChange}
               results={results}
               autoCompleteResults={autoCompleteResults}
-              locationPhoto={locationPhoto}
+              cityImages={cityImages}
               handleAutoCompleteSelect={handleAutoCompleteSelect}
+              handleAutoCompleteClick={handleAutoCompleteClick}
             />
             <Description />
             <FeaturedRenters />
@@ -273,7 +309,8 @@ useEffect(() => {
               handleDateRangeChange={handleDateRangeChange}
               results={results}
               autoCompleteResults={autoCompleteResults}
-              locationPhoto={locationPhoto}
+              cityImages={cityImages}
+               handleAutoCompleteClick={handleAutoCompleteClick}
               handleAutoCompleteSelect={handleAutoCompleteSelect} />
               {loading ?
                 <div className="spinner-container">
@@ -290,6 +327,8 @@ useEffect(() => {
                     selectedCity={selectedCity}
                     errorMessage={''} 
                     errorPresent={false} 
+                    handleReset={handleReset}
+                    location={location}
                   />
                   <Newsletter />
                   <Footer />
@@ -308,7 +347,8 @@ useEffect(() => {
               handleDateRangeChange={handleDateRangeChange}
               results={results}
               autoCompleteResults={autoCompleteResults}
-              locationPhoto={locationPhoto}
+              cityImages={cityImages}
+              handleAutoCompleteClick={handleAutoCompleteClick}
               handleAutoCompleteSelect={handleAutoCompleteSelect} />
               <Property
                 handleReturn={handleReturn}

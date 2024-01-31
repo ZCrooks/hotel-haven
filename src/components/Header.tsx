@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { Button } from "react-bootstrap";
+import { Button, Carousel } from "react-bootstrap";
 import { DateRangePicker } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,44 +21,38 @@ const Header: React.FC<HeaderProps> = ({
   handleDateRangeChange,
   results,
   autoCompleteResults,
-  locationPhoto,
-  handleAutoCompleteSelect
+  cityImages,
+  handleAutoCompleteSelect,
+  handleAutoCompleteClick
 }) =>  {
-    
-    // Handle Click of Autocomplete Selection
-    const handleAutoCompleteClick = (result: any) => {
-        const div = document.querySelector(".auto-complete") as HTMLDivElement | null;
-        const locationInput = document.querySelector(".location-input") as HTMLInputElement | null;
-        if (locationInput) {
-            locationInput.value = result.description;
-        }
-        if (div) {
-            div.style.display = "none";
-        } 
-    };
-
     return (
         <>
         <header>
             <div className="header-div">
                  {results && results.length > 0 ? (
                     <>
-                    <p>{results.length} Properties Available</p>  
-                    <h1>{results[1].address}</h1>                 
+                    <h1>{results[1].city}</h1>                 
                     </>
                  ) : ( 
                 <h1>Find Your Next <span>Vacation Property!</span></h1>
                 )}
             </div>
             <div className={results ? "location-photo-div" : "header-img-div"}>
-            <img
-                className="header-img"
-                src={results && results.length > 0 ? locationPhoto : headerImage}
-                alt="Header Image"
-            />
+                {results && results.length > 0 ? 
+                    (
+                        <Carousel controls={false} interval={3000} slide={false}>
+                            {cityImages.map((image: string, index: number) => (
+                            <Carousel.Item key={index}>
+                                <img src={image} alt={`Slide ${index + 1}`} />
+                            </Carousel.Item>
+                            ))}
+                        </Carousel>
+                    ) : (
+                    <img className="header-img" src={headerImage} alt="Header Image" />
+                )}
             </div>
         </header>
-        <Container>
+        <Container className="form-container">
             <Form className="search-form" onSubmit={handleSubmit}>
                 <Row className="g-2 ms-4">
                     <Col md>

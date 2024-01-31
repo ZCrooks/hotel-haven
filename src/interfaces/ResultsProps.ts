@@ -6,4 +6,6 @@ export interface ResultsProps {
   errorMessage: string;
   errorPresent: boolean;
   selectedCity: any;
+  handleReset: any;
+  location: string;
 }

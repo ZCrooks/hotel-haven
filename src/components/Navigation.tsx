@@ -15,18 +15,23 @@ const Navigation: React.FC<NavigationProps> = ({ handleReset }) => {
               <img src={logo} alt="Home Haven Logo" width="250" height="90"/>
             </Navbar.Brand>
          </LinkContainer>
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Travellers</Nav.Link>
             <Nav.Link href="#link">Affiliates</Nav.Link>
+            <Nav.Link href="/">Hot Deals!</Nav.Link>
             <NavDropdown title="Languages" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">English</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">French</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Spanish</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Italian</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Japanese</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Mandarin</NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          <Button>Become a Host!</Button>
         </Navbar.Collapse>
-        <Button>Become a Host!</Button>
       </Container>
     </Navbar>
   );

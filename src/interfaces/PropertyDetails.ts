@@ -18,5 +18,6 @@ export interface PropertyDetails {
     price: {[key: string] : any}
     lng: number,
     lat: number,
-    deeplink: string
+    deeplink: string,
+    isSuperhost: string
 }

@@ -1,25 +1,29 @@
 import { Card, Container, Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faBath, faBed, faUser, faDoorOpen, faLocationDot, faWifi, faFan, faCar, faKitchenSet, faPersonSwimming, faSmoking, faDog, faDumbbell, faMugSaucer, faTv, faKey, faHotTubPerson, faFire, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faBath, faBed, faUser, faDoorOpen, faLocationDot, faWifi, faFan, faCar, faKitchenSet, faPersonSwimming, faSmoking, faDog, faDumbbell, faMugSaucer, faTv, faKey, faHotTubPerson, faFire, faRotateLeft, faAward } from "@fortawesome/free-solid-svg-icons";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { PropertyProps } from "../interfaces/PropertyProps";
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
+
 
 const Property: React.FC<PropertyProps> = ({
   handleReturn,
   selectedProperty
 }) => {
-  // GOOGLE MAPS - MAP RENDERING LOGIC
-  const googleAPIKey = import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY as string; // Use process.env to access environment variables
-  const { isLoaded, loadError } = useLoadScript({
+
+    // GOOGLE MAPS - MAP RENDERING LOGIC
+    const googleAPIKey = import.meta.env.VITE_REACT_APP_GOOGLE_API_KEY as string; // Use process.env to access environment variables
+    const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: googleAPIKey
-  });
+    });
 
-  if (loadError) return "Error loading maps"; // Return an error message if the maps fail to load
+    if (loadError) return "Error loading maps"; // Return an error message if the maps fail to load
 
-  const center = {
+    const center = {
     lat: selectedProperty.lat,
     lng: selectedProperty.lng
-  };
+    };
 
     // RESERVE BUTTON CLICK
     const handleReserve = () => {
@@ -46,7 +50,10 @@ const Property: React.FC<PropertyProps> = ({
                 <Row className="property-main">
                     <Col xs={8}>
                         <Card className="property-key-card">
-                            <p className="property-type">{selectedProperty.type}</p>
+                            <div className="property-host-type">
+                                <p className="property-type">{selectedProperty.type}</p>
+                                {selectedProperty.isSuperhost ? <FontAwesomeIcon className="super-host" icon={faAward} size="2xl" style={{color: "#04b9d8",}} /> : null}                                
+                            </div>
                             <h2>{selectedProperty.name}</h2>
                             <div className="property-details">
                                 <div className="property-intro">
@@ -89,15 +96,19 @@ const Property: React.FC<PropertyProps> = ({
                                 <div>
                                     <FontAwesomeIcon icon={faDoorOpen} style={{color: "#676e7c",}} />
                                     <p>{selectedProperty.bedrooms} {selectedProperty.bedrooms > 1 ? "bedrooms" : "bedroom"}</p>
-                                </div>
-                                
+                                </div>                               
                             </div>
         
                             <ul className="property-photos">
-                                {selectedProperty.images.slice(0, 6).map((image: string) => {
+                                {selectedProperty.images.slice(0, 9).map((image: string) => {
                                     return (
                                         <li key={image}>
-                                            <Card.Img  src={image} alt="Property Image"/>
+                                             <Zoom>
+                                                <Card.Img  
+                                                    src={image} 
+                                                    alt="Property Image"
+                                                />
+                                            </Zoom>
                                         </li>
                                     )
                                 })}                        
@@ -157,6 +168,7 @@ const Property: React.FC<PropertyProps> = ({
                 </Row>
                 <Card className="property-description-card">
                     <h3>Stay Information</h3>
+                    <hr></hr>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum adipisci aliquam, quae voluptatibus quod incidunt quas eveniet maxime ratione nulla ad reiciendis suscipit natus iste perspiciatis. Animi consectetur quas minima placeat laudantium odio facere dolor non quam. Maiores maxime quae, reprehenderit ipsam hic, eligendi facilis laborum veritatis provident libero cum! Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae rem facere itaque provident at iure quasi quod nobis voluptate molestias!</p>
                 </Card>
 
@@ -222,6 +234,17 @@ const Property: React.FC<PropertyProps> = ({
                     })}
                 </ul>
                 </Card>
+                <Card className="property-important-information">
+                    <h3>Things to know</h3>
+                    <hr></hr>
+                    <h4>Cancellation Policy</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque sint repudiandae totam corporis odit atque. Provident itaque dolorum illum consequuntur.</p>
+                    <ol>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
+                    </ol>
+                </Card>                
             </Container>
         </section>
     )

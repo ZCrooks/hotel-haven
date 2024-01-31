@@ -19,9 +19,14 @@ h1, h2, h3 {
     font-family: 'Inter', sans-serif;
 }
 
-p { 
+p, li { 
     font-family: 'Poppins', sans-serif;
 }
+
+a:hover, a:hover {
+    color: turquoise;
+}
+
 
 // FONT WEIGHT & COLORS
 body h1 {
@@ -38,13 +43,11 @@ body h2 {
 body h3 {
     font-size: 1.5rem;
     font-weight: 600;
-}
-
-body h4 {
     color: #1A7066;
 }
 
-p {
+
+p, li {
     color: $tertiary;
 }
 
@@ -52,6 +55,31 @@ ul {
     list-style: none;
 }
 
+.back-button, .reset-button {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 25%;
+    height: 50px;
+    background-color: $primary;
+    border-radius: 15px;
+    color: $secondary;
+    font-size: 1rem;
+}
+
+.submit-button {
+    background-color: $primary;
+    border-radius: 50%;
+    width: 10%;
+    margin: 15px;
+}
+
+.back-button:hover, .reset-button:hover, .submit-button:hover {
+    background-color: turquoise;
+}
+
+.back-button:focus, .reset-button:focus, .submit-button:focus {
+    background-color: turquoise;
+}
 // LOADING SPINNER
 .spinner-container {
     display: flex;
