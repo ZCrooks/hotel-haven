@@ -243,8 +243,6 @@ const Property: React.FC<PropertyProps> = ({
                         <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
                         <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
                         <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur adipisci esse corrupti labore minus harum, recusandae quisquam blanditiis ducimus repellendus</li>
                     </ol>
                 </Card>                
             </Container>

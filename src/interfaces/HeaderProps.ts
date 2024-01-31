@@ -6,7 +6,7 @@ export interface HeaderProps {
   handleDateRangeChange: (value: Date[] | null) => void;
   results: any[]; 
   autoCompleteResults: any; 
-  locationPhoto: string;
+  cityImages: any[];
   handleAutoCompleteSelect: (result: any) => void; 
   handleAutoCompleteClick: (result: any) => void; 
 }

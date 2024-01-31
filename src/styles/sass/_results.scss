@@ -126,6 +126,9 @@
 @media (max-width: 990px) { 
     .results-section {
         margin-top: 5%;
+        & h2 {
+            margin-top: 20%;
+        }
         & .results-box {
             grid-template-columns: 100%; 
         }
@@ -133,6 +136,9 @@
 }
 
 @media (max-width: 480px) {
+    .results-features {
+        margin-bottom: 20px;
+    }
     .results-card {
         flex-direction: column !important;
         align-items: center;

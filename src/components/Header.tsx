@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import { Button } from "react-bootstrap";
+import { Button, Carousel } from "react-bootstrap";
 import { DateRangePicker } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({
   handleDateRangeChange,
   results,
   autoCompleteResults,
-  locationPhoto,
+  cityImages,
   handleAutoCompleteSelect,
   handleAutoCompleteClick
 }) =>  {
@@ -38,14 +38,21 @@ const Header: React.FC<HeaderProps> = ({
                 )}
             </div>
             <div className={results ? "location-photo-div" : "header-img-div"}>
-            <img
-                className="header-img"
-                src={results && results.length > 0 ? locationPhoto : headerImage}
-                alt="Header Image"
-            />
+                {results && results.length > 0 ? 
+                    (
+                        <Carousel controls={false} interval={3000} slide={false}>
+                            {cityImages.map((image: string, index: number) => (
+                            <Carousel.Item key={index}>
+                                <img src={image} alt={`Slide ${index + 1}`} />
+                            </Carousel.Item>
+                            ))}
+                        </Carousel>
+                    ) : (
+                    <img className="header-img" src={headerImage} alt="Header Image" />
+                )}
             </div>
         </header>
-        <Container>
+        <Container className="form-container">
             <Form className="search-form" onSubmit={handleSubmit}>
                 <Row className="g-2 ms-4">
                     <Col md>

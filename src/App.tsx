@@ -73,7 +73,7 @@ function App(): JSX.Element {
   const [placeID, setPlaceID] = useState<string>("");
 
   // SET SELECTED CITY'S PHOTO
-  const [locationPhoto, setLocationPhoto] = useState<string>("");
+  const [cityImages, setCityImages] = useState([]);
 
   // DEFINE NAVIGATION
   const navigate = useNavigate();
@@ -162,9 +162,10 @@ function App(): JSX.Element {
     })
     .then(response => {
       if (response.data.result) {
-        // Set City Photo to first pic returned from array (based on text query)
-        const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${response.data.result.photos[1].photo_reference}&key=${googleAPIKey}`;
-        setLocationPhoto(imageUrl);
+ 
+        // Set city's images (readying for carousel)
+        const photos = response.data.result.photos.map((photo: {photo_reference: string}) => photo.photo_reference);
+        setCityImages(photos.map((photoRef: string) => `https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&maxheight=500&photoreference=${photoRef}&key=${googleAPIKey}`));
       } 
     })
     .catch(error => {
@@ -227,7 +228,12 @@ function App(): JSX.Element {
         checkout:"",
         adults: ""
       });
+      setLocation("");
       setAutoCompleteResults([]);
+      const locationInput = document.querySelector(".location-input") as HTMLInputElement | null;
+      if (locationInput) {
+        locationInput.value = "";
+      }
       navigate(`/`);
     }
 
@@ -282,7 +288,7 @@ function App(): JSX.Element {
               handleDateRangeChange={handleDateRangeChange}
               results={results}
               autoCompleteResults={autoCompleteResults}
-              locationPhoto={locationPhoto}
+              cityImages={cityImages}
               handleAutoCompleteSelect={handleAutoCompleteSelect}
               handleAutoCompleteClick={handleAutoCompleteClick}
             />
@@ -303,7 +309,7 @@ function App(): JSX.Element {
               handleDateRangeChange={handleDateRangeChange}
               results={results}
               autoCompleteResults={autoCompleteResults}
-              locationPhoto={locationPhoto}
+              cityImages={cityImages}
                handleAutoCompleteClick={handleAutoCompleteClick}
               handleAutoCompleteSelect={handleAutoCompleteSelect} />
               {loading ?
@@ -341,7 +347,7 @@ function App(): JSX.Element {
               handleDateRangeChange={handleDateRangeChange}
               results={results}
               autoCompleteResults={autoCompleteResults}
-              locationPhoto={locationPhoto}
+              cityImages={cityImages}
               handleAutoCompleteClick={handleAutoCompleteClick}
               handleAutoCompleteSelect={handleAutoCompleteSelect} />
               <Property

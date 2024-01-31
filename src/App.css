@@ -12209,7 +12209,7 @@ h1, .h1, h2, .h2, h3, .h3 {
   font-family: "Inter", sans-serif;
 }
 
-p, ol {
+p, li {
   font-family: "Poppins", sans-serif;
 }
 
@@ -12234,7 +12234,7 @@ body h3, body .h3 {
   color: #1A7066;
 }
 
-p {
+p, li {
   color: #5d626f;
 }
 
@@ -12444,6 +12444,11 @@ header span {
   }
   header .header-div h1, header .header-div .h1 {
     font-size: 3.1rem;
+  }
+  .form-container {
+    position: sticky;
+    top: 0;
+    z-index: 1;
   }
 }
 @media (max-width: 590px) {
@@ -12670,11 +12675,17 @@ header span {
   .results-section {
     margin-top: 5%;
   }
+  .results-section h2, .results-section .h2 {
+    margin-top: 20%;
+  }
   .results-section .results-box {
     grid-template-columns: 100%;
   }
 }
 @media (max-width: 480px) {
+  .results-features {
+    margin-bottom: 20px;
+  }
   .results-card {
     flex-direction: column !important;
     align-items: center;
